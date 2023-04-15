@@ -94,6 +94,10 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
 
 
 /**
+ * 
+ * */
+
+/**
  * Función principal para responder al evento de elegir la opción "Home"
  */
 Plantilla.procesarHome = function () {
