@@ -18,6 +18,31 @@ Plantilla.datosDescargadosNulos = {
     fecha: ""
 }
 
+Plantilla.plantillaTags = {
+    "ID": "### ID ###",
+    "NOMBRE_JINETE": "### NOMBRE_JINETE ###",
+    "NOMBRE": "### NOMBRE ###",
+    "APELLIDOS": "### APELLIDOS ###",
+    "ALTURA_JINETE": "### ALTURA_JINETE ###",
+    "DATOS_CABALLO": "### DATOS_CABALLO ###",
+    "NOMBRE_CABALLO": "### NOMBRE_CABALLO ###",
+    "EDAD": "### EDAD ###",
+    "SEXO": "### SEXO ###",
+    "FECHA_NACIMIENTO": "### FECHA_NACIMIENTO ###",
+    "DIA": "### DIA ###",
+    "MES": "### MES ###",
+    "AÑO": "### AÑO ###",
+    "NOMBRE_CLUB_ACTUAL": "### NOMBRE_CLUB_ACTUAL ###",
+    "DIRECCION_CLUB": "### DIRECCION_CLUB ###",
+    "CALLE": "### CALLE ###",
+    "NUMERO": "### NUMERO ###",
+    "LOCALIDAD": "### LOCALIDAD ###",
+    "PROVINCIA": "### PROVINCIA ###",
+    "PAIS": "### PAIS ###",
+    "TIPO_COMPETICION": "### TIPO_COMPETICION ###",
+    "AÑOS_FEDERADO": "### AÑOS_FEDERADO ###",
+    "NUMERO_PARTICIPACIONES": "### NUMERO_PARTICIPACIONES ###"
+}
 
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
@@ -54,7 +79,7 @@ Plantilla.mostrarHome = function (datosDescargados) {
     // Si no se ha proporcionado valor para datosDescargados
     datosDescargados = datosDescargados || this.datosDescargadosNulos
 
-    // Si datos descargados NO es un objeto 
+    // Si datos descargados NO es un objeto
     if (typeof datosDescargados !== "object") datosDescargados = this.datosDescargadosNulos
 
     // Si datos descargados NO contiene el campo mensaje
@@ -70,7 +95,7 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     // Si no se ha proporcionado valor para datosDescargados
     datosDescargados = datosDescargados || this.datosDescargadosNulos
 
-    // Si datos descargados NO es un objeto 
+    // Si datos descargados NO es un objeto
     if (typeof datosDescargados !== "object") datosDescargados = this.datosDescargadosNulos
 
     // Si datos descargados NO contiene los campos mensaje, autor, o email
@@ -92,10 +117,136 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
+/***************************************************************************************************/
+
+// Plantilla para poner los datos de varios jinetes dentro de una tabla
+Plantilla.plantillaTablaJinetes = {}
 
 /**
- * 
- * */
+ *  CABECERA DE LA TABLA DE LOS NOMBRES DE JINETES
+ * Muestra los nombres de los campos sobre la información que vamos a representar de los jinetes
+ * @type {string}
+ */
+Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_jinetes">
+    <thead>
+        <th width="5%">ID</th>
+        <th width="15%">Nombre</th>
+        <th width="10%">Apellidos</th>      
+
+    </thead>
+    <tbody>
+`;
+
+
+/**
+ * * CUERPO DE LA TABLA DEL NOMBRE DE LOS JINETES
+ * Muestra la información de cada plantilla en un elemento TR con sus correspondientes TD
+ * @param {plantilla} p Datos del plantilla a mostrar
+ * @returns Cadena conteniendo todo el elemento TR que muestra el plantilla.
+ */
+Plantilla.plantillaTablaJinetes.cuerpo = `
+<tr title="${Plantilla.plantillaTags.ID}">
+    <td>${Plantilla.plantillaTags.ID}</td>
+    <td>${Plantilla.plantillaTags.NOMBRE}</td>
+    <td>${Plantilla.plantillaTags.APELLIDOS}</td>
+
+</tr>
+`;
+
+
+/**
+ * PIE DE LAS TABLAS
+ * @returns {string}
+ */
+Plantilla.plantillaTablaJinetes.pie = `        </tbody>
+</table>
+`;
+
+/***************************************************************************************************/
+
+/**
+ * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
+ * @param {String} plantilla Cadena conteniendo HTMLen la que se desea cambiar los campos de la plantilla por datos
+ * @param {Jugador} jugador Objeto con los datos del jugador que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados
+ */
+Plantilla.sustituyeTags = function (plantilla, jinete) {
+    return plantilla
+        .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), jinete.ref['@ref'].id)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE  , 'g'), jinete.data.nombre_jinete.nombre )
+        .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS  , 'g'), jinete.data.nombre_jinete.apellidos )
+        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE , 'g'), jinete.data.altura_jinete)
+        .replace(new RegExp(Plantilla.plantillaTags.DATOS_CABALLO, 'g'), jinete.data.datos_caballo.nombre_caballo + "/" + jinete.data.datos_caballo.edad + "/" + jinete.data.datos_caballo.sexo)
+        .replace(new RegExp(Plantilla.plantillaTags.FECHA_NACIMIENTO, 'g'), jinete.data.fecha_nacimiento.dia + "/" + jinete.data.fecha_nacimiento.mes + "/" + jinete.data.fecha_nacimiento.año)
+        .replace(new RegExp(Plantilla.plantillaTags.DIRECCION_CLUB , 'g'), jinete.data.direccion_club.calle + ", " + jinete.data.direccion_club.numero + ", " + jinete.data.direccion_club.localidad + ", " + jinete.data.direccion_club.provincia + ", " + jinete.data.direccion_club.pais)
+        .replace(new RegExp(Plantilla.plantillaTags.TIPO_COMPETICION , 'g'), jinete.data.tipo_competicion)
+        .replace(new RegExp(Plantilla.plantillaTags.AÑOS_FEDERADO, 'g'), jinete.data.años_federado)
+        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinete.data.numero_particiapciones_torneo)
+
+
+}
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
+ * Actualiza el cuerpo de la tabla con los daos de la persona que se le pasa
+ * @param {Jugador} jugador Objeto con los datos de la persona que queremos escribir el TR
+ * @returns La plantilla des cuerpo de la tabla con los datos actualizados
+ */
+Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinete) {
+    return Plantilla.sustituyeTags(this.cuerpo, jinete)
+}
+
+
+
+
+/***************************************************************************************************/
+
+/**
+ * Función que recupera todos los jinetes llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recupera = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error)
+    }
+
+    //mostrar todos los jugadores que se han descargado
+    let vectorJinetes = null
+    if (response) {
+        vectorJinetes = await response.json()
+        callBackFn(vectorJinetes.data)
+    }
+}
+
+/***************************************************************************************************/
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
+ * Función para mostrar en jinete todos los nombres de los jinetes
+ * que se han recuperado de la BBDD
+ * @param {vector_de_jinetes} vector
+ */
+Plantilla.imprimeNombres = function (vector) {
+    //console.log(vector) // Para comprobar lo que hay en vector
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaJinetes.cabecera
+   vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e))
+    msj += Plantilla.plantillaTablaJinetes.pie
+
+    // Borrar toda la información de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listados de nombres de jinetes" , msj)
+}
+
+
+/***************************************************************************************************/
 
 /**
  * Función principal para responder al evento de elegir la opción "Home"
@@ -112,4 +263,11 @@ Plantilla.procesarAcercaDe = function () {
 }
 
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
+ * Función principal para recuperar las personas desde el MS, y posteriormente imprimirlas
+ */
+Plantilla.nombrarJinetes = function () {
+    Plantilla.recupera(Plantilla.imprimeNombres);
+}
 

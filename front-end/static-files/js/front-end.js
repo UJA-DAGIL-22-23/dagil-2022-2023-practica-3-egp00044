@@ -12,6 +12,10 @@ let Frontend = {};
 /// Dirección del MS que funciona como API_GATEWAY
 Frontend.API_GATEWAY = "http://localhost:8001"
 
+/// Algunas constantes relacionadas con CSS y HTM
+Frontend.CLASS_MOSTRAR = "mostrar"
+Frontend.CLASS_OCULTAR = "ocultar"
+
 /// Algunas constantes relacionadas con CSS y HTML
 Frontend.ID_SECCION_PRINCIPAL = "seccion-principal"
 Frontend.ID_SECCION_PRINCIPAL_TITULO = "seccion-principal-titulo"
@@ -24,7 +28,7 @@ Frontend.Article = {}
 
 /**
  * Cambia toda la información del article
- * @param {String} titulo Información para el título del article 
+ * @param {String} titulo Información para el título del article
  * @param {String} contenido INformacion para el contenido del article
  * @returns El propio Article para concatenar llamadas
  */
