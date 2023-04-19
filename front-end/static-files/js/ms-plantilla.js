@@ -135,7 +135,29 @@ Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_j
 
     </thead>
     <tbody>
+`;/**
+ * CABECERA DE LA TABLA DATOS DE JINETES
+ * Muestra los nombres de los campos sobre la información que vamos a representar de los jinetes
+ * @type {string}
+ */
+Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" class="listado_jinetes">
+    <thead>
+        <th width="5%">ID</th>
+        <th width="15%">Nombre</th>
+        <th width="10%">Apellidos</th>
+        <th width="10%">Altura</th>      
+        <th width="25%">Datos del caballo</th>
+        <th width="25%">Fecha de nacimiento</th>
+        <th width="15%">Nombre del club</th>
+        <th width="10%">Dirección</th>
+        <th width="10%">Tipo de competicion</th>
+        <th width="5%">Anios federado</th>
+        <th width="5%">Número de participaciones</th> 
+
+    </thead>
+    <tbody>
 `;
+
 
 
 /**
@@ -153,6 +175,28 @@ Plantilla.plantillaTablaJinetes.cuerpo = `
 </tr>
 `;
 
+/**
+ * CUERPO DE LA TABLA DE TODOS LOS JINETES
+ * Muestra la información de cada plantilla en un elemento TR con sus correspondientes TD
+ * @param {plantilla} p Datos del plantilla a mostrar
+ * @returns Cadena conteniendo todo el elemento TR que muestra el plantilla.
+ */
+Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
+<tr title="${Plantilla.plantillaTags.ID}">
+    <td>${Plantilla.plantillaTags.ID}</td>
+    <td>${Plantilla.plantillaTags.NOMBRE}</td>
+    <td>${Plantilla.plantillaTags.APELLIDOS}</td>
+    <td>${Plantilla.plantillaTags.ALTURA_JINETE }</td>
+    <td>${Plantilla.plantillaTags.DATOS_CABALLO}</td>
+    <td>${Plantilla.plantillaTags["FECHA_NACIMIENTO"]}</td>
+    <td>${Plantilla.plantillaTags.DIRECCION_CLUB}</td>
+    <td>${Plantilla.plantillaTags.TIPO_COMPETICION}</td>
+    <td>${Plantilla.plantillaTags["AÑOS_FEDERADO"]}</td>
+    <td>${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}</td>
+
+
+</tr>
+`;
 
 /**
  * PIE DE LAS TABLAS
@@ -196,6 +240,16 @@ Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinete) {
     return Plantilla.sustituyeTags(this.cuerpo, jinete)
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
+ * Actualiza el cuerpo de la tabla con los daos de la persona que se le pasa
+ * @param {jinete} jinete Objeto con los datos de la persona que queremos escribir el TR
+ * @returns La plantilla des cuerpo de la tabla con los datos actualizados
+ */
+
+Plantilla.plantillaTablaJinetes.actualiza = function (jinete) {
+    return Plantilla.sustituyeTags(this.cuerpoJinetesTodos, jinete)
+}
 
 
 
@@ -245,6 +299,23 @@ Plantilla.imprimeNombres = function (vector) {
     Frontend.Article.actualizar("Listados de nombres de jinetes" , msj)
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
+ * Función para mostrar en pantalla todos los Jinetes que se han recuperado de la BBDD.
+ * @param {Vector_de_jinetes} vector Vector con los datos de los jinetes a mostrar
+ */
+
+Plantilla.imprimeMuchosJinetes = function (vector) {
+    //console.log(vector) // Para comprobar lo que hay en vector
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    msj += Plantilla.plantillaTablaJinetes.pie
+
+    // Borrar toda la información de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Plantilla del listados de los datos de todos los jugadores" , msj)
+}
 
 /***************************************************************************************************/
 
@@ -271,3 +342,11 @@ Plantilla.nombrarJinetes = function () {
     Plantilla.recupera(Plantilla.imprimeNombres);
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
+ * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ */
+
+Plantilla.listarJinetes = function () {
+    Plantilla.recupera(Plantilla.imprimeMuchosJinetes);
+}
