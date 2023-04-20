@@ -330,7 +330,9 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
-    vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    }
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa

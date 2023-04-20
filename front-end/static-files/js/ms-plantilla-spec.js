@@ -146,20 +146,24 @@ Esto afecta a los métodos:
 
 
 describe("Plantilla.imprimeNombres: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+    it("muestra datos nulos cuando le pasamos un valor nulo", function() {
         Plantilla.imprimeNombres([])
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
     })
-    it("Mostrar datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
         Plantilla.imprimeNombres(12)
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
         })
 })
 
 
-describe("Plantilla.imprimeNombres: ", function() {
+describe("Plantilla.imprimeMuchosJinetes: ", function() {
     it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
         Plantilla.imprimeMuchosJinetes([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+    })
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+        Plantilla.imprimeMuchosJinetes(12)
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
     })
 })
