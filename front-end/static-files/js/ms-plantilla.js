@@ -135,7 +135,10 @@ Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_j
 
     </thead>
     <tbody>
-`;/**
+`;
+
+
+/**
  * CABECERA DE LA TABLA DATOS DE JINETES
  * Muestra los nombres de los campos sobre la información que vamos a representar de los jinetes
  * @type {string}
@@ -159,14 +162,12 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
 `;
 
 
-
 /**
  * * CUERPO DE LA TABLA DEL NOMBRE DE LOS JINETES
  * Muestra la información de cada plantilla en un elemento TR con sus correspondientes TD
  * @param {plantilla} p Datos del plantilla a mostrar
  * @returns Cadena conteniendo todo el elemento TR que muestra el plantilla.
- */
-Plantilla.plantillaTablaJinetes.cuerpo = `
+ */Plantilla.plantillaTablaJinetes.cuerpo = `
 <tr title="${Plantilla.plantillaTags.ID}">
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
@@ -186,23 +187,26 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
     <td>${Plantilla.plantillaTags.APELLIDOS}</td>
-    <td>${Plantilla.plantillaTags.ALTURA_JINETE }</td>
-    <td>${Plantilla.plantillaTags.DATOS_CABALLO}</td>
-    <td>${Plantilla.plantillaTags["FECHA_NACIMIENTO"]}</td>
-    <td>${Plantilla.plantillaTags.DIRECCION_CLUB}</td>
-    <td>${Plantilla.plantillaTags.TIPO_COMPETICION}</td>
+    <td>${Plantilla.plantillaTags.ALTURA_JINETE}</td>
+    <td>${Plantilla.plantillaTags.DATOS_CABALLO}</td>     
+    <td>${Plantilla.plantillaTags.FECHA_NACIMIENTO}</td>   
+    <td>${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}</td>   
+    <td>${Plantilla.plantillaTags.DIRECCION_CLUB }</td>   
+        <td>${Plantilla.plantillaTags.TIPO_COMPETICION }</td>   
     <td>${Plantilla.plantillaTags["AÑOS_FEDERADO"]}</td>
-    <td>${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}</td>
+    <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
+
+
 
 
 </tr>
 `;
 
+
 /**
  * PIE DE LAS TABLAS
  * @returns {string}
- */
-Plantilla.plantillaTablaJinetes.pie = `        </tbody>
+ */Plantilla.plantillaTablaJinetes.pie = `        </tbody>
 </table>
 `;
 
@@ -211,33 +215,36 @@ Plantilla.plantillaTablaJinetes.pie = `        </tbody>
 /**
  * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
  * @param {String} plantilla Cadena conteniendo HTMLen la que se desea cambiar los campos de la plantilla por datos
- * @param {Jugador} jugador Objeto con los datos del jugador que queremos escribir en el TR
+ * @param {jinete} jinete Objeto con los datos del jinete que queremos escribir en el TR
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados
  */
-Plantilla.sustituyeTags = function (plantilla, jinete) {
+Plantilla.sustituyeTags = function (plantilla, jinetes) {
     return plantilla
-        .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), jinete.ref['@ref'].id)
-        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE  , 'g'), jinete.data.nombre_jinete.nombre )
-        .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS  , 'g'), jinete.data.nombre_jinete.apellidos )
-        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE , 'g'), jinete.data.altura_jinete)
-        .replace(new RegExp(Plantilla.plantillaTags.DATOS_CABALLO, 'g'), jinete.data.datos_caballo.nombre_caballo + "/" + jinete.data.datos_caballo.edad + "/" + jinete.data.datos_caballo.sexo)
-        .replace(new RegExp(Plantilla.plantillaTags.FECHA_NACIMIENTO, 'g'), jinete.data.fecha_nacimiento.dia + "/" + jinete.data.fecha_nacimiento.mes + "/" + jinete.data.fecha_nacimiento.año)
-        .replace(new RegExp(Plantilla.plantillaTags.DIRECCION_CLUB , 'g'), jinete.data.direccion_club.calle + ", " + jinete.data.direccion_club.numero + ", " + jinete.data.direccion_club.localidad + ", " + jinete.data.direccion_club.provincia + ", " + jinete.data.direccion_club.pais)
-        .replace(new RegExp(Plantilla.plantillaTags.TIPO_COMPETICION , 'g'), jinete.data.tipo_competicion)
-        .replace(new RegExp(Plantilla.plantillaTags.AÑOS_FEDERADO, 'g'), jinete.data.años_federado)
-        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinete.data.numero_particiapciones_torneo)
+        .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), jinetes.ref['@ref'].id)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE  , 'g'), jinetes.data.nombre_jinete.nombre )
+        .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS  , 'g'), jinetes.data.nombre_jinete.apellidos )
+        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE  , 'g'), jinetes.data.altura_jinete )
+        .replace(new RegExp(Plantilla.plantillaTags.DATOS_CABALLO  , 'g'), jinetes.data.datos_caballo.nombre_caballo + " Edad: " + jinetes.data.datos_caballo.edad  + " Sexo: "+ jinetes.data.datos_caballo.sexo )
+        .replace(new RegExp(Plantilla.plantillaTags.FECHA_NACIMIENTO  , 'g'), jinetes.data.fecha_nacimiento.dia + "/" + jinetes.data.fecha_nacimiento.mes + "/" + jinetes.data.fecha_nacimiento.año)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL  , 'g'), jinetes.data.nombre_club_actual )
+        .replace(new RegExp(Plantilla.plantillaTags.DIRECCION_CLUB , 'g'), jinetes.data.direccion_club.calle + ", " + jinetes.data.direccion_club.numero + ", " + jinetes.data.direccion_club.localidad + ", " + jinetes.data.direccion_club.provincia + ", " + jinetes.data.direccion_club.pais)
+        .replace(new RegExp(Plantilla.plantillaTags.TIPO_COMPETICION , 'g'), jinetes.data.tipo_competicion)
+        .replace(new RegExp(Plantilla.plantillaTags["AÑOS_FEDERADO"], 'g'), jinetes.data.anios_federado)
+        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinetes.data.numero_particiapciones)
 
 
 }
 
+/***************************************************************************************************/
+
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
  * Actualiza el cuerpo de la tabla con los daos de la persona que se le pasa
- * @param {Jugador} jugador Objeto con los datos de la persona que queremos escribir el TR
+ * @param {jinete} jinete Objeto con los datos de la persona que queremos escribir el TR
  * @returns La plantilla des cuerpo de la tabla con los datos actualizados
  */
-Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinete) {
-    return Plantilla.sustituyeTags(this.cuerpo, jinete)
+Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {
+    return Plantilla.sustituyeTags(this.cuerpo, jinetes)
 }
 
 /**
@@ -251,9 +258,8 @@ Plantilla.plantillaTablaJinetes.actualiza = function (jinete) {
     return Plantilla.sustituyeTags(this.cuerpoJinetesTodos, jinete)
 }
 
-
-
 /***************************************************************************************************/
+
 
 /**
  * Función que recupera todos los jinetes llamando al MS Plantilla
@@ -272,7 +278,7 @@ Plantilla.recupera = async function (callBackFn) {
         console.error(error)
     }
 
-    //mostrar todos los jugadores que se han descargado
+    //mostrar todos los jinetes que se han descargado
     let vectorJinetes = null
     if (response) {
         vectorJinetes = await response.json()
@@ -292,12 +298,13 @@ Plantilla.imprimeNombres = function (vector) {
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabecera
-   vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e))
+    vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar("Listados de nombres de jinetes" , msj)
 }
+
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
@@ -314,8 +321,9 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Plantilla del listados de los datos de todos los jugadores" , msj)
+    Frontend.Article.actualizar("Plantilla del listados de los datos de todos los jinetes" , msj)
 }
+
 
 /***************************************************************************************************/
 
@@ -334,6 +342,7 @@ Plantilla.procesarAcercaDe = function () {
 }
 
 
+
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
  * Función principal para recuperar las personas desde el MS, y posteriormente imprimirlas
@@ -341,6 +350,7 @@ Plantilla.procesarAcercaDe = function () {
 Plantilla.nombrarJinetes = function () {
     Plantilla.recupera(Plantilla.imprimeNombres);
 }
+
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 4

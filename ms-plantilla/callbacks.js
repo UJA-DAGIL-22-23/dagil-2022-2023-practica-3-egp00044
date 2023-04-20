@@ -62,13 +62,13 @@ const CB_MODEL_SELECTS = {
     },
 
     /**
-     * Método para obtener todos los jinetes de la BBDD
+     * Método para obtener todos los jugadores de la BBDD
      * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
      * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
      */
     getTodos: async (req, res) => {
         try {
-            let jinetes = await client.query (
+            let jugadores = await client.query (
                 q.Map (
                     q.Paginate(q.Documents(q.Collection(COLLECTION))),
                     q.Lambda("X", q.Get(q.Var("X")))
@@ -77,7 +77,7 @@ const CB_MODEL_SELECTS = {
 
             CORS(res)
                 .status(200)
-                .json(jinetes)({
+                .json(jugadores)({
 
                 })
         } catch (error) {
@@ -117,7 +117,7 @@ const CB_OTHERS = {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "Elena Gómez Padilla",
+                autor: "Elena Gómez",
                 email: "egp00044@red.ujaen.es",
                 fecha: "26/11/2001"
             });
