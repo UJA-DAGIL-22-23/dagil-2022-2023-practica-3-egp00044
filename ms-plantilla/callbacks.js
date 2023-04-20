@@ -14,10 +14,10 @@ const faunadb = require('faunadb'),
     q = faunadb.query;
 
 const client = new faunadb.Client({
-    secret: '¿¿¿ CLAVE SECRETA EN FAUNA PARA ESTA BBDD???',
+    secret: 'fnAFB67xNwAAzSD9N5PtCItrDzp1wwfdwoxBk5c5',
 });
 
-const COLLECTION = "¿¿¿ COLECCION ???"
+const COLLECTION = "Hipica"
 
 // CALLBACKS DEL MODELO
 
@@ -25,7 +25,7 @@ const COLLECTION = "¿¿¿ COLECCION ???"
  * Función que permite servir llamadas sin importar el origen:
  * CORS significa Cross-Origin Resource Sharing
  * Dado un objeto de tipo respuesta, le añade las cabeceras necesarias para realizar CROS
- * @param {*} res Objeto de tipo response 
+ * @param {*} res Objeto de tipo response
  * @returns Devuelve el mismo objeto para concatenar varias llamadas al mismo
  */
 function CORS(res) {
@@ -44,7 +44,7 @@ function CORS(res) {
 const CB_MODEL_SELECTS = {
     /**
      * Prueba de conexión a la BBDD: devuelve todas las personas que haya en la BBDD.
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
      * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
      */
     test_db: async (req, res) => {
@@ -61,6 +61,30 @@ const CB_MODEL_SELECTS = {
         }
     },
 
+    /**
+     * Método para obtener todos los jugadores de la BBDD
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    getTodos: async (req, res) => {
+        try {
+            let jugadores = await client.query (
+                q.Map (
+                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+
+            CORS(res)
+                .status(200)
+                .json(jugadores)({
+
+                })
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
 }
 
 
@@ -73,7 +97,7 @@ const CB_MODEL_SELECTS = {
 const CB_OTHERS = {
     /**
      * Devuelve un mensaje indicando que se ha accedido a la home del microservicio
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
      * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
      */
     home: async (req, res) => {
@@ -86,16 +110,16 @@ const CB_OTHERS = {
 
     /**
      * Devuelve un mensaje indicando que se ha accedido a la información Acerca De del microservicio
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
      * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
      */
     acercaDe: async (req, res) => {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
+                autor: "Elena Gómez",
+                email: "egp00044@red.ujaen.es",
+                fecha: "26/11/2001"
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
