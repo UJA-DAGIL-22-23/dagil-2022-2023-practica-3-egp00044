@@ -117,6 +117,49 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
+
+/***************************************************************************************************/
+
+
+/// Plantilla para poner los datos de una persona en un tabla dentro de un formulario
+Plantilla.plantillaFormularioJinete = {}
+
+Plantilla.jineteComoFormulario = function (jinete) {
+    return Plantilla.plantillaFormularioJinete.actualiza( jinete );
+}
+
+// Cabecera del formulario
+Plantilla.plantillaFormularioJinete.formulario = `
+<form method='post' action=''>
+    <table width="100%" class="listado_jinetes">
+        <thead>
+            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
+            <th width="15%">Año contratación</th><th width="25%">Acciones</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
+                        value="${Plantilla.plantillaTags.ID}" 
+                        name="id_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
+                        name="apellidos_persona"/></td>
+                <td>
+                    <div><a href="javascript:Personas.editar()" class="opcion-secundaria mostrar">Editar</a></div>
+                    <div><a href="javascript:Personas.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Personas.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
+
+
+
 /***************************************************************************************************/
 
 // Plantilla para poner los datos de varios jinetes dentro de una tabla
@@ -195,9 +238,6 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
         <td>${Plantilla.plantillaTags.TIPO_COMPETICION }</td>   
     <td>${Plantilla.plantillaTags["AÑOS_FEDERADO"]}</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
-
-
-
 
 </tr>
 `;
@@ -286,6 +326,28 @@ Plantilla.recupera = async function (callBackFn) {
     }
 }
 
+/**
+ * FUNCIÓN PARA LA Historia de Usuario 6
+ * Función que recuperar todas las personas llamando al MS Personas.
+ * Posteriormente, llama a la función callBackFn para trabajar con los datos recuperados.
+ * @param {String} idPersona Identificador de la persona a mostrar
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+
+ Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
+    try {
+        const url2 = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idJinete
+        const response = await fetch(url2);
+        if (response) {
+            const jinete = await response.json()
+            callBackFn(jinete)
+        }
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+}
+
 /***************************************************************************************************/
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
@@ -324,6 +386,22 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     Frontend.Article.actualizar("Plantilla del listados de los datos de todos los jinetes" , msj)
 }
 
+/**
+ * FUNCIÓN PARA LA Historia de Usuario 6
+ * Función para mostrar en pantalla los detalles de una persona que se ha recuperado de la BBDD por su id
+ * @param {Persona} persona Datos de la persona a mostrar
+ */
+
+ Plantilla.imprimeUnJinete = function (vector) {
+    //console.log(vector) // Para comprobar lo que hay en vector
+    let msj = Plantilla.jineteComoFormulario(jinete);
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Mostrar un jinete", msj)
+
+    // Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(jinete)
+}
 
 /***************************************************************************************************/
 
@@ -359,4 +437,13 @@ Plantilla.nombrarJinetes = function () {
 
 Plantilla.listarJinetes = function () {
     Plantilla.recupera(Plantilla.imprimeMuchosJinetes);
+}
+
+/**
+ * FUNCIÓN PARA LA Historia de Usuario 6
+ * Función principal para recuperar un jinete del MS y, posteriormente, imprimirlo.
+ */
+
+ Plantilla.mostrarUnJinete = function (idJinete) {recuperaUnJinete
+    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
 }
