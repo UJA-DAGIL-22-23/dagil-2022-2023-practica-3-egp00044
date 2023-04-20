@@ -3,7 +3,6 @@
 
 Este código que se presenta aquí corresponde a la plantilla para realizar un desarrollo basado en microservicios para las prácticas de Desarrollo Ágil, para el curso 2022-2023.
 
-
 ## Arquitectura de la aplicación
 
 La aplicación funciona gracias a la colaboración de **tres aplicaciones distintas** (en realidad, tres servidores web implementados con [Express ↗️](https://expressjs.com/) para [Node.js ↗️](https://nodejs.org/en/)).
@@ -446,7 +445,7 @@ Además, incluye documentación sobre dicho código y un vídeo descriptivo de c
 
 CAPTURA de pantalla del HOME de FAUNA
 
-![Imagen inicial de fauna ]("./assets/img/Pagina_inicio_de_fauna.png")
+![Imagen inicial de fauna ](./assets/img/Pagina_inicio_de_fauna.png)
 
 CAPTURA de pantalla de la BASE de DATOS de FAUNA
 
@@ -482,4 +481,5 @@ HISTORIA DE USUARIO 2
 HISTORIA DE USUARIO 4
 
 ![Resultado de la HU 4](./assets/img/Historia_de_Usuario_4.png)
+
 

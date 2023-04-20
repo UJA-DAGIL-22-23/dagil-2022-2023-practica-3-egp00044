@@ -121,8 +121,49 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
 
 /***************************************************************************************************/
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Imprime los datos de una jinete como una tabla dentro de un formulario usando la plantilla del formulario.
+ * @param {jinete} jinete Objeto con los datos de la jinete
+ * @returns Una cadena con la tabla que tiene ya los datos actualizados
+ */
+Plantilla.jineteComoFormulario = function (jinete) {
+    return Plantilla.plantillaFormularioJinete.actualiza( jinete );
+}
 
-/// PEPARADO PARA HU6
+/// Plantilla para poner los datos de una jinete en un tabla dentro de un formulario
+Plantilla.plantillaFormularioJinete = {}
+
+
+// Cabecera del formulario
+Plantilla.plantillaFormularioJinete.formulario = `
+<form method='post' action=''>
+    <table width="100%" class="listado-jinetes">
+        <thead>
+            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
+            <th width="15%">Año contratación</th><th width="25%">Acciones</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td><input type="text" class="form-jinete-elemento" disabled id="form-jinete-id"
+                        value="${Plantilla.plantillaTags.ID}" 
+                        name="id_jinete"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
+                        name="apellidos_persona"/></td>
+                <td>
+                    <div><a href="javascript:Plantilla.editar()" class="opcion-secundaria mostrar">Editar</a></div>
+                    <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Plantilla.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
 
 /***************************************************************************************************/
 
@@ -141,8 +182,7 @@ Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_j
         <th width="10%">Apellidos</th>      
 
     </thead>
-    <tbody>
-`;
+    <tbody> `;
 
 
 /**
@@ -166,8 +206,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="5%">Número de torneos ganados</th> 
 
     </thead>
-    <tbody>
-`;
+    <tbody> `;
 
 
 /**
@@ -175,14 +214,13 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
  * Muestra la información de cada plantilla en un elemento TR con sus correspondientes TD
  * @param {plantilla} p Datos del plantilla a mostrar
  * @returns Cadena conteniendo todo el elemento TR que muestra el plantilla.
- */Plantilla.plantillaTablaJinetes.cuerpo = `
-<tr title="${Plantilla.plantillaTags.ID}">
+ */
+Plantilla.plantillaTablaJinetes.cuerpo =
+    `<tr title="${Plantilla.plantillaTags.ID}">
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
     <td>${Plantilla.plantillaTags.APELLIDOS}</td>
-
-</tr>
-`;
+</tr> `;
 
 /**
  * CUERPO DE LA TABLA DE TODOS LOS JINETES
@@ -190,8 +228,8 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
  * @param {plantilla} p Datos del plantilla a mostrar
  * @returns Cadena conteniendo todo el elemento TR que muestra el plantilla.
  */
-Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
-<tr title="${Plantilla.plantillaTags.ID}">
+Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
+    `<tr title="${Plantilla.plantillaTags.ID}">
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
     <td>${Plantilla.plantillaTags.APELLIDOS}</td>
@@ -204,17 +242,13 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
     <td>${Plantilla.plantillaTags.AÑOS_FEDERADO}"</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
     <td>${Plantilla.plantillaTags["NUMERO_TORNEOS_GANADOS"]}</td>
-
-</tr>
-`;
+</tr> `;
 
 
 /**
  * PIE DE LAS TABLAS
  * @returns {string}
- */Plantilla.plantillaTablaJinetes.pie = `        </tbody>
-</table>
-`;
+ */Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
 
 /***************************************************************************************************/
 
@@ -265,6 +299,16 @@ Plantilla.plantillaTablaJinetes.actualiza = function (jinete) {
     return Plantilla.sustituyeTags(this.cuerpoJinetesTodos, jinete)
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Actualiza el formulario con los datos de la persona que se le pasa
+ * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados
+ */
+Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {
+    return Plantilla.sustituyeTags(this.formulario, jinete)
+}
+
 /***************************************************************************************************/
 
 
@@ -293,7 +337,26 @@ Plantilla.recupera = async function (callBackFn) {
     }
 }
 
-/// PEPRARADO PARA HU6
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Función que recuperar todas las jinetes llamando al MS jinetes.
+ * Posteriormente, llama a la función callBackFn para trabajar con los datos recuperados.
+ * @param {String} idJinete Identificador de la jinete a mostrar
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
+    try {
+        const url2 = Frontend.API_GATEWAY + "/plantilla/getTodos" + idJinete
+        const response = await fetch(url2);
+        if (response) {
+            const jinete = await response.json()
+            callBackFn(jinete)
+        }
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+}
 
 /***************************************************************************************************/
 /**
@@ -303,9 +366,7 @@ Plantilla.recupera = async function (callBackFn) {
  * @param {vector_de_jinetes} vector
  */
 Plantilla.imprimeNombres = function (vector) {
-    console.log(vector) // Para comprobar lo que hay en vector
-
-    if (vector.length === 0 ) { console.log("El vector esta vacio") }
+    //console.log(vector) // Para comprobar lo que hay en vector
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabecera
@@ -339,7 +400,34 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
-//PREPARADO PARA HU6
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Función para mostrar en pantalla los detalles de una jinete que se ha recuperado de la BBDD por su id
+ * @param {jinete} jinete Datos de la jinete a mostrar
+ */
+
+Plantilla.imprimeUnJinete = function (jinete) {
+    // console.log(jinete) // Para comprobar lo que hay en vector
+    let msj = Plantilla.jineteComoFormulario(jinete);
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Mostrar una jinete", msj)
+
+    // Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(jinete)
+}
+
+/***************************************************************************************************/
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Almacena los datos de la jinete que se está mostrando
+ * @param {jinete} jinete Datos de la jinete a almacenar
+ */
+
+Plantilla.almacenaDatos = function (jinete) {
+    Plantilla.jineteMostrado = jinete;
+}
 
 /***************************************************************************************************/
 
@@ -361,7 +449,7 @@ Plantilla.procesarAcercaDe = function () {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
- * Función principal para recuperar las personas desde el MS, y posteriormente imprimirlas
+ * Función principal para recuperar las jinetes desde el MS, y posteriormente imprimirlas
  */
 Plantilla.nombrarJinetes = function () {
     Plantilla.recupera(Plantilla.imprimeNombres);
@@ -377,4 +465,12 @@ Plantilla.listarJinetes = function () {
     Plantilla.recupera(Plantilla.imprimeMuchosJinetes);
 }
 
-//PREPARADO PARA HU6
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Función principal para mostrar los datos de una jinete desde el MS y, posteriormente, imprimirla.
+ * @param {String} idJinete Identificador de la jinete a mostrar
+ */
+Plantilla.mostrarUnJinete = function (idJinete) {
+    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
+}
+

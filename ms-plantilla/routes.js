@@ -48,7 +48,7 @@ router.get("/test_db", async (req, res) => {
 
 
 /**
- * Devuelve todos los jugadores que hay en la BBDD
+ * Devuelve todos los jinetes que hay en la BBDD
  */
 router.get("/getTodos", async (req, res) => {
     try {
@@ -57,5 +57,19 @@ router.get("/getTodos", async (req, res) => {
         console.log(error);
     }
 });
+
+
+/**
+ * Devuelve los datos del jinete con el id pasado
+ */
+router.get("/getPorId/:idJinete", async (req, res) => {
+    try {
+        await callbacks.getPorId(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;
