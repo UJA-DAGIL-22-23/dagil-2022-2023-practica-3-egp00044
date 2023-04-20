@@ -436,3 +436,50 @@ https://github.com/UJA-Desarrollo-Agil/descripcion-proyecto-microservicios-perso
 El código en ese repositorio muestra una aplicación similar, pero con mucha más funcionalidad que esta plantilla: acceso a base de datos remota, listado de documentos recuperados de la BBDD, peticiones entre distintos microservicios, etc.
 
 Además, incluye documentación sobre dicho código y un vídeo descriptivo de cómo se ha realizado y cómo funciona la aplicación de ejemplo.
+
+
+
+
+## RESOLUCIÓN DE LA PRÁCTICA
+
+###  *DATOS FAUNA*
+
+CAPTURA de pantalla del HOME de FAUNA
+
+![Imagen inicial de fauna ]("./assets/img/Pagina_inicio_de_fauna.png")
+
+CAPTURA de pantalla de la BASE de DATOS de FAUNA
+
+![Imagen inicial de fauna ](./assets/img/Pagina_collecion_de_fauna.png)
+
+CAPTURA de pantalla de la COLECCION de FAUNA
+
+![Imagen inicial de fauna ](./assets/img/Pagina_de_colleciones_de_Fauna.png)
+
+
+###  *TABLERO DE TRELLO*
+* [Enlace al tablero de Trello](https://trello.com/invite/b/ev2D3cAK/ATTIac49b39a9682f56b3cfb290dd72e6e4c4D893DE9/desarrollo-agil-pr3) ↗️
+
+TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 1
+
+![Tablero de inicio de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Inicio.png)
+
+TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 1
+
+![Tablero final de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Final.png)
+
+
+###  *FUNCIONAMIENTO DE LA APLICACIÓN*
+
+HISTORIA DE USUARIO 1 
+
+![Resultado de la HU 1](./assets/img/Historia_de_Usuario_1.png)
+
+HISTORIA DE USUARIO 2
+
+![Resultado de la HU 2](./assets/img/Historia_de_Usuario_2.png)
+
+HISTORIA DE USUARIO 4
+
+![Resultado de la HU 4](./assets/img/Historia_de_Usuario_4.png)
+
