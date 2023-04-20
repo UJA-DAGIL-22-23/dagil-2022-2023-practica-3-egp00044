@@ -131,6 +131,12 @@ Plantilla.jineteComoFormulario = function (jinete) {
     return Plantilla.plantillaFormularioJinete.actualiza( jinete );
 }
 
+Plantilla.jineteComoTabla = function (jinete) {
+    return Plantilla.plantillaTablaJinetes.cabecera
+        + Plantilla.plantillaTablaJinetes.actualiza(jinete)
+        + Plantilla.plantillaTablaJinetes.pie;
+}
+
 /// Plantilla para poner los datos de una jinete en un tabla dentro de un formulario
 Plantilla.plantillaFormularioJinete = {}
 
@@ -140,8 +146,7 @@ Plantilla.plantillaFormularioJinete.formulario = `
 <form method='post' action=''>
     <table width="100%" class="listado-jinetes">
         <thead>
-            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
-            <th width="15%">Año contratación</th><th width="25%">Acciones</th>
+            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th>
         </thead>
         <tbody>
             <tr title="${Plantilla.plantillaTags.ID}">
@@ -346,8 +351,8 @@ Plantilla.recupera = async function (callBackFn) {
  */
 Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
     try {
-        const url2 = Frontend.API_GATEWAY + "/plantilla/getTodos" + idJinete
-        const response = await fetch(url2);
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorId" + idJinete
+        const response = await fetch(url);
         if (response) {
             const jinete = await response.json()
             callBackFn(jinete)
@@ -355,6 +360,41 @@ Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
     } catch (error) {
         alert("Error: No se han podido acceder al API Gateway")
         console.error(error)
+    }
+}
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 3
+ * Función que recupera todos los jinetes llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error)
+    }
+
+    //mostrar todos los jinetes que se han descargado
+    let vectorJinetes = null
+    if (response){
+
+        vectorJinetes = await response.json()
+
+        vectorJinetes.data.sort((a,b)=>{
+            //Si el elemento A va después alfabeticamente que B, devolverá -1
+            if (a.data.nombre_jinete.nombre < b.data.nombre_jinete.nombre){return -1;} // A va después alfabeticamente que B
+            if (a.data.nombre_jinete.nombre > b.data.nombre_jinete.nombre){return  1;} // B va después alfabeticamente que A
+            return 0;   //Ambos datos son "iguales" en orden alfabético
+        });
+
+        callBackFn(vectorJinetes.data)
     }
 }
 
@@ -411,10 +451,10 @@ Plantilla.imprimeUnJinete = function (jinete) {
     let msj = Plantilla.jineteComoFormulario(jinete);
 
     // Borro toda la info de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Mostrar una jinete", msj)
+   Frontend.Article.actualizar("Mostrar una jinete", msj)
 
     // Actualiza el objeto que guarda los datos mostrados
-    Plantilla.almacenaDatos(jinete)
+     Plantilla.almacenaDatos(jinete)
 }
 
 /***************************************************************************************************/
@@ -471,6 +511,17 @@ Plantilla.listarJinetes = function () {
  * @param {String} idJinete Identificador de la jinete a mostrar
  */
 Plantilla.mostrarUnJinete = function (idJinete) {
-    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
+    this.recuperaUnJinete(idJinete, this.imprimeMuchosJinetes);
 }
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
+ * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ */
+
+Plantilla.listarJinetesAlafetico = function () {
+    Plantilla.recuperaAlfabeticamente(Plantilla.imprimeNombres);
+}
+
+
 
