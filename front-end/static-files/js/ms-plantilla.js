@@ -41,7 +41,8 @@ Plantilla.plantillaTags = {
     "PAIS": "### PAIS ###",
     "TIPO_COMPETICION": "### TIPO_COMPETICION ###",
     "AÑOS_FEDERADO": "### AÑOS_FEDERADO ###",
-    "NUMERO_PARTICIPACIONES": "### NUMERO_PARTICIPACIONES ###"
+    "NUMERO_PARTICIPACIONES": "### NUMERO_PARTICIPACIONES ###",
+    "NUMERO_TORNEOS_GANADOS": "### NUMERO_TORNEOS_GANADOS ###"
 }
 
 /**
@@ -162,6 +163,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="10%">Tipo de competicion</th>
         <th width="5%">Anios federado</th>
         <th width="5%">Número de participaciones</th> 
+        <th width="5%">Número de torneos ganados</th> 
 
     </thead>
     <tbody>
@@ -198,9 +200,10 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
     <td>${Plantilla.plantillaTags.FECHA_NACIMIENTO}</td>   
     <td>${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}</td>   
     <td>${Plantilla.plantillaTags.DIRECCION_CLUB }</td>   
-        <td>${Plantilla.plantillaTags.TIPO_COMPETICION }</td>   
-    <td>${Plantilla.plantillaTags["AÑOS_FEDERADO"]}</td>
+    <td>${Plantilla.plantillaTags.TIPO_COMPETICION }</td>   
+    <td>${Plantilla.plantillaTags.AÑOS_FEDERADO}"</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
+    <td>${Plantilla.plantillaTags["NUMERO_TORNEOS_GANADOS"]}</td>
 
 </tr>
 `;
@@ -226,14 +229,15 @@ Plantilla.sustituyeTags = function (plantilla, jinetes) {
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), jinetes.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE  , 'g'), jinetes.data.nombre_jinete.nombre )
         .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS  , 'g'), jinetes.data.nombre_jinete.apellidos )
-        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE  , 'g'), jinetes.data.altura_jinete )
+        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE  , 'g'), jinetes.data.altura_jinete + " cm" )
         .replace(new RegExp(Plantilla.plantillaTags.DATOS_CABALLO  , 'g'), jinetes.data.datos_caballo.nombre_caballo + " Edad: " + jinetes.data.datos_caballo.edad  + " Sexo: "+ jinetes.data.datos_caballo.sexo )
         .replace(new RegExp(Plantilla.plantillaTags.FECHA_NACIMIENTO  , 'g'), jinetes.data.fecha_nacimiento.dia + "/" + jinetes.data.fecha_nacimiento.mes + "/" + jinetes.data.fecha_nacimiento.año)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL  , 'g'), jinetes.data.nombre_club_actual )
         .replace(new RegExp(Plantilla.plantillaTags.DIRECCION_CLUB , 'g'), jinetes.data.direccion_club.calle + ", " + jinetes.data.direccion_club.numero + ", " + jinetes.data.direccion_club.localidad + ", " + jinetes.data.direccion_club.provincia + ", " + jinetes.data.direccion_club.pais)
         .replace(new RegExp(Plantilla.plantillaTags.TIPO_COMPETICION , 'g'), jinetes.data.tipo_competicion)
-        .replace(new RegExp(Plantilla.plantillaTags["AÑOS_FEDERADO"], 'g'), jinetes.data.anios_federado)
-        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinetes.data.numero_particiapciones)
+        .replace(new RegExp(Plantilla.plantillaTags.AÑOS_FEDERADO, 'g'), jinetes.data.años_federado)
+        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinetes.data.numero_particiapciones_torneo)
+        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS, 'g'), jinetes.data.numero_torneos_ganados)
 
 
 }
@@ -299,13 +303,15 @@ Plantilla.recupera = async function (callBackFn) {
  * @param {vector_de_jinetes} vector
  */
 Plantilla.imprimeNombres = function (vector) {
-    //console.log(vector) // Para comprobar lo que hay en vector
+    console.log(vector) // Para comprobar lo que hay en vector
 
     if (vector.length === 0 ) { console.log("El vector esta vacio") }
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabecera
-    vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
+    }
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
