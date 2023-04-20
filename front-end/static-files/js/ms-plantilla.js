@@ -41,7 +41,8 @@ Plantilla.plantillaTags = {
     "PAIS": "### PAIS ###",
     "TIPO_COMPETICION": "### TIPO_COMPETICION ###",
     "AÑOS_FEDERADO": "### AÑOS_FEDERADO ###",
-    "NUMERO_PARTICIPACIONES": "### NUMERO_PARTICIPACIONES ###"
+    "NUMERO_PARTICIPACIONES": "### NUMERO_PARTICIPACIONES ###",
+    "NUMERO_TORNEOS_GANADOS": "### NUMERO_TORNEOS_GANADOS ###"
 }
 
 /**
@@ -121,44 +122,7 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
 /***************************************************************************************************/
 
 
-/// Plantilla para poner los datos de una persona en un tabla dentro de un formulario
-Plantilla.plantillaFormularioJinete = {}
-
-Plantilla.jineteComoFormulario = function (jinete) {
-    return Plantilla.plantillaFormularioJinete.actualiza( jinete );
-}
-
-// Cabecera del formulario
-Plantilla.plantillaFormularioJinete.formulario = `
-<form method='post' action=''>
-    <table width="100%" class="listado_jinetes">
-        <thead>
-            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
-            <th width="15%">Año contratación</th><th width="25%">Acciones</th>
-        </thead>
-        <tbody>
-            <tr title="${Plantilla.plantillaTags.ID}">
-                <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
-                        value="${Plantilla.plantillaTags.ID}" 
-                        name="id_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
-                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
-                        name="nombre_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
-                        id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
-                        name="apellidos_persona"/></td>
-                <td>
-                    <div><a href="javascript:Personas.editar()" class="opcion-secundaria mostrar">Editar</a></div>
-                    <div><a href="javascript:Personas.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
-                    <div><a href="javascript:Personas.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</form>
-`;
-
-
+/// PEPARADO PARA HU6
 
 /***************************************************************************************************/
 
@@ -199,6 +163,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="10%">Tipo de competicion</th>
         <th width="5%">Anios federado</th>
         <th width="5%">Número de participaciones</th> 
+        <th width="5%">Número de torneos ganados</th> 
 
     </thead>
     <tbody>
@@ -235,9 +200,10 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos= `
     <td>${Plantilla.plantillaTags.FECHA_NACIMIENTO}</td>   
     <td>${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}</td>   
     <td>${Plantilla.plantillaTags.DIRECCION_CLUB }</td>   
-        <td>${Plantilla.plantillaTags.TIPO_COMPETICION }</td>   
-    <td>${Plantilla.plantillaTags["AÑOS_FEDERADO"]}</td>
+    <td>${Plantilla.plantillaTags.TIPO_COMPETICION }</td>   
+    <td>${Plantilla.plantillaTags.AÑOS_FEDERADO}"</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
+    <td>${Plantilla.plantillaTags["NUMERO_TORNEOS_GANADOS"]}</td>
 
 </tr>
 `;
@@ -263,14 +229,15 @@ Plantilla.sustituyeTags = function (plantilla, jinetes) {
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), jinetes.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE  , 'g'), jinetes.data.nombre_jinete.nombre )
         .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS  , 'g'), jinetes.data.nombre_jinete.apellidos )
-        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE  , 'g'), jinetes.data.altura_jinete )
+        .replace(new RegExp(Plantilla.plantillaTags.ALTURA_JINETE  , 'g'), jinetes.data.altura_jinete + " cm" )
         .replace(new RegExp(Plantilla.plantillaTags.DATOS_CABALLO  , 'g'), jinetes.data.datos_caballo.nombre_caballo + " Edad: " + jinetes.data.datos_caballo.edad  + " Sexo: "+ jinetes.data.datos_caballo.sexo )
         .replace(new RegExp(Plantilla.plantillaTags.FECHA_NACIMIENTO  , 'g'), jinetes.data.fecha_nacimiento.dia + "/" + jinetes.data.fecha_nacimiento.mes + "/" + jinetes.data.fecha_nacimiento.año)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL  , 'g'), jinetes.data.nombre_club_actual )
         .replace(new RegExp(Plantilla.plantillaTags.DIRECCION_CLUB , 'g'), jinetes.data.direccion_club.calle + ", " + jinetes.data.direccion_club.numero + ", " + jinetes.data.direccion_club.localidad + ", " + jinetes.data.direccion_club.provincia + ", " + jinetes.data.direccion_club.pais)
         .replace(new RegExp(Plantilla.plantillaTags.TIPO_COMPETICION , 'g'), jinetes.data.tipo_competicion)
-        .replace(new RegExp(Plantilla.plantillaTags["AÑOS_FEDERADO"], 'g'), jinetes.data.anios_federado)
-        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinetes.data.numero_particiapciones)
+        .replace(new RegExp(Plantilla.plantillaTags.AÑOS_FEDERADO, 'g'), jinetes.data.años_federado)
+        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_PARTICIPACIONES, 'g'), jinetes.data.numero_particiapciones_torneo)
+        .replace(new RegExp(Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS, 'g'), jinetes.data.numero_torneos_ganados)
 
 
 }
@@ -326,27 +293,7 @@ Plantilla.recupera = async function (callBackFn) {
     }
 }
 
-/**
- * FUNCIÓN PARA LA Historia de Usuario 6
- * Función que recuperar todas las personas llamando al MS Personas.
- * Posteriormente, llama a la función callBackFn para trabajar con los datos recuperados.
- * @param {String} idPersona Identificador de la persona a mostrar
- * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
- */
-
- Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
-    try {
-        const url2 = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idJinete
-        const response = await fetch(url2);
-        if (response) {
-            const jinete = await response.json()
-            callBackFn(jinete)
-        }
-    } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
-        console.error(error)
-    }
-}
+/// PEPRARADO PARA HU6
 
 /***************************************************************************************************/
 /**
@@ -356,15 +303,19 @@ Plantilla.recupera = async function (callBackFn) {
  * @param {vector_de_jinetes} vector
  */
 Plantilla.imprimeNombres = function (vector) {
-    //console.log(vector) // Para comprobar lo que hay en vector
+    console.log(vector) // Para comprobar lo que hay en vector
+
+    if (vector.length === 0 ) { console.log("El vector esta vacio") }
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabecera
-    vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
+    }
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Listados de nombres de jinetes" , msj)
+    Frontend.Article.actualizar("Listados de nombres de todos los jinetes" , msj)
 }
 
 
@@ -379,29 +330,16 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
-    vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    }
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Plantilla del listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
-/**
- * FUNCIÓN PARA LA Historia de Usuario 6
- * Función para mostrar en pantalla los detalles de una persona que se ha recuperado de la BBDD por su id
- * @param {Persona} persona Datos de la persona a mostrar
- */
-
- Plantilla.imprimeUnJinete = function (vector) {
-    //console.log(vector) // Para comprobar lo que hay en vector
-    let msj = Plantilla.jineteComoFormulario(jinete);
-
-    // Borro toda la info de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Mostrar un jinete", msj)
-
-    // Actualiza el objeto que guarda los datos mostrados
-    Plantilla.almacenaDatos(jinete)
-}
+//PREPARADO PARA HU6
 
 /***************************************************************************************************/
 
@@ -439,11 +377,4 @@ Plantilla.listarJinetes = function () {
     Plantilla.recupera(Plantilla.imprimeMuchosJinetes);
 }
 
-/**
- * FUNCIÓN PARA LA Historia de Usuario 6
- * Función principal para recuperar un jinete del MS y, posteriormente, imprimirlo.
- */
-
- Plantilla.mostrarUnJinete = function (idJinete) {recuperaUnJinete
-    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
-}
+//PREPARADO PARA HU6
