@@ -169,7 +169,7 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
     it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
         Plantilla.imprimeMuchosJinetes(12)
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
-
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
