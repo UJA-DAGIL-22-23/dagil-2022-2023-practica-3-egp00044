@@ -117,7 +117,7 @@ const CB_OTHERS = {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "Elena Gómez",
+                autor: "Elena Gómez Padilla",
                 email: "egp00044@red.ujaen.es",
                 fecha: "26/11/2001"
             });
