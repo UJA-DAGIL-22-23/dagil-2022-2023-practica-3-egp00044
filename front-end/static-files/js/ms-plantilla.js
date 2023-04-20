@@ -301,13 +301,15 @@ Plantilla.recupera = async function (callBackFn) {
 Plantilla.imprimeNombres = function (vector) {
     //console.log(vector) // Para comprobar lo que hay en vector
 
+    if (vector.length === 0 ) { console.log("El vector esta vacio") }
+
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabecera
     vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Listados de nombres de jinetes" , msj)
+    Frontend.Article.actualizar("Listados de nombres de todos los jinetes" , msj)
 }
 
 
@@ -326,7 +328,7 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     msj += Plantilla.plantillaTablaJinetes.pie
 
     // Borrar toda la información de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Plantilla del listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
 //PREPARADO PARA HU6

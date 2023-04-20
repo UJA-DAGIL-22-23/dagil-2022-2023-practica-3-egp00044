@@ -12,7 +12,8 @@ const elementoTitulo = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_TIT
 const elementoContenido = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_CONTENIDO)
 const TITULO_HOME = "Plantilla Home"
 const TITULO_ACERCA_DE = "Plantilla Acerca de"
-const TITULO_IMPRIME_NOMBRES_JINETES = "Listados de nombres de jinetes"
+const TITULO_IMPRIME_NOMBRES_JINETES = "Listados de nombres de todos los jinetes"
+const TITULO_IMPRIME_DATOS_JINETES = "Listados de los datos de todos los jinetes"
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
@@ -125,15 +126,6 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
 })
 
 
-describe("Plantilla.imprimeNombres: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo",
-        function() {
-            Plantilla.imprimeNombres([])
-            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
-        })
-})
-
-
 /*
 IMPORTANTE
 ==========
@@ -149,3 +141,20 @@ Esto afecta a los métodos:
  por tanto: para esta práctica, se pueden dejar SIN HACER.
 
  */
+
+
+
+describe("Plantilla.imprimeNombres: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimeNombres([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
+    })
+})
+
+
+describe("Plantilla.imprimeNombres: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimeMuchosJinetes([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+    })
+})
