@@ -370,7 +370,6 @@ Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
  */
 Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
     let response = null
-
     // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"

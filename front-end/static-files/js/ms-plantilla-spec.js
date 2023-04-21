@@ -16,6 +16,7 @@ const TITULO_IMPRIME_NOMBRES_JINETES = "Listados de nombres de todos los jinetes
 const TITULO_IMPRIME_DATOS_JINETES = "Listados de los datos de todos los jinetes"
 const OBJETO_NULO = ' '
 const OBJETO_VACIO_TODOS = ''
+const TITULO_IMPRIME_NOMBRES_ORDENADOS = "Plantilla del listado de los nombres de todos los jugadores ordenados"
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
@@ -145,7 +146,7 @@ Esto afecta a los métodos:
  */
 
 
-
+//TDD PARA HU 2
 describe("Plantilla.imprimeNombres: ", function() {
     it("muestra datos nulos cuando le pasamos un valor nulo", function() {
         Plantilla.imprimeNombres([])
@@ -161,7 +162,7 @@ describe("Plantilla.imprimeNombres: ", function() {
         })
 })
 
-
+//TDD PARA HU 4
 describe("Plantilla.imprimeMuchosJinetes: ", function() {
     it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
         Plantilla.imprimeMuchosJinetes([])
@@ -174,4 +175,3 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
-
