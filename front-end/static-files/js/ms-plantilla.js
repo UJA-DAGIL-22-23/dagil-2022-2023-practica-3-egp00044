@@ -225,7 +225,6 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
     </thead>
     <tbody> `;
 
-
 /**
  * * CUERPO DE LA TABLA DEL NOMBRE DE LOS JINETES
  * Muestra la información de cada plantilla en un elemento TR con sus correspondientes TD
@@ -447,7 +446,6 @@ Plantilla.imprimeNombres = function (vector) {
  * Función para mostrar en pantalla todos los Jinetes que se han recuperado de la BBDD.
  * @param {Vector_de_jinetes} vector Vector con los datos de los jinetes a mostrar
  */
-
 Plantilla.imprimeMuchosJinetes = function (vector) {
     //console.log(vector) // Para comprobar lo que hay en vector
 
@@ -478,7 +476,6 @@ Plantilla.imprimeUnJinete = function (jinete) {
     Plantilla.almacenaDatos(jinete)
 }
 
-
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
  * Almacena los datos de la jinete que se está mostrando
@@ -488,6 +485,127 @@ Plantilla.almacenaDatos = function (jinete) {
     Plantilla.jieneteSeleccionado = jinete;
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 5
+ * Función para mostrar en pantalla todos los Jinetes que se han recuperado de la BBDD.
+ * @param {Vector_de_jinetes} vector Vector con los datos de los jinetes a mostrar
+ */
+//BUSQUEDA POR APELLIDOS
+Plantilla.imprimePorApellido = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.nombre_jinete.apellidos < b.data.nombre_jinete.apellidos){return -1;} // A va después alfabeticamente que B
+        if (a.data.nombre_jinete.apellidos > b.data.nombre_jinete.apellidos){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR ALTURA
+Plantilla.imprimePorAltura = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.altura_jinete < b.data.altura_jinete){return -1;} // A va después alfabeticamente que B
+        if (a.data.altura_jinete > b.data.altura_jinete){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR NOMBRE DEL CABALLO
+Plantilla.imprimePorCaballo = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.datos_caballo.nombre_caballo < b.data.datos_caballo.nombre_caballo){return -1;} // A va después alfabeticamente que B
+        if (a.data.datos_caballo.nombre_caballo > b.data.datos_caballo.nombre_caballo){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR NOMBRE DEL CLUB
+Plantilla.imprimePorClub = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.nombre_club_actual < b.data.nombre_club_actual){return -1;} // A va después alfabeticamente que B
+        if (a.data.nombre_club_actual > b.data.nombre_club_actual){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR DIRECCION DEL CLUB
+Plantilla.imprimePorDireccionClub = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.direccion_club.calle < b.data.direccion_club.calle){return -1;} // A va después alfabeticamente que B
+        if (a.data.direccion_club.calle > b.data.direccion_club.calle){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR TIPO DE COMPETICION
+Plantilla.imprimePorCompeticion = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.tipo_competicion < b.data.tipo_competicion){return -1;} // A va después alfabeticamente que B
+        if (a.data.tipo_competicion > b.data.tipo_competicion){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR AÑOS FEDERADO
+Plantilla.imprimePorFederado = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.años_federado < b.data.años_federado){return -1;} // A va después alfabeticamente que B
+        if (a.data.años_federado > b.data.años_federado){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR NUMERO DE PARTICIPACIONES
+Plantilla.imprimePorParticipaciones = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.numero_particiapciones_torneo < b.data.numero_particiapciones_torneo){return -1;} // A va después alfabeticamente que B
+        if (a.data.numero_particiapciones_torneo > b.data.numero_particiapciones_torneo){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+//BUSQUEDA POR NUMERO DE TORNEOS GANADOS
+Plantilla.imprimePorGanado = function (vector) {
+    vector.sort(function(a, b) {
+        if (a.data.numero_torneos_ganados < b.data.numero_torneos_ganados){return -1;} // A va después alfabeticamente que B
+        if (a.data.numero_torneos_ganados > b.data.numero_torneos_ganados){return  1;} // B va después alfabeticamente que A
+        return 0;   });
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
 
 /***************************************************************************************************/
 
@@ -541,6 +659,62 @@ Plantilla.mostrar = function (idJinete) {
 Plantilla.listarJinetesAlafetico = function () {
     Plantilla.recuperaAlfabeticamente(Plantilla.imprimeNombres);
 }
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 5
+ * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ */
+//ORDENADO POR APELLIDOS
+Plantilla.listarPorApellido = function () {
+    Plantilla.recupera(Plantilla.imprimePorApellido);
+}
+
+//ORDENADO POR ALTURA DEL JINETE
+Plantilla.listarPorAltura = function () {
+    Plantilla.recupera(Plantilla.imprimePorAltura);
+}
+
+
+//ORDENADO POR ORDEN ALFABETICO NOMBRE DEL CABALLO
+Plantilla.listarPorCaballo = function () {
+    Plantilla.recupera(Plantilla.imprimePorCaballo);
+}
+
+//ORDENADO POR FECHA DE NACIMIENTO
+Plantilla.listarPorFecha = function () {
+    Plantilla.recupera(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DEL NOMBRE DEL CLUB
+Plantilla.listarPorClub = function () {
+    Plantilla.recupera(Plantilla.imprimePorClub);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DE LA DIRECCION DEL CLUB
+Plantilla.listarPorDireccionClub = function () {
+    Plantilla.recupera(Plantilla.imprimePorDireccionClub);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DEL TIPO DE COMPETICION
+Plantilla.listarPorCompeticion = function () {
+    Plantilla.recupera(Plantilla.imprimePorCompeticion);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DEL TIPO DE COMPETICION
+Plantilla.listarPorAniosFederado = function () {
+    Plantilla.recupera(Plantilla.imprimePorFederado);
+}
+
+//ORDENADO POR NUMERO DE TORNEOS PARTICIPADOS
+Plantilla.listarPorParticipaciones = function () {
+    Plantilla.recupera(Plantilla.imprimePorParticipaciones);
+}
+
+//ORDENADO POR NUMERO DE TORNEOS GANADOS
+Plantilla.listarPorGanados = function () {
+    Plantilla.recupera(Plantilla.imprimePorGanado);
+}
+
 
 /***************************************************************************************************/
 

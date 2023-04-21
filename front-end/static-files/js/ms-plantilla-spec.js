@@ -15,8 +15,10 @@ const TITULO_ACERCA_DE = "Plantilla Acerca de"
 const TITULO_IMPRIME_NOMBRES_JINETES = "Listados de nombres de todos los jinetes"
 const TITULO_IMPRIME_DATOS_JINETES = "Listados de los datos de todos los jinetes"
 const OBJETO_NULO = ' '
-const OBJETO_VACIO_TODOS = ''
-const TITULO_IMPRIME_NOMBRES_ORDENADOS = "Plantilla del listado de los nombres de todos los jugadores ordenados"
+const OBJETO_VACIO_TODOS = ' '
+const DATOS_UN_JINETE = 'Mostrar datos de un jinete'
+
+
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
@@ -151,18 +153,19 @@ describe("Plantilla.imprimeNombres: ", function() {
     it("muestra datos nulos cuando le pasamos un valor nulo", function() {
         Plantilla.imprimeNombres([])
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
-        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_NULO)
+       expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_NULO)
     })
 
 
     it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
         Plantilla.imprimeNombres(12)
-        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
+       expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_NULO)
         })
 })
 
 //TDD PARA HU 4
+
 describe("Plantilla.imprimeMuchosJinetes: ", function() {
     it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
         Plantilla.imprimeMuchosJinetes([])
@@ -176,21 +179,70 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
     })
 })
 
-//TDD PARA HU 3
-/*
-describe("Plantilla.recuperaAlfabeticamente", function() {
-    it("devuelve un vector vacío cuando no se encuentra el jugador buscado", async function() {
-        const callBackFn = function(response) {
-            expect(response).toEqual([]);
-        }
-        await Plantilla.recuperaAlfabeticamente("Jugador Inexistente", callBackFn);
+
+//TDD PARA HU 5
+
+describe("Plantilla.imprimePorApellido: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorApellido([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
+describe("Plantilla.imprimePorAltura: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorAltura([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
 
-describe("PIE DE LAS TABLAS ", function () {
-    it("debería devolver las etiquetas HTML para el pie de tabla", function () {
-            expect(Plantilla.plantillaTablaJinetes.pie).toBe("</tbody> </table>");
-        })
-})*/
+describe("Plantilla.imprimePorCaballo: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorCaballo([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorClub: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorClub([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorCompeticion: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorCompeticion([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorFederado: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorFederado([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorParticipaciones: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorParticipaciones([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorGanado: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorGanado([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
 
