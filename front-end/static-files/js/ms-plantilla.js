@@ -225,7 +225,6 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
     </thead>
     <tbody> `;
 
-
 /**
  * * CUERPO DE LA TABLA DEL NOMBRE DE LOS JINETES
  * Muestra la información de cada plantilla en un elemento TR con sus correspondientes TD
@@ -420,6 +419,247 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
     }
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 5
+ * Función que recupera todos los jinetes llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+//BUSQUEDA POR APELLIDOS
+Plantilla.recuperaPorApellido = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            if (a.data.nombre_jinete.apellidos < b.data.nombre_jinete.apellidos){return -1;} // A va después alfabeticamente que B
+            if (a.data.nombre_jinete.apellidos > b.data.nombre_jinete.apellidos){return  1;} // B va después alfabeticamente que A
+            return 0;   });
+        callBackFn(vectorJinetes.data)}}
+
+//BUSQUEDA POR ALTURA
+Plantilla.recuperaPorAltura = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            if (a.data.altura_jinete < b.data.altura_jinete){return -1;} // A va después alfabeticamente que B
+            if (a.data.altura_jinete > b.data.altura_jinete){return  1;} // B va después alfabeticamente que A
+            return 0;  });
+        callBackFn(vectorJinetes.data) } }
+
+//BUSQUEDA POR NOMBRE DEL CABALLO
+Plantilla.recuperaPorCaballo = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            //Si el elemento A va después alfabeticamente que B, devolverá -1
+            if (a.data.datos_caballo.nombre_caballo < b.data.datos_caballo.nombre_caballo){return -1;} // A va después alfabeticamente que B
+            if (a.data.datos_caballo.nombre_caballo > b.data.datos_caballo.nombre_caballo){return  1;} // B va después alfabeticamente que A
+            return 0;  });
+        callBackFn(vectorJinetes.data) }}
+
+//BUSQUEDA POR FECHA DE NACIMIENTO
+Plantilla.recuperaPorFecha = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            //Si el elemento A va después alfabeticamente que B, devolverá -1
+            if (a.data.altura_jinete < b.data.altura_jinete){return -1;} // A va después alfabeticamente que B
+            if (a.data.altura_jinete > b.data.altura_jinete){return  1;} // B va después alfabeticamente que A
+            return 0;  });
+        callBackFn(vectorJinetes.data) }}
+
+//BUSQUEDA POR NOMBRE DEL CLUB
+Plantilla.recuperaPorClub = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            //Si el elemento A va después alfabeticamente que B, devolverá -1
+            if (a.data.nombre_club_actual < b.data.nombre_club_actual){return -1;} // A va después alfabeticamente que B
+            if (a.data.nombre_club_actual > b.data.nombre_club_actual){return  1;} // B va después alfabeticamente que A
+            return 0;    });
+        callBackFn(vectorJinetes.data) }}
+
+//BUSQUEDA POR DIRECCION DEL CLUB
+Plantilla.recuperaPorDireccionClub = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            //Si el elemento A va después alfabeticamente que B, devolverá -1
+            if (a.data.direccion_club.calle < b.data.direccion_club.calle){return -1;} // A va después alfabeticamente que B
+            if (a.data.direccion_club.calle > b.data.direccion_club.calle){return  1;} // B va después alfabeticamente que A
+            return 0;    });
+        callBackFn(vectorJinetes.data) }}
+
+//BUSQUEDA POR NOMBRE DEL CLUB
+Plantilla.recuperaPorCompeticion = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            if (a.data.tipo_competicion < b.data.tipo_competicion){return -1;} // A va después alfabeticamente que B
+            if (a.data.tipo_competicion > b.data.tipo_competicion){return  1;} // B va después alfabeticamente que A
+            return 0;   });
+        callBackFn(vectorJinetes.data) }}
+
+//BUSQUEDA POR AÑOS FEDERADO
+Plantilla.recuperaPorFederado = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            if (a.data.años_federado < b.data.años_federado){return -1;} // A va después alfabeticamente que B
+            if (a.data.años_federado > b.data.años_federado){return  1;} // B va después alfabeticamente que A
+            return 0;  });
+        callBackFn(vectorJinetes.data) } }
+
+//BUSQUEDA POR NUMERO DE PARTICIPACIONES
+Plantilla.recuperaPorParticipaciones = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            if (a.data.numero_particiapciones_torneo < b.data.numero_particiapciones_torneo){return -1;} // A va después alfabeticamente que B
+            if (a.data.numero_particiapciones_torneo > b.data.numero_particiapciones_torneo){return  1;} // B va después alfabeticamente que A
+            return 0;  });
+        callBackFn(vectorJinetes.data) } }
+
+//BUSQUEDA POR NUMERO DE TORNEOS GANADOS
+Plantilla.recuperaPorGanado = async function (callBackFn) {
+    let response = null
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error) }
+    let vectorJinetes = null
+    if (response){
+        vectorJinetes = await response.json()
+        vectorJinetes.data.sort((a,b)=>{
+            if (a.data.numero_torneos_ganados < b.data.numero_torneos_ganados){return -1;} // A va después alfabeticamente que B
+            if (a.data.numero_torneos_ganados > b.data.numero_torneos_ganados){return  1;} // B va después alfabeticamente que A
+            return 0;  });
+        callBackFn(vectorJinetes.data) } }
+
+
+
+
+//BUSQUEDA POR FECHA NACIMIENTO
+Plantilla.recuperaPorFecha = async function (callBackFn) {
+    let response = null
+    // Intento conectar el microservicio Plantilla
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Geteway")
+        console.error(error)
+    }
+
+    //mostrar todos los jinetes que se han descargado
+    let vectorJinetes = null
+    if (response){
+
+        vectorJinetes = await response.json()
+
+        vectorJinetes.sort(function (a, b) {
+            return convertirFecha(a.data.fecha_nacimiento) - convertirFecha(b.data.fecha_nacimiento);
+        })
+
+     /*   vectorJinetes.data.sort((a,b)=>{
+            //Si el elemento A va después alfabeticamente que B, devolverá -1
+            if (a.data.fecha_nacimiento < b.data.altura_jinete){return -1;} // A va después alfabeticamente que B
+            if (a.data.altura_jinete > b.data.altura_jinete){return  1;} // B va después alfabeticamente que A
+            return 0;   //Ambos datos son "iguales" en orden alfabético
+        });*/
+
+        callBackFn(vectorJinetes.data)
+    }
+
+}
+
+Plantilla.convertirFecha = function(fechaString) {
+    var fechaSp = fechaString.split("-");
+    var anio = new Date().getFullYear();
+    if (fechaSp.length == 3) {
+        anio = fechaSp[2];
+    }
+    var mes = fechaSp[1] - 1;
+    var dia = fechaSp[0];
+
+    return new Date(anio, mes, dia);
+}
+
+
+
 /***************************************************************************************************/
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
@@ -462,6 +702,32 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
+Plantilla.imprimeClub = function (vector) {
+    //console.log(vector) // Para comprobar lo que hay en vector
+
+    vector.data.sort((a,b)=>{
+        //Si el elemento A va después alfabeticamente que B, devolverá -1
+        if (a.data.nombre_club_actual < b.data.nombre_club_actual){return -1;} // A va después alfabeticamente que B
+        if (a.data.nombre_club_actual > b.data.nombre_club_actual){return  1;} // B va después alfabeticamente que A
+        return 0;   //Ambos datos son "iguales" en orden alfabético
+    });
+
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    }
+    msj += Plantilla.plantillaTablaJinetes.pie
+
+    // Borrar toda la información de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+
+
+
+
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
  * Función para mostrar en pantalla los detalles de una jinete que se ha recuperado de la BBDD por su id
@@ -487,7 +753,6 @@ Plantilla.imprimeUnJinete = function (jinete) {
 Plantilla.almacenaDatos = function (jinete) {
     Plantilla.jieneteSeleccionado = jinete;
 }
-
 
 /***************************************************************************************************/
 
@@ -541,6 +806,62 @@ Plantilla.mostrar = function (idJinete) {
 Plantilla.listarJinetesAlafetico = function () {
     Plantilla.recuperaAlfabeticamente(Plantilla.imprimeNombres);
 }
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 5
+ * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ */
+//ORDENADO POR APELLIDOS
+Plantilla.listarPorApellido = function () {
+    Plantilla.recuperaPorApellido(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR ALTURA DEL JINETE
+Plantilla.listarPorAltura = function () {
+    Plantilla.recuperaPorAltura(Plantilla.imprimeMuchosJinetes);
+}
+
+
+//ORDENADO POR ORDEN ALFABETICO NOMBRE DEL CABALLO
+Plantilla.listarPorCaballo = function () {
+    Plantilla.recuperaPorCaballo(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR FECHA DE NACIMIENTO
+Plantilla.listarPorFecha = function () {
+    Plantilla.recuperaPorFecha(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DEL NOMBRE DEL CLUB
+Plantilla.listarPorClub = function () {
+    Plantilla.recuperaPorClub(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DE LA DIRECCION DEL CLUB
+Plantilla.listarPorDireccionClub = function () {
+    Plantilla.recuperaPorDireccionClub(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DEL TIPO DE COMPETICION
+Plantilla.listarPorCompeticion = function () {
+    Plantilla.recuperaPorCompeticion(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR ORDEN ALFABETICO DEL TIPO DE COMPETICION
+Plantilla.listarPorAniosFederado = function () {
+    Plantilla.recuperaPorFederado(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR NUMERO DE TORNEOS PARTICIPADOS
+Plantilla.listarPorParticipaciones = function () {
+    Plantilla.recuperaPorParticipaciones(Plantilla.imprimeMuchosJinetes);
+}
+
+//ORDENADO POR NUMERO DE TORNEOS GANADOS
+Plantilla.listarPorGanados = function () {
+    Plantilla.recuperaPorGanado(Plantilla.imprimeMuchosJinetes);
+}
+
 
 /***************************************************************************************************/
 
