@@ -175,3 +175,22 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
+
+//TDD PARA HU 3
+/*
+describe("Plantilla.recuperaAlfabeticamente", function() {
+    it("devuelve un vector vacío cuando no se encuentra el jugador buscado", async function() {
+        const callBackFn = function(response) {
+            expect(response).toEqual([]);
+        }
+        await Plantilla.recuperaAlfabeticamente("Jugador Inexistente", callBackFn);
+    })
+})
+
+
+describe("PIE DE LAS TABLAS ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla", function () {
+            expect(Plantilla.plantillaTablaJinetes.pie).toBe("</tbody> </table>");
+        })
+})*/
+

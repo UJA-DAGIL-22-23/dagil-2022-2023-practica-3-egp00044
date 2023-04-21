@@ -121,13 +121,12 @@ Frontend.Article.actualizar = function (titulo, contenido) {
     document.getElementById( Frontend.ID_SECCION_PRINCIPAL_CONTENIDO ).innerHTML = contenido
     return this;
 }
-
 /**
  * Cambia toda la información del article
  * @param {String} titulo Información para el título del article
  * @param {String} contenido INformacion para el contenido del article
  * @returns El propio Article para concatenar llamadas
-
+*/
 Frontend.Article.actualizarBoton = function (titulo, contenido) {
     this.borrar()
         .aniadirTitulo(titulo)
@@ -136,4 +135,3 @@ Frontend.Article.actualizarBoton = function (titulo, contenido) {
     return this;
 
 }
- */

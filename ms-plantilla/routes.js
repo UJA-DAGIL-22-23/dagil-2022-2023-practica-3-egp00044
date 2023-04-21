@@ -60,7 +60,7 @@ router.get("/getTodos", async (req, res) => {
 
 
 /**
- * Devuelve los datos del jinete con el id pasado
+ * Devuelve los datos del jugador con el id pasado
  */
 router.get("/getPorId/:idJinete", async (req, res) => {
     try {
@@ -69,7 +69,6 @@ router.get("/getPorId/:idJinete", async (req, res) => {
         console.log(error);
     }
 });
-
 
 // Exporto el módulo para poder usarlo en server
 module.exports = router;
