@@ -180,3 +180,69 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
 })
 
 
+//TDD PARA HU 5
+
+describe("Plantilla.imprimePorApellido: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorApellido([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorAltura: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorAltura([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorCaballo: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorCaballo([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorClub: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorClub([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorCompeticion: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorCompeticion([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorFederado: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorFederado([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorParticipaciones: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorParticipaciones([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+describe("Plantilla.imprimePorGanado: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorGanado([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
