@@ -92,19 +92,19 @@ const CB_MODEL_SELECTS = {
      */
     getPorId: async (req, res) => {
         try {
-            let jinete = await client.query(
+            // console.log( "getPorId req", req.params.idPersona ) // req.params contiene todos los parámetros de la llamada
+            let jugador = await client.query(
                 q.Get(q.Ref(q.Collection(COLLECTION), req.params.idJinete))
             )
 
             CORS(res)
                 .status(200)
-                .json(jinete)
+                .json(jugador)
 
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
         }
     },
-
 }
 
 

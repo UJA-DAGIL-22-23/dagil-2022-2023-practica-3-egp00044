@@ -10,6 +10,8 @@
 /// Creo el espacio de nombres
 let Plantilla = {};
 
+Plantilla.jieneteSeleccionado = null
+
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
@@ -118,8 +120,13 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
-
 /***************************************************************************************************/
+
+Plantilla.jineteComoTabla = function (jinete) {
+    return Plantilla.plantillaTablaJinetes.cabecera
+        + Plantilla.plantillaTablaJinetes.actualiza(jinete)
+        + Plantilla.plantillaTablaJinetes.pie;
+}
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
@@ -131,44 +138,47 @@ Plantilla.jineteComoFormulario = function (jinete) {
     return Plantilla.plantillaFormularioJinete.actualiza( jinete );
 }
 
-Plantilla.jineteComoTabla = function (jinete) {
-    return Plantilla.plantillaTablaJinetes.cabecera
-        + Plantilla.plantillaTablaJinetes.actualiza(jinete)
-        + Plantilla.plantillaTablaJinetes.pie;
-}
+/***************************************************************************************************/
 
-/// Plantilla para poner los datos de una jinete en un tabla dentro de un formulario
+
 Plantilla.plantillaFormularioJinete = {}
 
-
-// Cabecera del formulario
 Plantilla.plantillaFormularioJinete.formulario = `
 <form method='post' action=''>
-    <table width="100%" class="listado-jinetes">
-        <thead>
-            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th>
-        </thead>
-        <tbody>
-            <tr title="${Plantilla.plantillaTags.ID}">
-                <td><input type="text" class="form-jinete-elemento" disabled id="form-jinete-id"
-                        value="${Plantilla.plantillaTags.ID}" 
-                        name="id_jinete"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
-                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
-                        name="nombre_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
-                        id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
-                        name="apellidos_persona"/></td>
-                <td>
-                    <div><a href="javascript:Plantilla.editar()" class="opcion-secundaria mostrar">Editar</a></div>
-                    <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
-                    <div><a href="javascript:Plantilla.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</form>
-`;
+<table width="100%" class="listado_jinetes">
+    <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Altura</th>      
+        <th>Datos del caballo</th>
+        <th>Fecha de nacimiento</th>
+        <th>Nombre del club</th>
+        <th>Dirección</th>
+        <th>Tipo de competicion</th>
+        <th>Anios federado</th>
+        <th>Número de participaciones</th> 
+        <th>Número de torneos ganados</th> 
+
+    </thead>
+    <tbody>
+        <tr title="${Plantilla.plantillaTags.ID}">
+            <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-apellidos" required value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-altura_jinete" required value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-fecha_nacimiento" required value="${Plantilla.plantillaTags.FECHA_NACIMIENTO}" name="fecha_nacimiento"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre_club_actual" required value="${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}" name="nombre_club_actual"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-direccion_club" required value="${Plantilla.plantillaTags.DIRECCION_CLUB}" name="direccion_club"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-tipo_competicion" required value="${Plantilla.plantillaTags.TIPO_COMPETICION}" name="tipo_competicion"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-años_federado" required value="${Plantilla.plantillaTags.AÑOS_FEDERADO}" name="años_federado"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-numero_participaciones" required value="${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}" name="numero_participaciones"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-numero_torneos_ganados" required value="${Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS}" name="numero_torneos_ganados"/></td>
+        </tr>
+    </tbody>
+</table>
+</form>`;
 
 /***************************************************************************************************/
 
@@ -184,7 +194,8 @@ Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_j
     <thead>
         <th width="5%">ID</th>
         <th width="15%">Nombre</th>
-        <th width="10%">Apellidos</th>      
+        <th width="10%">Apellidos</th>  
+        <th width="5%">Acción</th>     
 
     </thead>
     <tbody> `;
@@ -209,6 +220,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="5%">Anios federado</th>
         <th width="5%">Número de participaciones</th> 
         <th width="5%">Número de torneos ganados</th> 
+        <th width="5%">Acción</th>   
 
     </thead>
     <tbody> `;
@@ -225,6 +237,11 @@ Plantilla.plantillaTablaJinetes.cuerpo =
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
     <td>${Plantilla.plantillaTags.APELLIDOS}</td>
+    
+    <td>
+        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" className="opcion-secundaria mostrar">Mostrar</a></div>    
+    </td>
+    
 </tr> `;
 
 /**
@@ -247,6 +264,11 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
     <td>${Plantilla.plantillaTags.AÑOS_FEDERADO}"</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
     <td>${Plantilla.plantillaTags["NUMERO_TORNEOS_GANADOS"]}</td>
+    
+    <td>
+        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" className="opcion-secundaria mostrar">Mostrar</a></div>    
+    </td>
+    
 </tr> `;
 
 
@@ -258,7 +280,7 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
 /***************************************************************************************************/
 
 /**
- * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
+ * Actualiza el cuerpo de la plantilla deseada con los datos de la Jinete que se le pasa
  * @param {String} plantilla Cadena conteniendo HTMLen la que se desea cambiar los campos de la plantilla por datos
  * @param {jinete} jinete Objeto con los datos del jinete que queremos escribir en el TR
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados
@@ -285,8 +307,8 @@ Plantilla.sustituyeTags = function (plantilla, jinetes) {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
- * Actualiza el cuerpo de la tabla con los daos de la persona que se le pasa
- * @param {jinete} jinete Objeto con los datos de la persona que queremos escribir el TR
+ * Actualiza el cuerpo de la tabla con los daos de la Jinete que se le pasa
+ * @param {jinete} jinete Objeto con los datos de la Jinete que queremos escribir el TR
  * @returns La plantilla des cuerpo de la tabla con los datos actualizados
  */
 Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {
@@ -295,24 +317,25 @@ Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
- * Actualiza el cuerpo de la tabla con los daos de la persona que se le pasa
- * @param {jinete} jinete Objeto con los datos de la persona que queremos escribir el TR
+ * Actualiza el cuerpo de la tabla con los daos de la Jinete que se le pasa
+ * @param {jinete} jinete Objeto con los datos de la Jinete que queremos escribir el TR
  * @returns La plantilla des cuerpo de la tabla con los datos actualizados
  */
-
 Plantilla.plantillaTablaJinetes.actualiza = function (jinete) {
     return Plantilla.sustituyeTags(this.cuerpoJinetesTodos, jinete)
 }
 
+
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
- * Actualiza el formulario con los datos de la persona que se le pasa
- * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * Actualiza el formulario con los datos de la Jinete que se le pasa
+ * @param {Jinete} Jinete Objeto con los datos de la Jinete que queremos escribir en el TR
  * @returns La plantilla del cuerpo de la tabla con los datos actualizados
  */
 Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {
-    return Plantilla.sustituyeTags(this.formulario, jinete)
+    return Plantilla.sustituyeTags(this.formulario, jinete);
 }
+
 
 /***************************************************************************************************/
 
@@ -351,14 +374,14 @@ Plantilla.recupera = async function (callBackFn) {
  */
 Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
     try {
-        const url = Frontend.API_GATEWAY + "/plantilla/getPorId" + idJinete
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idJinete
         const response = await fetch(url);
         if (response) {
             const jinete = await response.json()
             callBackFn(jinete)
         }
     } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
+        alert("Error: No se han podido acceder al API Geteway")
         console.error(error)
     }
 }
@@ -444,29 +467,27 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
  * Función para mostrar en pantalla los detalles de una jinete que se ha recuperado de la BBDD por su id
  * @param {jinete} jinete Datos de la jinete a mostrar
  */
-
 Plantilla.imprimeUnJinete = function (jinete) {
     // console.log(jinete) // Para comprobar lo que hay en vector
     let msj = Plantilla.jineteComoFormulario(jinete);
 
-    // Borro toda la info de Article y la sustituyo por la que me interesa
-   Frontend.Article.actualizar("Mostrar una jinete", msj)
+    //Borrar toda la información de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizarBoton("Mostrar datos de un jinete", msj)
 
-    // Actualiza el objeto que guarda los datos mostrados
-     Plantilla.almacenaDatos(jinete)
+    //Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(jinete)
 }
 
-/***************************************************************************************************/
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
  * Almacena los datos de la jinete que se está mostrando
  * @param {jinete} jinete Datos de la jinete a almacenar
  */
-
 Plantilla.almacenaDatos = function (jinete) {
-    Plantilla.jineteMostrado = jinete;
+    Plantilla.jieneteSeleccionado = jinete;
 }
+
 
 /***************************************************************************************************/
 
@@ -509,18 +530,117 @@ Plantilla.listarJinetes = function () {
  * Función principal para mostrar los datos de una jinete desde el MS y, posteriormente, imprimirla.
  * @param {String} idJinete Identificador de la jinete a mostrar
  */
-Plantilla.mostrarUnJinete = function (idJinete) {
-    this.recuperaUnJinete(idJinete, this.imprimeMuchosJinetes);
+Plantilla.mostrar = function (idJinete) {
+    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
 }
 
 /**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 4
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 3
  * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
  */
-
 Plantilla.listarJinetesAlafetico = function () {
     Plantilla.recuperaAlfabeticamente(Plantilla.imprimeNombres);
 }
 
+/***************************************************************************************************/
 
 
+/**
+ * Oculta todas las opciones secundarias
+ * @returns El propio objeto para encadenar llamadas
+ */
+Plantilla.ocultarOpcionesSecundarias = function () {
+    this.opcionesMostrarOcultar("opcion-secundaria", false)
+    return this
+}
+
+/**
+ * Muestra todas las opciones secundarias
+ * @returns El propio objeto para encadenar llamadas
+ */
+Plantilla.mostrarOpcionesSecundarias = function () {
+    this.opcionesMostrarOcultar("opcion-secundaria", true)
+    return this
+}
+
+
+/**
+ * Muestra las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.mostrarOcionesTerciariasEditar = function () {
+    this.opcionesMostrarOcultar("opcion-terciaria editar", true)
+    return this
+}
+
+
+/**
+ * Oculta las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.ocultarOcionesTerciariasEditar = function () {
+    this.opcionesMostrarOcultar("opcion-terciaria editar", false)
+    return this
+}
+
+/*********************************************************************************************/
+
+/**
+ * Función que permite modificar los datos de una Jinete
+ */
+Plantilla.editar = function () {
+    this.ocultarOpcionesSecundarias()
+    this.mostrarOcionesTerciariasEditar()
+    this.habilitarCamposEditables()
+}
+
+/**
+ * Establece disable = true en los campos editables
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.deshabilitarCamposEditables = function () {
+    Plantilla.habilitarDeshabilitarCamposEditables(true)
+    return this
+}
+
+
+/**
+ * Establece disable = false en los campos editables
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.habilitarCamposEditables = function () {
+    Plantilla.habilitarDeshabilitarCamposEditables(false)
+    return this
+}
+
+
+/*********************************************************************************************/
+
+/**
+ * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
+    let opciones = document.getElementsByClassName(classname)
+    let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+    let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+
+    for (let i = 0; i < opciones.length; ++i) {
+        Frontend.quitarClase(opciones[i], claseQuitar)
+            .aniadirClase(opciones[i], claseAniadir)
+    }
+    return this
+}
+
+/**
+ * Establece disable = habilitando en los campos editables
+ * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
+    deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
+    for (let campo in Plantilla.form) {
+        document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
+    }
+    return this
+}
