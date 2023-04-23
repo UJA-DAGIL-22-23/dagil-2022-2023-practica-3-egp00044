@@ -473,8 +473,6 @@ Plantilla.imprimeUnJinete = function (jinete) {
         Frontend.Article.actualizarBoton("Mostrar datos de un jinete", msj)
         Plantilla.almacenaDatos(jinete)
     }
-
-
 }
 
 /**
@@ -509,7 +507,7 @@ Plantilla.imprimePorApellido = function (vector) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
     }
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por APELLIDOS" , msj)
 }
 
 //BUSQUEDA POR ALTURA
@@ -529,7 +527,7 @@ Plantilla.imprimePorAltura = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por ALTURA" , msj)
 }
 
 //BUSQUEDA POR NOMBRE DEL CABALLO
@@ -549,7 +547,7 @@ Plantilla.imprimePorCaballo = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por NOMBRE DEL CABALLO" , msj)
 }
 
 //BUSQUEDA POR AÑO DE NACIMIENTO
@@ -569,7 +567,7 @@ Plantilla.imprimePorAño = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por AÑO DE NACIMIENTO" , msj)
 }
 
 //BUSQUEDA POR NOMBRE DEL CLUB
@@ -589,7 +587,7 @@ Plantilla.imprimePorClub = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por NOMBRE DEL CLUB" , msj)
 }
 
 //BUSQUEDA POR DIRECCION DEL CLUB
@@ -609,7 +607,7 @@ Plantilla.imprimePorDireccionClub = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por DIRECCION DEL CLUB" , msj)
 }
 
 //BUSQUEDA POR TIPO DE COMPETICION
@@ -629,7 +627,7 @@ Plantilla.imprimePorCompeticion = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por TIPO COMPETICION" , msj)
 }
 
 //BUSQUEDA POR AÑOS FEDERADO
@@ -649,7 +647,7 @@ Plantilla.imprimePorFederado = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por AÑOS FEDERADO" , msj)
 }
 
 //BUSQUEDA POR NUMERO DE PARTICIPACIONES
@@ -669,7 +667,7 @@ Plantilla.imprimePorParticipaciones = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por PARTICIPACIONES" , msj)
 }
 
 //BUSQUEDA POR NUMERO DE TORNEOS GANADOS
@@ -689,7 +687,7 @@ Plantilla.imprimePorGanado = function (vector) {
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
     msj += Plantilla.plantillaTablaJinetes.pie
-    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+    Frontend.Article.actualizar("Listado de los jinetes Ordenador por TORNEOS GANADOS" , msj)
 }
 
 /***************************************************************************************************/
