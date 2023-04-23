@@ -39,6 +39,37 @@ const datosDescargadosPrueba = {
 }
 
 
+const datosDescargadosPruebaJinete = {
+    nombre_jinete: {
+        nombre: "Elena",
+        apellidos: "Gomez Padilla"
+    },
+    altura_jinete: 155,
+    datos_caballo: {
+        nombre_caballo: "SalvaTierra",
+        edad: 5,
+        sexo: "Hembra"
+    },
+    fecha_nacimiento: {
+        dia: 26,
+        mes: 11,
+        año: 2001
+    },
+    nombre_club_actual: "Club deportivo Hipico Alianza",
+    direccion_club: {
+        calle: "Urb/ La Rozuela",
+        numero: 11,
+        localidad: "Linares",
+        provincia: "Jaén",
+        pais: "España"
+    },
+    tipo_competicion: "Doma clasica",
+    años_federado: [2014, 2015, 2016, 2018],
+    numero_particiapciones_torneo: 23,
+    numero_torneos_ganados: 15
+}
+
+
 // Función para esperar y dar tiempo a que responda el microservicio
 function esperar(ms) {
     var inicio = new Date().getTime();
