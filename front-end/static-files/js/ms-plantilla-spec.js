@@ -14,6 +14,7 @@ const TITULO_HOME = "Plantilla Home"
 const TITULO_ACERCA_DE = "Plantilla Acerca de"
 const TITULO_IMPRIME_NOMBRES_JINETES = "Listados de nombres de todos los jinetes"
 const TITULO_IMPRIME_DATOS_JINETES = "Listados de los datos de todos los jinetes"
+const TITULO_IMPRIME_DATOS_UN_JINETE = "Mostrar datos de un jinete"
 const OBJETO_NULO = ' '
 const OBJETO_VACIO_TODOS = ' '
 
@@ -176,6 +177,17 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
+
+//TDD PARA HU 6
+describe("Plantilla.imprimeUnJinete: " , function() {
+    it("Mostrar datos nulos cuando le pasamos un valor nulo", function() {
+            let jinete = null;
+            Plantilla.imprimeUnJinete(jinete);
+            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_UN_JINETE);
+        })
+})
+
+
 
 //TDD PARA HU 5
 describe("Plantilla.imprimePorApellido: ", function() {

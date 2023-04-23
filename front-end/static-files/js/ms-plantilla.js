@@ -466,14 +466,15 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
  * @param {jinete} jinete Datos de la jinete a mostrar
  */
 Plantilla.imprimeUnJinete = function (jinete) {
-    // console.log(jinete) // Para comprobar lo que hay en vector
-    let msj = Plantilla.jineteComoFormulario(jinete);
+    if (!jinete || typeof jinete !== "object") {
+        elementoTitulo.innerHTML = "Mostrar datos de un jinete";
+    } else{
+        let msj = Plantilla.jineteComoFormulario(jinete);
+        Frontend.Article.actualizarBoton("Mostrar datos de un jinete", msj)
+        Plantilla.almacenaDatos(jinete)
+    }
 
-    //Borrar toda la información de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizarBoton("Mostrar datos de un jinete", msj)
 
-    //Actualiza el objeto que guarda los datos mostrados
-    Plantilla.almacenaDatos(jinete)
 }
 
 /**
