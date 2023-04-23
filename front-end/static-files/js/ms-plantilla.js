@@ -492,23 +492,38 @@ Plantilla.almacenaDatos = function (jinete) {
  */
 //BUSQUEDA POR APELLIDOS
 Plantilla.imprimePorApellido = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.nombre_jinete.apellidos < b.data.nombre_jinete.apellidos){return -1;} // A va después alfabeticamente que B
-        if (a.data.nombre_jinete.apellidos > b.data.nombre_jinete.apellidos){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.nombre_jinete.apellidos < b.data.nombre_jinete.apellidos) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.nombre_jinete.apellidos > b.data.nombre_jinete.apellidos) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
-        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    }
     msj += Plantilla.plantillaTablaJinetes.pie
     Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
 //BUSQUEDA POR ALTURA
 Plantilla.imprimePorAltura = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.altura_jinete < b.data.altura_jinete){return -1;} // A va después alfabeticamente que B
-        if (a.data.altura_jinete > b.data.altura_jinete){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.altura_jinete < b.data.altura_jinete) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.altura_jinete > b.data.altura_jinete) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -518,10 +533,17 @@ Plantilla.imprimePorAltura = function (vector) {
 
 //BUSQUEDA POR NOMBRE DEL CABALLO
 Plantilla.imprimePorCaballo = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.datos_caballo.nombre_caballo < b.data.datos_caballo.nombre_caballo){return -1;} // A va después alfabeticamente que B
-        if (a.data.datos_caballo.nombre_caballo > b.data.datos_caballo.nombre_caballo){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.datos_caballo.nombre_caballo < b.data.datos_caballo.nombre_caballo) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.datos_caballo.nombre_caballo > b.data.datos_caballo.nombre_caballo) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -531,10 +553,17 @@ Plantilla.imprimePorCaballo = function (vector) {
 
 //BUSQUEDA POR NOMBRE DEL CLUB
 Plantilla.imprimePorClub = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.nombre_club_actual < b.data.nombre_club_actual){return -1;} // A va después alfabeticamente que B
-        if (a.data.nombre_club_actual > b.data.nombre_club_actual){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.nombre_club_actual < b.data.nombre_club_actual) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.nombre_club_actual > b.data.nombre_club_actual) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -544,10 +573,17 @@ Plantilla.imprimePorClub = function (vector) {
 
 //BUSQUEDA POR DIRECCION DEL CLUB
 Plantilla.imprimePorDireccionClub = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.direccion_club.calle < b.data.direccion_club.calle){return -1;} // A va después alfabeticamente que B
-        if (a.data.direccion_club.calle > b.data.direccion_club.calle){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.direccion_club.calle < b.data.direccion_club.calle) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.direccion_club.calle > b.data.direccion_club.calle) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -557,10 +593,17 @@ Plantilla.imprimePorDireccionClub = function (vector) {
 
 //BUSQUEDA POR TIPO DE COMPETICION
 Plantilla.imprimePorCompeticion = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.tipo_competicion < b.data.tipo_competicion){return -1;} // A va después alfabeticamente que B
-        if (a.data.tipo_competicion > b.data.tipo_competicion){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.tipo_competicion < b.data.tipo_competicion) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.tipo_competicion > b.data.tipo_competicion) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -570,10 +613,17 @@ Plantilla.imprimePorCompeticion = function (vector) {
 
 //BUSQUEDA POR AÑOS FEDERADO
 Plantilla.imprimePorFederado = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.años_federado < b.data.años_federado){return -1;} // A va después alfabeticamente que B
-        if (a.data.años_federado > b.data.años_federado){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.años_federado < b.data.años_federado) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.años_federado > b.data.años_federado) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -583,10 +633,17 @@ Plantilla.imprimePorFederado = function (vector) {
 
 //BUSQUEDA POR NUMERO DE PARTICIPACIONES
 Plantilla.imprimePorParticipaciones = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.numero_particiapciones_torneo < b.data.numero_particiapciones_torneo){return -1;} // A va después alfabeticamente que B
-        if (a.data.numero_particiapciones_torneo > b.data.numero_particiapciones_torneo){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.numero_particiapciones_torneo < b.data.numero_particiapciones_torneo) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.numero_particiapciones_torneo > b.data.numero_particiapciones_torneo) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
@@ -596,10 +653,17 @@ Plantilla.imprimePorParticipaciones = function (vector) {
 
 //BUSQUEDA POR NUMERO DE TORNEOS GANADOS
 Plantilla.imprimePorGanado = function (vector) {
-    vector.sort(function(a, b) {
-        if (a.data.numero_torneos_ganados < b.data.numero_torneos_ganados){return -1;} // A va después alfabeticamente que B
-        if (a.data.numero_torneos_ganados > b.data.numero_torneos_ganados){return  1;} // B va después alfabeticamente que A
-        return 0;   });
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.numero_torneos_ganados < b.data.numero_torneos_ganados) {
+                return -1;
+            } // A va después alfabeticamente que B
+            if (a.data.numero_torneos_ganados > b.data.numero_torneos_ganados) {
+                return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
