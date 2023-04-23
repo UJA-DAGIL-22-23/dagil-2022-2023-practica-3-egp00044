@@ -217,6 +217,19 @@ describe("Plantilla.imprimePorCaballo: ", function() {
     })
 })
 
+describe("Plantilla.imprimePorAño: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimePorAño([])
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+        Plantilla.imprimePorAño(12)
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
 describe("Plantilla.imprimePorClub: ", function() {
     it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
         Plantilla.imprimePorClub([])

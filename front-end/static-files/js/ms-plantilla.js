@@ -551,6 +551,26 @@ Plantilla.imprimePorCaballo = function (vector) {
     Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
+//BUSQUEDA POR AÑO DE NACIMIENTO
+Plantilla.imprimePorAño = function (vector) {
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function (a, b) {
+            if (a.data.fecha_nacimiento.año < b.data.fecha_nacimiento.año  ) {
+                    return -1;
+            } //A va después alfabeticamente que B
+            if (a.data.fecha_nacimiento.año >b.data.fecha_nacimiento.año) {
+                    return 1;
+            } // B va después alfabeticamente que A
+            return 0;
+        });
+    }
+    let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));}
+    msj += Plantilla.plantillaTablaJinetes.pie
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
 //BUSQUEDA POR NOMBRE DEL CLUB
 Plantilla.imprimePorClub = function (vector) {
     if (vector && Array.isArray(vector)) {
@@ -744,9 +764,9 @@ Plantilla.listarPorCaballo = function () {
     Plantilla.recupera(Plantilla.imprimePorCaballo);
 }
 
-//ORDENADO POR FECHA DE NACIMIENTO
-Plantilla.listarPorFecha = function () {
-    Plantilla.recupera(Plantilla.imprimeMuchosJinetes);
+//ORDENADO POR AÑO DE NACIMIENTO
+Plantilla.listarPorAño = function () {
+    Plantilla.recupera(Plantilla.imprimePorAño);
 }
 
 //ORDENADO POR ORDEN ALFABETICO DEL NOMBRE DEL CLUB
