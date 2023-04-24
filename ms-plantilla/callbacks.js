@@ -68,7 +68,7 @@ const CB_MODEL_SELECTS = {
      */
     getTodos: async (req, res) => {
         try {
-            let jugadores = await client.query (
+            let jinetes = await client.query (
                 q.Map (
                     q.Paginate(q.Documents(q.Collection(COLLECTION))),
                     q.Lambda("X", q.Get(q.Var("X")))
@@ -77,7 +77,7 @@ const CB_MODEL_SELECTS = {
 
             CORS(res)
                 .status(200)
-                .json(jugadores)({
+                .json(jinetes)({
 
                 })
         } catch (error) {
@@ -93,18 +93,54 @@ const CB_MODEL_SELECTS = {
     getPorId: async (req, res) => {
         try {
             // console.log( "getPorId req", req.params.idPersona ) // req.params contiene todos los parámetros de la llamada
-            let jugador = await client.query(
+            let jinete = await client.query(
                 q.Get(q.Ref(q.Collection(COLLECTION), req.params.idJinete))
             )
 
             CORS(res)
                 .status(200)
-                .json(jugador)
+                .json(jinete)
 
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
         }
     },
+
+
+    setTodo: async (req, res) => {
+
+        try {
+            let valorDevuelto = {}
+            // Hay que comprobar Object.keys(req.body).length para saber si req.body es objeto "normal" o con problemas
+            // Cuando la llamada viene de un formulario, se crea una sola entrada, con toda la info en una sola key y el value está vacío.
+            // Cuando la llamada se hace con un objeto (como se hace desde el server-spec.js), el value No está vacío.
+            let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
+            let persona = await client.query(
+                q.Update(
+                    q.Ref(q.Collection(COLLECTION), data.idJinete),
+                    {
+                        data: {
+                            nombre: data.nombre_jinete.nombre,
+                            apellidos: data.nombre_jinete.apellidos,
+                            altura: data.altura_jinete,
+                        },
+                    },
+                )
+            )
+                .then((ret) => {
+                    valorDevuelto = ret
+                    //console.log("Valor devuelto ", valorDevuelto)
+                    CORS(res)
+                        .status(200)
+                        .header( 'Content-Type', 'application/json' )
+                        .json(valorDevuelto)
+                })
+
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
 }
 
 

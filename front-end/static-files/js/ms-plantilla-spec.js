@@ -27,6 +27,7 @@ const JINETE_COMPETICION = "Listado de los jinetes Ordenador por TIPO COMPETICIO
 const JINETE_FEDERADO = "Listado de los jinetes Ordenador por AÑOS FEDERADO"
 const JINETE_PARTICIPACIONES = "Listado de los jinetes Ordenador por PARTICIPACIONES"
 const JINETE_TORNEOS_GANADOS = "Listado de los jinetes Ordenador por TORNEOS GANADOS"
+const JINETE_BUSCADOR = "Mostrar un dato de un jugador buscado"
 
 
 
@@ -36,6 +37,37 @@ const datosDescargadosPrueba = {
     autor: "Prueba de autor",
     email: "Prueba de email",
     fecha: "00/00/0000"
+}
+
+
+const datosDescargadosPruebaJinete = {
+    nombre_jinete: {
+        nombre: "Elena",
+        apellidos: "Gomez Padilla"
+    },
+    altura_jinete: 155,
+    datos_caballo: {
+        nombre_caballo: "SalvaTierra",
+        edad: 5,
+        sexo: "Hembra"
+    },
+    fecha_nacimiento: {
+        dia: 26,
+        mes: 11,
+        año: 2001
+    },
+    nombre_club_actual: "Club deportivo Hipico Alianza",
+    direccion_club: {
+        calle: "Urb/ La Rozuela",
+        numero: 11,
+        localidad: "Linares",
+        provincia: "Jaén",
+        pais: "España"
+    },
+    tipo_competicion: "Doma clasica",
+    años_federado: [2014, 2015, 2016, 2018],
+    numero_particiapciones_torneo: 23,
+    numero_torneos_ganados: 15
 }
 
 
@@ -330,3 +362,43 @@ describe("Plantilla.imprimePorGanado: ", function() {
     })
 })
 
+//TDD PARA HU 8
+describe("Plantilla.imprimeBuscado: ", function() {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+        Plantilla.imprimeBuscado([])
+        expect(elementoTitulo.innerHTML).toBe(JINETE_BUSCADOR)
+      //  expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+        Plantilla.imprimeBuscado(12)
+        expect(elementoTitulo.innerHTML).toBe(JINETE_BUSCADOR)
+     //   expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
+    })
+})
+
+
+//EXPECTS PARA LAS TABLAS
+describe("Plantilla.plantillaTablaJinetes.pie ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla cuando se le pasa un valor nulo", function() {
+        expect(Plantilla.plantillaTablaJinetes.pie).not.toBe(null);
+    });
+    it("debería devolver las etiquetas HTML para el pie de tabla cuando se le pasa un valor vacío", function() {
+        expect(Plantilla.plantillaTablaJinetes.pie).not.toBe("");
+    });
+    it("debería devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.plantillaTablaJinetes.pie).toBe("</tbody> </table>");
+        });
+});
+
+describe("Plantilla.plantillaTablaJinetes.cabecera", function() {
+    it('existe la función cabecera', () => {
+        expect(Plantilla.plantillaTablaJinetes.cabecera).toBeDefined();
+    });
+});
+
+describe("Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos", function() {
+    it('existe la función cabeceraJinetesTodos', () => {
+        expect(Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos).toBeDefined();
+    });
+});
