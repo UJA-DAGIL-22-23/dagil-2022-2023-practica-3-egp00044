@@ -12,7 +12,7 @@ Este código que se presenta aquí corresponde a la plantilla para realizar un d
 
 *   *NOMBRE*: Elena 
 *   *APELLIDOS*: Gómez Padilla
-*   *email*: egp00044@red.ujaen.es
+*   *EMAIL*: egp00044@red.ujaen.es
 
 
 
