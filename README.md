@@ -376,6 +376,14 @@ TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 2
 
 ![Tablero final de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Final.png)
 
+TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 3
+
+![Tablero de inicio de la Iteración 3 ](./assets/img/Tablero_trello_Iteracion_3_Inicio.png)
+
+TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 3
+
+![Tablero final de la Iteración 3 ](./assets/img/Tablero_trello_Iteracion_3_Final.png)
+
 
 ###  FUNCIONAMIENTO DE LA APLICACIÓN
 
