@@ -164,9 +164,9 @@ Plantilla.plantillaFormularioJinete.formulario = `
     <tbody>
         <tr title="${Plantilla.plantillaTags.ID}">
             <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-apellidos" required value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-altura_jinete" required value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-nombre"  value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-apellidos"  value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-altura_jinete"  value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-fecha_nacimiento" required value="${Plantilla.plantillaTags.FECHA_NACIMIENTO}" name="fecha_nacimiento"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre_club_actual" required value="${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}" name="nombre_club_actual"/></td>
@@ -432,7 +432,7 @@ Plantilla.recuperaBuscador = async function (callBackFn, nombre) {
         let vectorJinetes = null
         if (response) {
             vectorJinetes = await response.json()
-            const filtro = vectorJinetes.data.filter(jinete => persona.data.nombre_jinete.nombre === nombre)
+            const filtro = vectorJinetes.data.filter(jinete => jinete.data.nombre_jinete.nombre === nombre);
             callBackFn(filtro)
         }
 
@@ -507,13 +507,13 @@ Plantilla.imprimeUnJinete = function (jinete) {
  * Función para mostrar en pantalla todos los proyectos que se han recuperado de la BBDD.
  * @param {Vector_de_jinetes} vector Vector con los datos de los proyectos a mostrar
  */
-Plantilla.imprimeBuscado = function (nombreBuscado) {
-    if (!nombreBuscado || typeof nombreBuscado !== "object") {
-        elementoTitulo.innerHTML = "Mostrar los datos del jugador";
+Plantilla.imprimeBuscado = function (jinete) {
+    if (!jinete || typeof jinete !== "object") {
+        elementoTitulo.innerHTML = "Mostrar un dato de un jugador buscado";
     } else {
-        let msj = Plantilla.jineteComoTabla(nombreBuscado);
-        Frontend.Article.actualizarBoton("Mostrar los datos del jugador", msj)
-        Plantilla.almacenaDatos(jinete)
+        let msj = Plantilla.plantillaTablaJinetes.cabecera
+        jinete.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
+        msj += Plantilla.plantillaTablaJinetes.pie
     }
 }
 
@@ -842,11 +842,23 @@ Plantilla.listarPorGanados = function () {
     Plantilla.recupera(Plantilla.imprimePorGanado);
 }
 
-/*FUNCIONES PARA HU8 */
-
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
+ * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ */
 Plantilla.listarBuscador= function (search){
-    this.recuperaBuscador(this.imprimeBuscado, search);
+    this.recuperaBuscador(Plantilla.imprimeBuscado, search);
 }
+
+/**
+ * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13
+ * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ */
+Plantilla.alterarDatos= function (search){
+    this.recupera(Plantilla.imprimeMuchosJinetes);
+}
+
+
 
 
 
