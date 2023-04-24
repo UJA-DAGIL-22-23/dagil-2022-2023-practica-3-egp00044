@@ -419,6 +419,33 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
     }
 }
 
+
+Plantilla.recuperaBuscador = async function (callBackFn, nombre) {
+    let response = null
+
+    // Intento conectar con el microservicio personas
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+        // Muestro todas las persoans que se han descargado
+        let vectorJinetes = null
+        if (response) {
+            vectorJinetes = await response.json()
+            const filtro = vectorJinetes.data.filter(jinete => persona.data.nombre_jinete.nombre === nombre)
+            callBackFn(filtro)
+        }
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+}
+
+
+
 /***************************************************************************************************/
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
@@ -474,6 +501,23 @@ Plantilla.imprimeUnJinete = function (jinete) {
         Plantilla.almacenaDatos(jinete)
     }
 }
+
+
+/**
+ * Función para mostrar en pantalla todos los proyectos que se han recuperado de la BBDD.
+ * @param {Vector_de_jinetes} vector Vector con los datos de los proyectos a mostrar
+ */
+Plantilla.imprimeBuscado = function (nombreBuscado) {
+    if (!nombreBuscado || typeof nombreBuscado !== "object") {
+        elementoTitulo.innerHTML = "Mostrar los datos del jugador";
+    } else {
+        let msj = Plantilla.jineteComoTabla(nombreBuscado);
+        Frontend.Article.actualizarBoton("Mostrar los datos del jugador", msj)
+        Plantilla.almacenaDatos(jinete)
+    }
+}
+
+
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
@@ -797,6 +841,13 @@ Plantilla.listarPorParticipaciones = function () {
 Plantilla.listarPorGanados = function () {
     Plantilla.recupera(Plantilla.imprimePorGanado);
 }
+
+/*FUNCIONES PARA HU8 */
+
+Plantilla.listarBuscador= function (search){
+    this.recuperaBuscador(this.imprimeBuscado, search);
+}
+
 
 
 /***************************************************************************************************/
