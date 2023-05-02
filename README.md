@@ -358,7 +358,7 @@ numero_torneos_ganados: 15
 ```
 
 ###  *TABLERO DE TRELLO*
-* [Enlace al tablero de Trello](https://trello.com/invite/b/ev2D3cAK/ATTIac49b39a9682f56b3cfb290dd72e6e4c4D893DE9/desarrollo-agil-pr3) ↗️
+* [Enlace al tablero de Trello](https://trello.com/b/ev2D3cAK/desarrollo-%C3%A1gil-pr3) ↗️
 
 TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 1
 
