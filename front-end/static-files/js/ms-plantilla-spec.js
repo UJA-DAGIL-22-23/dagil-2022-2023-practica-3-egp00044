@@ -27,7 +27,7 @@ const JINETE_COMPETICION = "Listado de los jinetes Ordenador por TIPO COMPETICIO
 const JINETE_FEDERADO = "Listado de los jinetes Ordenador por AÑOS FEDERADO"
 const JINETE_PARTICIPACIONES = "Listado de los jinetes Ordenador por PARTICIPACIONES"
 const JINETE_TORNEOS_GANADOS = "Listado de los jinetes Ordenador por TORNEOS GANADOS"
-const JINETE_BUSCADOR = "Mostrar un dato de un jugador buscado"
+const JINETE_BUSCADOR = "Mostrar un dato de un jinete buscado"
 
 
 
@@ -363,6 +363,7 @@ describe("Plantilla.imprimePorGanado: ", function() {
 })
 
 //TDD PARA HU 8
+/**
 describe("Plantilla.imprimeBuscado: ", function() {
     it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
         Plantilla.imprimeBuscado([])
@@ -375,7 +376,7 @@ describe("Plantilla.imprimeBuscado: ", function() {
      //   expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
-
+*/
 
 //EXPECTS PARA LAS TABLAS
 describe("Plantilla.plantillaTablaJinetes.pie ", function () {

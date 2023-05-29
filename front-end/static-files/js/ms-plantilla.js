@@ -419,32 +419,34 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
     }
 }
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
+ * Función que recupera todos los jinetes llamando al MS Plantilla
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+*/
 
-Plantilla.recuperaBuscador = async function (callBackFn, nombre) {
+Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {
     let response = null
 
-    // Intento conectar con el microservicio personas
+    // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
         response = await fetch(url)
 
-        // Muestro todas las persoans que se han descargado
-        let vectorJinetes = null
-        if (response) {
-            vectorJinetes = await response.json()
-            const filtro = vectorJinetes.data.filter(jinete => jinete.data.nombre_jinete.nombre === nombre);
-            callBackFn(filtro)
-        }
-
     } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
+        alert("Error: No se han podido acceder al API Getewayvaqsavsvq")
         console.error(error)
-        //throw error
     }
 
+    let vectorJinetes = null
+    if (response) {
+        vectorJinetes = await response.json()
+        const filtro = vectorJinetes.data.filter(jienete =>  vectorJinetes.data.nombre_jinete.nombre === nombreBuscado)
+        callBackFn(filtro)
+    }
+
+
 }
-
-
 
 /***************************************************************************************************/
 /**
@@ -502,18 +504,19 @@ Plantilla.imprimeUnJinete = function (jinete) {
     }
 }
 
+Plantilla.imprimirJineteBuscado = function(nombreBuscado) {
+    if (!nombreBuscado || typeof nombreBuscado !== "object") {
+        elementoTitulo.innerHTML = "Mostrar los datos del jinete";
 
-/**
- * Función para mostrar en pantalla todos los proyectos que se han recuperado de la BBDD.
- * @param {Vector_de_jinetes} vector Vector con los datos de los proyectos a mostrar
- */
-Plantilla.imprimeBuscado = function (jinete) {
-    if (!jinete || typeof jinete !== "object") {
-        elementoTitulo.innerHTML = "Mostrar un dato de un jugador buscado";
     } else {
-        let msj = Plantilla.plantillaTablaJinetes.cabecera
-        jinete.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualizaNombres(e))
-        msj += Plantilla.plantillaTablaJinetes.pie
+        let msj = Plantilla.jineteComoTabla(nombreBuscado);
+
+        //let msj = Plantilla.jineteComoFormulario(jinete);
+        //Borrar toda la información de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizarBoton("Mostrar los datos del jinete", msj)
+
+        //Actualiza el objeto que guarda los datos mostrados
+        //Plantilla.almacenaDatos(nombreBuscado)
     }
 }
 
@@ -846,8 +849,8 @@ Plantilla.listarPorGanados = function () {
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
  * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
  */
-Plantilla.listarBuscador= function (search){
-    this.recuperaBuscador(Plantilla.imprimeBuscado, search);
+Plantilla.comenzarBusqueda= function (search){
+    this.recuperaBuscador(Plantilla.imprimirJineteBuscado, search);
 }
 
 /**
