@@ -849,9 +849,13 @@ Plantilla.listarPorGanados = function () {
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
  * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
  */
-Plantilla.comenzarBusqueda= function (search){
-    this.recuperaBuscador(Plantilla.imprimirJineteBuscado, search);
+Plantilla.comenzarBusqueda= function (buscado){
+    this.recuperaBuscador(buscado, Plantilla.imprimirJineteBuscado);
 }
+/*
+Plantilla.mostrar = function (idJinete) {
+    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
+}*/
 
 /**
  * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13
