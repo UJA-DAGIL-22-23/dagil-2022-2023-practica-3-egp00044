@@ -433,19 +433,17 @@ Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
         response = await fetch(url)
 
+        let vectorJinetes = null
+        if (response) {
+            vectorJinetes = await response.json()
+            const filtro = vectorJinetes.data.filter(jienete =>  vectorJinetes.data.nombre_jinete.nombre === nombreBuscado)
+            callBackFn(filtro)
+        }
+
     } catch (error) {
         alert("Error: No se han podido acceder al API Getewayvaqsavsvq")
         console.error(error)
     }
-
-    let vectorJinetes = null
-    if (response) {
-        vectorJinetes = await response.json()
-        const filtro = vectorJinetes.data.filter(jienete =>  vectorJinetes.data.nombre_jinete.nombre === nombreBuscado)
-        callBackFn(filtro)
-    }
-
-
 }
 
 /***************************************************************************************************/
@@ -488,6 +486,7 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     // Borrar toda la información de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
+
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
@@ -850,8 +849,15 @@ Plantilla.listarPorGanados = function () {
  * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
  */
 Plantilla.comenzarBusqueda= function (buscado){
-    this.recuperaBuscador(buscado, Plantilla.imprimirJineteBuscado);
+    this.recuperaBuscador(buscado, Plantilla.imprimeMuchosJinetes);
 }
+
+/*
+Plantilla.jugadorBuscado = function (nombreBuscado){
+    this.recuperaJugadorBuscado(nombreBuscado, this.imprimeMuchasPersonas);
+}
+*/
+
 /*
 Plantilla.mostrar = function (idJinete) {
     this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
