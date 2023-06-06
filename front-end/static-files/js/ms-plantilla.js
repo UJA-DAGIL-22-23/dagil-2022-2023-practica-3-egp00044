@@ -345,7 +345,6 @@ Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {
  */
 Plantilla.recupera = async function (callBackFn) {
     let response = null
-
     // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
@@ -357,9 +356,8 @@ Plantilla.recupera = async function (callBackFn) {
     }
 
     //mostrar todos los jinetes que se han descargado
-    let vectorJinetes = null
     if (response) {
-        vectorJinetes = await response.json()
+        let vectorJinetes = await response.json()
         callBackFn(vectorJinetes.data)
     }
 }
@@ -372,17 +370,21 @@ Plantilla.recupera = async function (callBackFn) {
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
  */
 Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
+    let response = null
+    // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idJinete
-        const response = await fetch(url);
-        if (response) {
-            const jinete = await response.json()
-            callBackFn(jinete)
-        }
+        response = await fetch(url);
+
     } catch (error) {
         alert("Error: No se han podido acceder al API Geteway")
         console.error(error)
     }
+
+        if (response) {
+            const jinete = await response.json()
+            callBackFn(jinete)
+        }
 }
 
 /**
@@ -403,10 +405,8 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
     }
 
     //mostrar todos los jinetes que se han descargado
-    let vectorJinetes = null
     if (response){
-
-        vectorJinetes = await response.json()
+        let vectorJinetes = await response.json()
 
         vectorJinetes.data.sort((a,b)=>{
             //Si el elemento A va después alfabeticamente que B, devolverá -1
@@ -421,31 +421,26 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
- * Función que recupera todos los jinetes llamando al MS Plantilla
+ * Función que recupera un/unos jinetes concretos pedidos por el usuario llamando al MS Plantilla
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
 */
-
 Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {
     let response = null
-
     // Intento conectar el microservicio Plantilla
     try {
-        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
-        response = await fetch(url)
-
-        let vectorJinetes = null
-        if (response) {
-            vectorJinetes = await response.json()
-            const filtro = vectorJinetes.data.filter(jienete =>  vectorJinetes.data.nombre_jinete.nombre === nombreBuscado)
-            callBackFn(filtro)
-        }
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorNombre/" + nombreBuscado
+        response = await fetch(url);
 
     } catch (error) {
-        alert("Error: No se han podido acceder al API Getewayvaqsavsvq")
+        alert("Error: No se han podido acceder al API Geteway")
         console.error(error)
     }
-}
 
+    if (response) {
+        const jinete = await response.json()
+        callBackFn(jinete)
+    }
+}
 /***************************************************************************************************/
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
@@ -502,24 +497,6 @@ Plantilla.imprimeUnJinete = function (jinete) {
         Plantilla.almacenaDatos(jinete)
     }
 }
-
-Plantilla.imprimirJineteBuscado = function(nombreBuscado) {
-    if (!nombreBuscado || typeof nombreBuscado !== "object") {
-        elementoTitulo.innerHTML = "Mostrar los datos del jinete";
-
-    } else {
-        let msj = Plantilla.jineteComoTabla(nombreBuscado);
-
-        //let msj = Plantilla.jineteComoFormulario(jinete);
-        //Borrar toda la información de Article y la sustituyo por la que me interesa
-        Frontend.Article.actualizarBoton("Mostrar los datos del jinete", msj)
-
-        //Actualiza el objeto que guarda los datos mostrados
-        //Plantilla.almacenaDatos(nombreBuscado)
-    }
-}
-
-
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
@@ -846,22 +823,11 @@ Plantilla.listarPorGanados = function () {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
- * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ * Función principal para un jinente proporcionado por el usuario Jinetes del MS y, posteriormente, imprimirlo.
  */
 Plantilla.comenzarBusqueda= function (buscado){
-    this.recuperaBuscador(buscado, Plantilla.imprimeMuchosJinetes);
+    this.recuperaUnJinete(buscado, Plantilla.imprimeUnJinete);
 }
-
-/*
-Plantilla.jugadorBuscado = function (nombreBuscado){
-    this.recuperaJugadorBuscado(nombreBuscado, this.imprimeMuchasPersonas);
-}
-*/
-
-/*
-Plantilla.mostrar = function (idJinete) {
-    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
-}*/
 
 /**
  * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13
