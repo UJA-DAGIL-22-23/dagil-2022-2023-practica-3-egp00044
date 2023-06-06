@@ -421,25 +421,26 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
- * Función que recupera un/unos jinetes concretos pedidos por el usuario llamando al MS Plantilla
+ * Función que recupera un jugador seleccionado por el usuario llamando al MS Plantilla
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
 */
 Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {
     let response = null
     // Intento conectar el microservicio Plantilla
     try {
-        const url = Frontend.API_GATEWAY + "/plantilla/getPorNombre/" + nombreBuscado
-        response = await fetch(url);
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
 
     } catch (error) {
         alert("Error: No se han podido acceder al API Geteway")
         console.error(error)
     }
-
+   // let vectorJinetes = null
     if (response) {
-        const jinete = await response.json()
-        callBackFn(jinete)
-    }
+        let vectorJinetes = await response.json()
+            const filtro = vectorJinetes.data.filter(jinetes => jinetes.data.nombre_jinete.nombre === nombreBuscado)
+            callBackFn(filtro)
+        }
 }
 /***************************************************************************************************/
 /**
@@ -823,11 +824,12 @@ Plantilla.listarPorGanados = function () {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
- * Función principal para un jinente proporcionado por el usuario Jinetes del MS y, posteriormente, imprimirlo.
+ * Función principal para un jinete proporcionado por el usuario del MS y, posteriormente, imprimirlos.
  */
 Plantilla.comenzarBusqueda= function (buscado){
-    this.recuperaUnJinete(buscado, Plantilla.imprimeUnJinete);
+    this.recuperaBuscador(buscado, Plantilla.imprimeMuchosJinetes);
 }
+
 
 /**
  * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13

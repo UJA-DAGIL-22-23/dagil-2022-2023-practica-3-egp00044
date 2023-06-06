@@ -70,17 +70,6 @@ router.get("/getPorId/:idJinete", async (req, res) => {
     }
 });
 
-/**
- * Devuelve los datos del jugador con el nombre
- */
-router.get("/getPorNombre/:nombreBuscado", async (req, res) => {
-    try {
-        await callbacks.getPorNombre(req, res)
-    } catch (error) {
-        console.log(error);
-    }
-});
-
 
 // Exporto el módulo para poder usarlo en server
 module.exports = router;
