@@ -18,15 +18,17 @@ Este código que se presenta aquí corresponde a la plantilla para realizar un d
 
 ###  *DATOS FAUNA*
 
-CAPTURA de pantalla del HOME de FAUNA
+**CAPTURA de pantalla del HOME de FAUNA**
+
+
 
 ![Imagen inicial de fauna ](./assets/img/Pagina_inicio_de_fauna.png)
 
-CAPTURA de pantalla de la BASE de DATOS de FAUNA
+**CAPTURA de pantalla de la BASE de DATOS de FAUNA**
 
 ![Imagen inicial de fauna ](./assets/img/Pagina_collecion_de_fauna.png)
 
-CAPTURA de pantalla de la COLECCION de FAUNA
+**CAPTURA de pantalla de la COLECCION de FAUNA**
 
 ![Imagen inicial de fauna ](./assets/img/Pagina_de_colleciones_de_Fauna.png)
 
@@ -360,19 +362,43 @@ numero_torneos_ganados: 15
 ###  *TABLERO DE TRELLO*
 * [Enlace al tablero de Trello](https://trello.com/b/ev2D3cAK/desarrollo-%C3%A1gil-pr3) ↗️
 
-TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 1
+**TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 1**
+
+Observamos que al comienzo de la iteación 1 únicamente sabriamos de la realización de dicha iteración, habiendo elegido las historias de usuario 
+1, 2 y 4, con las cuales sumanos una puntuación de 0,7. 
 
 ![Tablero de inicio de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Inicio.png)
 
-TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 1
+**TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 1**
+
+A lo largo de esta iteración las historias de usuario se han movido desde el estado "en proceso"
+a hecho, más adelante añadí más fases del proyecto, tras darme cuanta se que sería muy conveniente.
+La iteración finzaliza con todas las historias de usuairo seleccionadas hechas, con su respectiva documentación. 
 
 ![Tablero final de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Final.png)
 
 TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 2
 
+En la segunda iteración añadimos no solo dos fases más al proceso, sino también 
+las historias de usuario de preparadas para la iteración 3 (azul). 
+Al comienzo posicioné las historias de usuario preparadas para esta iteración (verde)
+en la columna de *iteración actual*.
+
 ![Tablero de inicio de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Inicio.png)
 
 TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 2
+
+
+Al finalzar la segunda iteración he realizado las historias de usuario 3, 5 y 6
+añadiendo un punto de historia al total, obteniendo 1´7 puntos de historia
+realizados hasta este punto.
+A lo largo del proceso de realización de dichas funcionalides estan han pasado por 
+varias columnas, primero *iteracion actual* que viene a ser un simil del *sprint backlog*
+sin llegar a serlo ya que no usamos Scrum. Desde esa columna una a una he seleccionado la 
+siguiente historia de usuario que ha pasadoa la fase *en proceso*, se mantedrá
+ahí hasta que funcione correctamente, tras lo cual probaremos el TDD por lo que 
+las situaré en la siguiente columna *en fase test (TDD)*. Una vez la historia
+de usuario sea funcional y haya pasado los test, estará lista para el incremento. 
 
 ![Tablero final de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Final.png)
 
@@ -390,6 +416,11 @@ TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 3
 ###  *ITERACIÓN 1*
 
 HISTORIA DE USUARIO 1
+
+insertar explicación del codigo modificado y funcionalidad 
+```
+   > aqui pongo el las funciones modificas y/o añadidas
+```
 
 ![Resultado de la HU 1](./assets/img/Historia_de_Usuario_1.png)
 
@@ -450,5 +481,7 @@ HISTORIA DE USUARIO 6
 HISTORIA DE USUARIO 8
 
 *Buscador por nombres de los Jinetes*
+
+*Ejemplo con los datos de un solo jinete, esta acción se puede realizar con todos*
 ![Resultado de la HU 3](./assets/img/Historia_de_Usuario_8.1.png)
 
