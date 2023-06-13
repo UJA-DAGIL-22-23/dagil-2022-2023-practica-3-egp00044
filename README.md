@@ -375,9 +375,9 @@ A lo largo de esta iteración las historias de usuario se han movido desde el es
 a hecho, más adelante añadí más fases del proyecto, tras darme cuanta se que sería muy conveniente.
 La iteración finzaliza con todas las historias de usuairo seleccionadas hechas, con su respectiva documentación. 
 
-![Tablero final de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Final.png)
+![Tablero final de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Final.png)1
 
-TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 2
+**TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 2**
 
 En la segunda iteración añadimos no solo dos fases más al proceso, sino también 
 las historias de usuario de preparadas para la iteración 3 (azul). 
@@ -386,10 +386,10 @@ en la columna de *iteración actual*.
 
 ![Tablero de inicio de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Inicio.png)
 
-TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 2
+**TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 2**
 
 
-Al finalzar la segunda iteración he realizado las historias de usuario 3, 5 y 6
+Al finalizar la segunda iteración he realizado las historias de usuario 3, 5 y 6
 añadiendo un punto de historia al total, obteniendo 1´7 puntos de historia
 realizados hasta este punto.
 A lo largo del proceso de realización de dichas funcionalides estan han pasado por 
@@ -402,29 +402,115 @@ de usuario sea funcional y haya pasado los test, estará lista para el increment
 
 ![Tablero final de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Final.png)
 
-TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 3
+**TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 3**
+
+En la tercera iteración seleccioné de nuevo 3 historias de usuario para llevsar a cabo su desarrollo
+entre las cuales suman 1 punto de historia, resultando en un total de 2´7 puntos de historia realizados
+hasta ahora.
 
 ![Tablero de inicio de la Iteración 3 ](./assets/img/Tablero_trello_Iteracion_3_Inicio.png)
 
-TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 3
+**TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 3**
 
 ![Tablero final de la Iteración 3 ](./assets/img/Tablero_trello_Iteracion_3_Final.png)
-
 
 ###  FUNCIONAMIENTO DE LA APLICACIÓN
 
 ###  *ITERACIÓN 1*
 
-HISTORIA DE USUARIO 1
+**HISTORIA DE USUARIO 1: AÑADIR INFORMACIÓN EN "ACERCA DE". PH:1**
 
-insertar explicación del codigo modificado y funcionalidad 
+En este historias de usuario su desarrollo ha sido rápido y sinmple, pues únicamente
+ha sido necesario añadir mis datos a una función ya existente, resultando en un botón, que
+pulsado muestra lo datos de la co-autora de la aplicación.
+El método modificado ha sido: 
+
 ```
-   > aqui pongo el las funciones modificas y/o añadidas
+   -    acercaDe: async (req, res) => {
+        try {
+            CORS(res).status(200).json({
+                mensaje: "Microservicio MS Plantilla: acerca de",
+                autor: "Elena Gómez Padilla",
+                email: "egp00044@red.ujaen.es",
+                fecha: "26/11/2001"
+            });
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+    
+    -    it('Devuelve MS Plantilla Acerca De', (done) => {}
+
 ```
+
+Un ejemplo del correcto funcionamiento del desarrollo es la siguiente captura 
+de pantalla, donde se muestra que los datos mostrado por la aplicación al pulsar 
+el botón *Acerca de* son correctos: 
 
 ![Resultado de la HU 1](./assets/img/Historia_de_Usuario_1.png)
 
-HISTORIA DE USUARIO 2
+**HISTORIA DE USUARIO 2: VER LISTADO DE LOS JINETES. PH:2**
+
+En esta segunda historia de usuario debía obtener un listado de todos los jinetes 
+de la base de datos, mostrando únicamente sus identificadores, nombres y apellidos. 
+En la base de datos incluí 10 jientes, con nombres distintos pero compartiendo algunos datos,
+como caballos y clubs en común. Esta información no nos será relevante por ahora, pues no
+la mostraremos.
+Los métodos y clases modificados/añadidos han sido: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -    <a href="javascript:Plantilla.nombrarJinetes()" class="opcion-principal"
+        title="Realizar un listado de todos los nombres de los jinetes que hay en la BBDD">Nombrar a los jinetes</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.nombrarJinetes = function () {...}
+   -    Plantilla.imprimeNombres = function (vector) {...}
+   -    Plantilla.recupera = async function (callBackFn) {...}
+   -    Plantilla.plantillaTablaJinetes = {...}
+   -    Plantilla.plantillaTablaJinetes.cabecera
+   -    Plantilla.plantillaTablaJinetes.cuerpo 
+   -    Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
+   -    Plantilla.plantillaTags = {...}
+   -    Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {...}
+   -    Plantilla.sustituyeTags = function (plantilla, jinete) {...}
+   -    Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {...}
+
+   CLASE: FRONT-END/STATIC-FILES/CSS/MS-PLANTILLA.CSS
+   
+   -    table.listado_jinetes tbody td {...}
+   -    table.listado_jinetes tbody tr {...}
+   -    .form-jinete-elemento:disabled {...}
+   -    .form-jinete-elemento:enabled {...}
+   -    .form-jinete-elemento:enabled:required {...}
+   -    table.listado_jinetes thead,table.listado_jinetes tbody, table.listado_jinetes tr, table.listado_jinetes td {...}
+   -    table.listado_jinetes {...}
+   
+   CLASE: FRONT-END/STATIC-FILES/CSS/FRONT-END.CSS
+
+    -   .opcion-terciaria {...}
+    -   .opcion-secundaria:hover  {...}
+    -   .opcion-principal {...}
+    -   .opcion-terciaria {...}
+    
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC
+    
+    -   describe("Plantilla.imprimeNombres: ", function() {...}
+   
+   CLASE: MS-PLANTILLA/ROUTES.JS
+   
+   -    router.get("/getTodos", async (req, res) => {...}
+   
+   CLASE: MS-PLANTILLA/CALLBACKS.JS
+   
+   -    const client = new faunadb.Client({ ... });
+   -    getTodos: async (req, res) => {...}
+```
+Un ejemplo del correcto funcionamiento del desarrollo es la siguiente captura
+de pantalla, donde se muestra un listados de nos datos identificadores de cada jinete
+pulsando el botón *Nombrar a los jinetes*:
 
 ![Resultado de la HU 2](./assets/img/Historia_de_Usuario_2.png)
 

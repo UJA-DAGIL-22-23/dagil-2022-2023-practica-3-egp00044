@@ -274,7 +274,8 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
 /**
  * PIE DE LAS TABLAS
  * @returns {string}
- */Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
+ */
+Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
 
 /***************************************************************************************************/
 
