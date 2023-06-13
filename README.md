@@ -478,6 +478,10 @@ Los métodos y clases modificados/añadidos han sido:
    -    Plantilla.sustituyeTags = function (plantilla, jinete) {...}
    -    Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {...}
 
+   CLASE: FRONT-END/STATIC-FILES/JS/FRONT-END.JS
+   
+   -    Frontend.Article.actualizar = function (titulo, contenido) {...}
+
    CLASE: FRONT-END/STATIC-FILES/CSS/MS-PLANTILLA.CSS
    
    -    table.listado_jinetes tbody td {...}
@@ -514,7 +518,36 @@ pulsando el botón *Nombrar a los jinetes*:
 
 ![Resultado de la HU 2](./assets/img/Historia_de_Usuario_2.png)
 
-HISTORIA DE USUARIO 4
+**HISTORIA DE USUARIO 4: VER LISTADO DE LOS DATOS DE LOS JINETES. PH:4**
+
+Esta es la última historia de usuario de la primera iteración, la historia de usuario
+4 guarda mucha relación con la anterior, ya que en la historia de usuario 2 
+se debían mostrar todos los jinetes pero únicamente por los campos identificadores (nombre y apellidos), 
+en esta ocasión mostraremos todos los datos de todos los jinetes. 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -    <a href="javascript:Plantilla.listarJinetes()" class="opcion-principal"
+        title="Realizar un listado de los datos de todos los jinetes que hay en la BBDD">Listar jinetes</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.listarJinetes = function () {...}
+   -    Plantilla.imprimeMuchosJinetes = function (vector) {...}
+   -    Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+   -    Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos 
+   -    Plantilla.plantillaTablaJinetes.actualiza = function (jinete) {...}
+   
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
+   
+    -   describe("Plantilla.imprimeMuchosJinetes: ", function() {...}   
+   
+```
+
+Un ejemplo del correcto funcionamiento de la historia de usuario 4 los presento en
+la siguiente captura de pantalla, donde se muestra un listados de nos datos identificadores de cada jinete
+pulsando el botón *Listar jinetes*:
 
 ![Resultado de la HU 4](./assets/img/Historia_de_Usuario_4.png)
 
