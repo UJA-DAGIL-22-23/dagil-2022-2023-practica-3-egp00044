@@ -138,6 +138,10 @@ Plantilla.jineteComoFormulario = function (jinete) {
     return Plantilla.plantillaFormularioJinete.actualiza( jinete );
 }
 
+Plantilla.jineteComoFormularioEditable = function (jinete) {
+    return Plantilla.plantillaFormularioJineteEditable.actualizaEditable( jinete );
+}
+
 /***************************************************************************************************/
 
 
@@ -165,8 +169,8 @@ Plantilla.plantillaFormularioJinete.formulario = `
         <tr title="${Plantilla.plantillaTags.ID}">
             <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable"  id="form-persona-nombre"  value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-apellidos"  value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-altura_jinete"  value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-apellidos"  value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-altura_jinete"  value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-fecha_nacimiento" required value="${Plantilla.plantillaTags.FECHA_NACIMIENTO}" name="fecha_nacimiento"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre_club_actual" required value="${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}" name="nombre_club_actual"/></td>
@@ -179,6 +183,32 @@ Plantilla.plantillaFormularioJinete.formulario = `
     </tbody>
 </table>
 </form>`;
+
+
+
+/***************************************************************************************************/
+
+Plantilla.plantillaFormularioJineteEditable = {}
+
+Plantilla.plantillaFormularioJineteEditable.formulario = `
+<form method='post' action=''>
+<table width="100%" class="listado_jinetes">
+    <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+
+    </thead>
+    <tbody>
+        <tr title="${Plantilla.plantillaTags.ID}">
+            <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-nombre"  value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-apellidos"  value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
+              </tr>
+    </tbody>
+</table>
+</form>`;
+
 
 /***************************************************************************************************/
 
@@ -336,6 +366,10 @@ Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {
     return Plantilla.sustituyeTags(this.formulario, jinete);
 }
 
+Plantilla.plantillaFormularioJineteEditable.actualizaEditable = function (jinetes) {
+    return Plantilla.sustituyeTags(this.formulario, jinetes);
+}
+
 
 /***************************************************************************************************/
 
@@ -475,6 +509,20 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
+    }
+    msj += Plantilla.plantillaTablaJinetes.pie
+
+    // Borrar toda la información de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
+}
+
+Plantilla.imprimeJinetesEditable = function (vector) {
+    //console.log(vector) // Para comprobar lo que hay en vector
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaJinetesEditable.cabeceraJinetesTodos
     if (vector && Array.isArray(vector)) {
         vector.forEach(e => msj += Plantilla.plantillaTablaJinetes.actualiza(e));
     }
@@ -844,7 +892,7 @@ Plantilla.alterarDatos= function (search){
 
 
 
-/***************************************************************************************************/
+/**************recupera*************************************************************************************/
 
 
 /**
