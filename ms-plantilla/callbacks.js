@@ -107,7 +107,6 @@ const CB_MODEL_SELECTS = {
     },
 
     setTodo: async (req, res) => {
-
         try {
             let valorDevuelto = {}
             // Hay que comprobar Object.keys(req.body).length para saber si req.body es objeto "normal" o con problemas

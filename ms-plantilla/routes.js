@@ -58,6 +58,16 @@ router.get("/getTodos", async (req, res) => {
     }
 });
 
+/**
+ * HU 12
+ */
+router.get("/setTodo", async (req, res) => {
+    try {
+        await callbacks.setTodo(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 /**
  * Devuelve los datos del jugador con el id pasado
