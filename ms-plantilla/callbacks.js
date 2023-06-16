@@ -113,7 +113,7 @@ const CB_MODEL_SELECTS = {
             // Cuando la llamada viene de un formulario, se crea una sola entrada, con toda la info en una sola key y el value está vacío.
             // Cuando la llamada se hace con un objeto (como se hace desde el server-spec.js), el value No está vacío.
             let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
-            let persona = await client.query(
+            let jinete = await client.query(
                 q.Update(
                     q.Ref(q.Collection(COLLECTION), data.idJinete),
                     {
@@ -121,6 +121,15 @@ const CB_MODEL_SELECTS = {
                             nombre: data.nombre_jinete.nombre,
                             apellidos: data.nombre_jinete.apellidos,
                             altura: data.altura_jinete,
+                            datos_caballo: data.datos_caballo,
+                            fecha_nacimiento: data.fecha_nacimiento,
+                            nombre_club_actual: data.nombre_club_actual,
+                            direccion_club: data.direccion_club,
+                            tipo_competicion: data.tipo_competicion,
+                            años_federado: data.años_federado,
+                            numero_particiapciones_torneo: data.numero_particiapciones_torneo,
+                            numero_torneos_ganados: data.numero_torneos_ganados,
+
                         },
                     },
                 )
