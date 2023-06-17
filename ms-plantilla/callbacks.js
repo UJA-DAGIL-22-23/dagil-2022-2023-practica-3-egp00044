@@ -129,7 +129,6 @@ const CB_MODEL_SELECTS = {
                             años_federado: data.años_federado,
                             numero_particiapciones_torneo: data.numero_particiapciones_torneo,
                             numero_torneos_ganados: data.numero_torneos_ganados,
-
                         },
                     },
                 )

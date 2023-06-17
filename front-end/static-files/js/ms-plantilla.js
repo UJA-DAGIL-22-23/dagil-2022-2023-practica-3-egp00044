@@ -165,7 +165,7 @@ Plantilla.plantillaFormularioJinete.formulario = `
     <tbody>
         <tr title="${Plantilla.plantillaTags.ID}">
             <td>  
-                <div><a href="javascript:Plantilla.editar()" class="opcion-secundaria editar">Editar</a></div>
+                <div><a href="javascript:Plantilla.editarNombres()" class="opcion-secundaria editar">Editar</a></div>
                  <h1> </h1>
                 <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
                  <h1> </h1>
@@ -229,7 +229,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="5%">Anios federado</th>
         <th width="5%">Número de participaciones</th> 
         <th width="5%">Número de torneos ganados</th> 
-        <th width="5%">Acción</th>   
+        <th width="%">Acción</th>   
 
     </thead>
     <tbody> `;
@@ -832,15 +832,152 @@ Plantilla.comenzarBusqueda= function (buscado){
  * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13
  * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
  */
-Plantilla.alterarDatos= function (){
+Plantilla.alterarDatos= function () {
     this.recupera(Plantilla.imprimeJinetesEditable);
 }
 
+/***************************************************************************************************/
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Función que permite modificar los datos de un Jinete
+ */
+Plantilla.editarNombres = function () {
+    this.ocultarOpcionesSecundarias()
+    this.mostrarOcionesTerciariasEditar()
+    this.habilitarCampoNombre()
+}
 
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Función que permite anular la acción sobre los datos de un Jinete
+ */
+Plantilla.cancelar = function () {
+    this.imprimeUnJinete(this.recuperaDatosAlmacenados())
+    this.deshabilitarCamposEditables()
+    this.ocultarOcionesTerciariasEditar()
+    this.mostrarOpcionesSecundarias()
+}
+
+Plantilla.guardar = async function () {
+    try {
+        let url = Frontend.API_GATEWAY + "/plantilla/setTodo/"
+        let id_jinete = document.getElementById("form-persona-id").value
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id_persona": id_jinete,
+                "nombre_jinete.nombre":  document.getElementById("form-persona-nombre").value,
+                "apellidos_jinete.apellidos": document.getElementById("form-persona-apellidos").value,
+                "altura_jinete": document.getElementById("form-persona-altura_jinete").value,
+                "datos_caballo": document.getElementById("form-persona-datos_caballo").value,
+                "fecha_nacimiento": document.getElementById("form-persona-fecha_nacimiento").value,
+                "nombre_club_actual": document.getElementById("form-persona-nombre_club_actual").value,
+                "direccion_club": document.getElementById("form-persona-direccion_club").value,
+                "tipo_competicion": document.getElementById("form-persona-tipo_competicion").value,
+                "años_federado": document.getElementById("form-persona-años_federado").value,
+                "numero_particiapciones_torneo": document.getElementById("form-persona-numero_participaciones").value,
+                "numero_torneos_ganados": document.getElementById("form-persona-numero_torneos_ganados").value,
+
+
+            }), // body data type must match "Content-Type" header
+        })
+        Plantilla.mostrar(id_jinete)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway " + error)
+        //console.error(error)
+    }
+}
+
+/*********************************************************************************************/
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Establece disable = false en los campos editables
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.habilitarCampoNombre = function () {
+    Plantilla.habilitarDeshabilitarCampoNombre(false)
+    return this
+}
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Establece disable = true en los campos editables
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.deshabilitarCampoNombre = function () {
+    Plantilla.habilitarDeshabilitarCampoNombre(true)
+    return this
+}
+
+
+/*********************************************************************************************/
+
+/**
+ * Establece disable = habilitando en los campos editables
+ * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.habilitarDeshabilitarCampoNombre = function (deshabilitando) {
+    deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
+    for (let campo in Plantilla.formNombre) {
+        document.getElementById(Plantilla.formNombre[campo]).disabled = deshabilitando
+    }
+    return this
+}
+
+Plantilla.formNombre = {
+    NOMBRE: "form-persona-nombre",
+}
+
+/**
+ * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
+    let opciones = document.getElementsByClassName(classname)
+    let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+    let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+
+    for (let i = 0; i < opciones.length; ++i) {
+        Frontend.quitarClase(opciones[i], claseQuitar)
+            .aniadirClase(opciones[i], claseAniadir)
+    }
+    return this
+}
 
 
 /***************************************************************************************************/
+
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ */
+Plantilla.recuperaDatosAlmacenados = function () {
+    return this.jinete;
+}
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Almacena los datos de la jinete que se está mostrando
+ * @param {jinete} jinete Datos de la jinete a almacenar
+ */
+Plantilla.almacenaDatos = function (jinete) {
+    Plantilla.jieneteSeleccionado = jinete;
+}
+
+/***************************************************************************************************/
+
 
 
 /**
@@ -881,138 +1018,6 @@ Plantilla.ocultarOcionesTerciariasEditar = function () {
     return this
 }
 
-/*********************************************************************************************/
-
-/**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
- * Función que permite modificar los datos de un Jinete
- */
-Plantilla.editar = function () {
-    this.ocultarOpcionesSecundarias()
-    this.mostrarOcionesTerciariasEditar()
-    this.habilitarCamposEditables()
-}
-
-/**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
- * Función que permite anular la acción sobre los datos de un Jinete
- */
-Plantilla.cancelar = function () {
-    this.imprimeUnJinete(this.recuperaDatosAlmacenados())
-    this.deshabilitarCamposEditables()
-    this.ocultarOcionesTerciariasEditar()
-    this.mostrarOpcionesSecundarias()
-}
-
-Plantilla.guardar = async function () {
-    try {
-        const url = Frontend.API_GATEWAY + "/plantilla/setTodo/"
-        let id_jinete = document.getElementById("form-persona-id").value
-        let nombre =  document.getElementById("form-persona-nombre").value
-        const response = await fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'no-cors', // no-cors, cors, *same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'omit', // include, *same-origin, omit
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrer: 'no-referrer', // no-referrer, *client
-            body: JSON.stringify({
-                "id_persona": id_jinete,
-                "nombre_jinete.nombre": nombre,
-                "apellidos_jinete.apellidos": document.getElementById("form-persona-apellidos").value,
-                "altura_jinete": document.getElementById("form-persona-altura_jinete").value,
-                "datos_caballo": document.getElementById("form-persona-datos_caballo").value,
-                "fecha_nacimiento": document.getElementById("form-persona-fecha_nacimiento").value,
-                "nombre_club_actual": document.getElementById("form-persona-nombre_club_actual").value,
-                "direccion_club": document.getElementById("form-persona-direccion_club").value,
-                "tipo_competicion": document.getElementById("form-persona-tipo_competicion").value,
-                "años_federado": document.getElementById("form-persona-años_federado").value,
-                "numero_particiapciones_torneo": document.getElementById("form-persona-numero_participaciones").value,
-                "numero_torneos_ganados": document.getElementById("form-persona-numero_torneos_ganados").value,
 
 
-            }), // body data type must match "Content-Type" header
-        })
 
-        Plantilla.mostrar(id_jinete)
-    } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway " + error)
-        //console.error(error)
-    }
-}
-
-/***************************************************************************************************/
-
-
-/**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
- */
-Plantilla.recuperaDatosAlmacenados = function () {
-    return this.jinete;
-}
-
-/**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
- * Almacena los datos de la jinete que se está mostrando
- * @param {jinete} jinete Datos de la jinete a almacenar
- */
-Plantilla.almacenaDatos = function (jinete) {
-    Plantilla.jieneteSeleccionado = jinete;
-}
-
-/***************************************************************************************************/
-
-
-/**
- * Establece disable = true en los campos editables
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.deshabilitarCamposEditables = function () {
-    Plantilla.habilitarDeshabilitarCamposEditables(true)
-    return this
-}
-
-
-/**
- * Establece disable = false en los campos editables
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.habilitarCamposEditables = function () {
-    Plantilla.habilitarDeshabilitarCamposEditables(false)
-    return this
-}
-
-
-/*********************************************************************************************/
-
-/**
- * Establece disable = habilitando en los campos editables
- * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
-    deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
-    for (let campo in Plantilla.form) {
-        document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
-    }
-    return this
-}
-
-/**
- * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
-    let opciones = document.getElementsByClassName(classname)
-    let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
-    let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
-
-    for (let i = 0; i < opciones.length; ++i) {
-        Frontend.quitarClase(opciones[i], claseQuitar)
-            .aniadirClase(opciones[i], claseAniadir)
-    }
-    return this
-}
