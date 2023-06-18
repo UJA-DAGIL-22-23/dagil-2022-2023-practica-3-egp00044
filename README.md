@@ -501,7 +501,7 @@ Los métodos y clases modificados/añadidos han sido:
     
     CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC
     
-    -   describe("Plantilla.imprimeNombres: ", function() {...}
+    -   describe("Plantilla.imprimeNombres: ", function() {...})
    
    CLASE: MS-PLANTILLA/ROUTES.JS
    
@@ -541,7 +541,7 @@ en esta ocasión mostraremos todos los datos de todos los jinetes.
    
     CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
    
-    -   describe("Plantilla.imprimeMuchosJinetes: ", function() {...}   
+    -   describe("Plantilla.imprimeMuchosJinetes: ", function() {...})   
    
 ```
 
@@ -553,12 +553,79 @@ pulsando el botón *Listar jinetes*:
 
 ###  *ITERACIÓN 2*
 
-HISTORIA DE USUARIO 3
+**HISTORIA DE USUARIO 3: VER UN LISTADO DE JINETES ORDENADOS ALFABÉTICAMENTE. PH:3**
 
-*Listado de los Nnombres comletos de los jinetes*
+La historia de usuario 3 parte de código ya desarrollado, con el añadido de un código 
+específico en el método *recuperaAlfabeticamente*, en el que se ordenan los 
+jinetes alfabéticamente en función del nombre. Los métodos añadidos han sido:
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -   <a href="javascript:Plantilla.listarJinetesAlafetico()" class="opcion-principal"
+       title="Realizar un listado en orden alfabetico de todos los jinetes (y sus datos) y  que hay en la BBDD">Alfabetico</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.listarJinetesAlafetico = function () {...}
+   -    Plantilla.recuperaAlfabeticamente = async function (callBackFn) {...}
+
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
+   
+    -   describe("Plantilla.imprimeMuchosJinetes: ", function() {...})   
+   
+```
+
+La función de la historia de usuario 3 es listar todos los jinetes alfabéticamente
+según los nombre. De este modo, la función se lleva a cabo de pulsando 
+el botón *Listar jinetes en orden alfabético* (como vemos en la imagen),
+más adelante modificado a *Alfabéticamente*:
+
+*Listado de los jinetes por orden ALFABÉTICO (nombre)*
 ![Resultado de la HU 3](./assets/img/Historia_de_Usuario_3.png)
 
-HISTORIA DE USUARIO 5
+
+**HISTORIA DE USUARIO 5: VER LOS DATOS DE TODOS LOS JINETES ORDENADOS 
+POR EL CAMPO QUE EL USUARIO DESEE. PH:5**
+
+La historia de usuario 5 consiste en mostrar un listado de los jinetes en función
+del orden seleccionado por el usuario, por ellos hemos imcorporado un botón
+por cada campo disponible. Cabe destacar que el nombre de dichos botones ha
+sido modificado a posteriori, por lo que no coinciden con los mostrados en 
+las imágenes. 
+Los métodos añadidos o modificados han sido: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -    <a href="javascript:Plantilla.listarPorApellido()" class="opcion-principal"
+        title="Realizar un listado en orden alfabetico de los apellidos de todos los jinetes (y sus datos) y  que hay en la BBDD">Apellidos</a>
+                            .
+                            .
+                            .
+   -    <a href="javascript:Plantilla.listarPorGanados()" class="opcion-principal"
+        title="Realizar un listado segun el numero de torneos ganados los jinetes (y sus datos) y  que hay en la BBDD">Años ganados</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.imprimePorApellido = function (vector) {...}
+                            .
+                            .
+                            .
+   -    Plantilla.imprimePorGanado = function (vector) {...}
+
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
+   
+    -   describe("Plantilla.imprimePorApellido: ", function() {...}) 
+                            .
+                            .
+                            . 
+    -   describe("Plantilla.imprimePorGanado: ", function() {...}) 
+ 
+```
+
+Las funciones realizadas por esta historia de usuario son varias, todas ellas
+representadas en las siguientes imágenes: 
 
 *Listado de los jinetes Ordenador por APELLIDOS*
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.1.png)
