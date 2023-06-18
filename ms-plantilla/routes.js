@@ -61,7 +61,7 @@ router.get("/getTodos", async (req, res) => {
 /**
  * HU 12
  */
-router.get("/setTodo", async (req, res) => {
+router.post("/setTodo", async (req, res) => {
     try {
         await callbacks.setTodo(req, res)
     } catch (error) {
