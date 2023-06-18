@@ -625,38 +625,113 @@ Los métodos añadidos o modificados han sido:
 ```
 
 Las funciones realizadas por esta historia de usuario son varias, todas ellas
-representadas en las siguientes imágenes: 
+representadas en las siguientes imágenes
 
 *Listado de los jinetes Ordenador por APELLIDOS*
+
+Para listar los jinetes ordenador por apellidos, el usuario debe pulsar 
+el botón *Listar jinetes por apellido* (como vemos en la imagen),
+más adelante modificado a *Apellidos*:
+
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.1.png)
 
 *Listado de los jinetes Ordenador por ALTURA*
+
+Para listar los jinetes ordenador por altura, el usuario debe pulsar
+el botón *Listar jinetes por altura* (como vemos en la imagen),
+más adelante modificado a *Altura*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.2.png)
 
 *Listado de los jinetes Ordenador por NOMBRE DEL CABALLO*
 
+Para listar los jinetes ordenador por los datos del caballo, el usuario 
+debe pulsar  el botón *Listar jinetes por caballo* (como vemos en la 
+imagen),  más adelante modificado a *Caballo*:
+![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.3.png)
+
 *Listado de los jinetes Ordenador por AÑO DE NACIMIENTO*
+
+Para listar los jinetes ordenador por la fecha de nacimiento, el usuario
+debe pulsar  el botón *Listar jinetes por Año de nacimiento* (como vemos en la
+imagen),  más adelante modificado a *Nacimiento*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.4.png)
 
 *Listado de los jinetes Ordenador por NOMBRE DEL CLUB*
+
+Para listar los jinetes ordenador por el nombre del club, el usuario
+debe pulsar  el botón *Listar jinetes por Club* (como vemos en la
+imagen),  más adelante modificado a *Club*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.5.png)
 
 *Listado de los jinetes Ordenador por DIRECCION DEL CLUB*
+
+Para listar los jinetes ordenador por la dirección del club, el usuario
+debe pulsar  el botón *Listar jinetes por Dirección del Club* (como vemos en la
+imagen),  más adelante modificado a *Dirección Club*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.6.png)
 
 *Listado de los jinetes Ordenador por TIPO COMPETICION*
+
+Para listar los jinetes ordenador por el tipo de competición del jiente, el usuario
+debe pulsar  el botón *Listar jinetes por Tipo Competición* (como vemos en la
+imagen),  más adelante modificado a *Tipo Competición*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.7.png)
 
 *Listado de los jinetes Ordenador por AÑOS FEDERADO*
+
+Para listar los jinetes ordenador por los años federados del jiente, el usuario
+debe pulsar  el botón *Listar jinetes por Años federados* (como vemos en la
+imagen),  más adelante modificado a *Años federados*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.8.png)
 
 *Listado de los jinetes Ordenador por PARTICIPACIONES*
+
+Para listar los jinetes ordenador los años de particicipaciones del jiente ,
+el usuario debe pulsar  el botón *Listar jinetes por participaciones* 
+(como vemos en la  imagen),  más adelante modificado a *Participaciones*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.9.png)
 
 *Listado de los jinetes Ordenador por TORNEOS GANADOS*
+
+Para listar los jinetes ordenador las particicipaciones ganadas del jiente ,
+el usuario debe pulsar  el botón *Listar jinetes por ganados*
+(como vemos en la  imagen),  más adelante modificado a *Ganados*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.9.png)
 
-HISTORIA DE USUARIO 6
+**HISTORIA DE USUARIO 6: VER TODOS LOS DATOS DE UN JINETE. PH:2**
+
+Con la realización de la historia de usuario 6 damos por finalizada la iteración 2, 
+alcanzando un total de 1,7 puntos de historia, repartidos entre las 3 historias
+de usuario que la conforman 
+En esta ocasión el usuario podrá acceder a cada jinete por separado mediante todas las 
+tablas. Para ellos hemos añadido los siguientes métodos: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.mostrar = function (idJinete) {...}
+   -    Plantilla.imprimeUnJinete = function (jinete) {...}
+   -    Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {...}
+   -    Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {...}
+   -    Plantilla.jineteComoFormulario = function (jinete) {...}
+   -    Plantilla.almacenaDatos = function (jinete) {...}
+
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC
+       
+   -   describe("Plantilla.imprimeUnJinete: " , function() {...})
+   
+   CLASE: MS-PLANTILLA/ROUTES.JS   
+   -    router.get("/getPorId/:idJinete", async (req, res) => {...}
+   
+   CLASE: MS-PLANTILLA/CALLBACKS.JS
+   -    getPorId: async (req, res) => {...} 
+```
+
+A continuación expongo un ejemplo del correcto funcionamiento de la historia de 
+usuario 6, mostrando a uno de los jinetes, para poder realizar dicha acción 
+el usuario debe pulsar el botón *Mostrar* en la columna *acción* (presente 
+en todas las tablas), en la fila del jinete deseado. 
+Más adelante dicho botón se renombrará como *Mostrar/Editar*.
 
 *Ejemplo de los datos de un solo jinete, esta acción se puede realiar con todos*
 ![Resultado de la HU 4](./assets/img/Historia_de_Usuario_6.png)
@@ -664,9 +739,35 @@ HISTORIA DE USUARIO 6
 
 ###  *ITERACIÓN 3*
 
-HISTORIA DE USUARIO 8
+**HISTORIA DE USUARIO 8: INCORPORAR UN BUSCADOR SEGÚN EL CRITERIO DE BÚSQUEDA DEL USUARIO. PH:5**
+
+Tras finalizar la iteración 2 hemos obtenido 1,7 puntos de historia, añadiendo 
+la siguiente funcionalidad alcanzamos los 2,2 puntos de historia. 
+Esta función ha sido distinta a las anteriores ya que he tenido que realizar
+un buscador que permite accerder a los jinetes de la base de datos mediante el
+nombre, para que funcione correctamente deben respetarse los acentos y mayúsculas
+del nombre de la base de datos. Para obtener la funcionalidad he modificado 
+los siguientes métodos: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+   
+   -    <input type = "text" id="campo-busqueda">
+        <button class="btn" onclick="Plantilla.comenzarBusqueda(document.getElementById('campo-busqueda').value)">Buscar por nombre</button>
+
+
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.comenzarBusqueda= function (buscado){...}
+   -    Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {...}
+```
+
 
 *Buscador por nombres de los Jinetes*
+
+Para mostrar el correcto funcionamiento de esta hisotoria de usuario he seleccionado
+una única captura de pantalla, con la búsqueda de un nombre y su resultado, 
+lo mismo aplica al resto de nombres del resto de los jinetes de la base de datos. 
 
 *Ejemplo con los datos de un solo jinete, esta acción se puede realizar con todos*
 ![Resultado de la HU 3](./assets/img/Historia_de_Usuario_8.1.png)
