@@ -172,7 +172,7 @@ Plantilla.plantillaFormularioJinete.formulario = `
                 <div><a href="javascript:Plantilla.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
             </td>
             <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-nombre"  value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-nombre"  value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-apellidos"  value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-altura_jinete"  value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
@@ -855,7 +855,7 @@ Plantilla.editarNombres = function () {
  */
 Plantilla.cancelar = function () {
     this.imprimeUnJinete(this.recuperaDatosAlmacenados())
-    this.deshabilitarCamposEditables()
+    this.deshabilitarCampoNombre()
     this.ocultarOcionesTerciariasEditar()
     this.mostrarOpcionesSecundarias()
 }
@@ -864,6 +864,17 @@ Plantilla.guardar = async function () {
     try {
         let url = Frontend.API_GATEWAY + "/plantilla/setTodo/"
         let id_jinete = document.getElementById("form-persona-id").value
+        let apellidos_jinete = document.getElementById("form-persona-apellidos").value
+        let altura_jinete = document.getElementById("form-persona-altura_jinete").value
+        let datos_caballo =document.getElementById("form-persona-datos_caballo").value
+        let fecha_nacimiento = document.getElementById("form-persona-fecha_nacimiento").value
+        let nombre_club_actual = document.getElementById("form-persona-nombre_club_actual").value
+        let direccion_club = document.getElementById("form-persona-direccion_club").value
+        let tipo_competicion = document.getElementById("form-persona-tipo_competicion").value
+        let años_federado = document.getElementById("form-persona-años_federado").value
+        let numero_particiapciones_torneo = document.getElementById("form-persona-numero_participaciones").value
+        let numero_torneos_ganados = document.getElementById("form-persona-numero_torneos_ganados").value
+
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'no-cors', // no-cors, cors, *same-origin
@@ -877,6 +888,20 @@ Plantilla.guardar = async function () {
             body: JSON.stringify({
                 "id_persona": id_jinete,
                 "nombre_jinete.nombre":  document.getElementById("form-persona-nombre").value,
+                "apellidos_jinete": apellidos_jinete,
+                "altura_jinete": altura_jinete,
+                "datos_caballo": datos_caballo,
+                "fecha_nacimiento": fecha_nacimiento,
+                "nombre_club_actual": nombre_club_actual,
+                "direccion_club": direccion_club,
+                "tipo_competicion":tipo_competicion,
+                "años_federado": años_federado,
+                "numero_particiapciones_torneo": numero_particiapciones_torneo,
+                "numero_torneos_ganados": numero_torneos_ganados,
+
+
+
+                /*
                 "apellidos_jinete.apellidos": document.getElementById("form-persona-apellidos").value,
                 "altura_jinete": document.getElementById("form-persona-altura_jinete").value,
                 "datos_caballo": document.getElementById("form-persona-datos_caballo").value,
@@ -886,7 +911,7 @@ Plantilla.guardar = async function () {
                 "tipo_competicion": document.getElementById("form-persona-tipo_competicion").value,
                 "años_federado": document.getElementById("form-persona-años_federado").value,
                 "numero_particiapciones_torneo": document.getElementById("form-persona-numero_participaciones").value,
-                "numero_torneos_ganados": document.getElementById("form-persona-numero_torneos_ganados").value,
+                "numero_torneos_ganados": document.getElementById("form-persona-numero_torneos_ganados").value,*/
 
 
             }), // body data type must match "Content-Type" header
@@ -930,13 +955,13 @@ Plantilla.deshabilitarCampoNombre = function () {
  */
 Plantilla.habilitarDeshabilitarCampoNombre = function (deshabilitando) {
     deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
-    for (let campo in Plantilla.formNombre) {
-        document.getElementById(Plantilla.formNombre[campo]).disabled = deshabilitando
+    for (let campo in Plantilla.form) {
+        document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
     }
     return this
 }
 
-Plantilla.formNombre = {
+Plantilla.form = {
     NOMBRE: "form-persona-nombre",
 }
 
@@ -964,7 +989,7 @@ Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
  */
 Plantilla.recuperaDatosAlmacenados = function () {
-    return this.jinete;
+    return this.jieneteSeleccionado;
 }
 
 /**
