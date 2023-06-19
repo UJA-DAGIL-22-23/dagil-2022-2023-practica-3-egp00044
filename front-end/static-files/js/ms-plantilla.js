@@ -886,6 +886,8 @@ Plantilla.guardar = async function () {
             redirect: 'follow', // manual, *follow, error
             referrer: 'no-referrer', // no-referrer, *client
             body: JSON.stringify({
+                "id_persona": id_jinete,
+                "nombre_jinete":  document.getElementById("form-persona-nombre").value,
                 "id_jinete": id_jinete,
                 "nombre_jinete.nombre":  document.getElementById("form-persona-nombre").value,
                 "apellidos_jinete": apellidos_jinete,

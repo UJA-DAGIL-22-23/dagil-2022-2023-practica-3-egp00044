@@ -77,7 +77,9 @@ const CB_MODEL_SELECTS = {
 
             CORS(res)
                 .status(200)
-                .json(jinetes)
+                .json(jinetes)({
+
+                })
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
         }
@@ -113,12 +115,12 @@ const CB_MODEL_SELECTS = {
             let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
             let jinete = await client.query(
                 q.Update(
-                    q.Ref(q.Collection(COLLECTION), data.id_jinete),
+                    q.Ref(q.Collection(COLLECTION), data.idJinete),
                     {
                         data: {
                             nombre: data.nombre_jinete.nombre,
-                            apellidos: data.apellidos_jinete,
-                            altura: parseInt( data.altura_jinete ),
+                            apellidos: data.nombre_jinete.apellidos,
+                            altura: data.altura_jinete,
                             datos_caballo: data.datos_caballo,
                             fecha_nacimiento: data.fecha_nacimiento,
                             nombre_club_actual: data.nombre_club_actual,
