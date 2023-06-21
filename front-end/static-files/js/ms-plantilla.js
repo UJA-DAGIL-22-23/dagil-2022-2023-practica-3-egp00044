@@ -886,11 +886,9 @@ Plantilla.guardar = async function () {
             redirect: 'follow', // manual, *follow, error
             referrer: 'no-referrer', // no-referrer, *client
             body: JSON.stringify({
-                "id_persona": id_jinete,
-                "nombre_jinete":  document.getElementById("form-persona-nombre").value,
                 "id_jinete": id_jinete,
                 "nombre_jinete.nombre":  document.getElementById("form-persona-nombre").value,
-                "apellidos_jinete": apellidos_jinete,
+                "nombre_jinete.apellidos": apellidos_jinete,
                 "altura_jinete": altura_jinete,
                 "datos_caballo": datos_caballo,
                 "fecha_nacimiento": fecha_nacimiento,
@@ -900,21 +898,6 @@ Plantilla.guardar = async function () {
                 "años_federado": años_federado,
                 "numero_particiapciones_torneo": numero_particiapciones_torneo,
                 "numero_torneos_ganados": numero_torneos_ganados,
-
-
-
-                /*
-                "apellidos_jinete.apellidos": document.getElementById("form-persona-apellidos").value,
-                "altura_jinete": document.getElementById("form-persona-altura_jinete").value,
-                "datos_caballo": document.getElementById("form-persona-datos_caballo").value,
-                "fecha_nacimiento": document.getElementById("form-persona-fecha_nacimiento").value,
-                "nombre_club_actual": document.getElementById("form-persona-nombre_club_actual").value,
-                "direccion_club": document.getElementById("form-persona-direccion_club").value,
-                "tipo_competicion": document.getElementById("form-persona-tipo_competicion").value,
-                "años_federado": document.getElementById("form-persona-años_federado").value,
-                "numero_particiapciones_torneo": document.getElementById("form-persona-numero_participaciones").value,
-                "numero_torneos_ganados": document.getElementById("form-persona-numero_torneos_ganados").value,*/
-
 
             }), // body data type must match "Content-Type" header
         })
