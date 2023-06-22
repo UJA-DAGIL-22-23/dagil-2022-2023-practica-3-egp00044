@@ -18,15 +18,17 @@ Este código que se presenta aquí corresponde a la plantilla para realizar un d
 
 ###  *DATOS FAUNA*
 
-CAPTURA de pantalla del HOME de FAUNA
+**CAPTURA de pantalla del HOME de FAUNA**
+
+
 
 ![Imagen inicial de fauna ](./assets/img/Pagina_inicio_de_fauna.png)
 
-CAPTURA de pantalla de la BASE de DATOS de FAUNA
+**CAPTURA de pantalla de la BASE de DATOS de FAUNA**
 
 ![Imagen inicial de fauna ](./assets/img/Pagina_collecion_de_fauna.png)
 
-CAPTURA de pantalla de la COLECCION de FAUNA
+**CAPTURA de pantalla de la COLECCION de FAUNA**
 
 ![Imagen inicial de fauna ](./assets/img/Pagina_de_colleciones_de_Fauna.png)
 
@@ -360,528 +362,413 @@ numero_torneos_ganados: 15
 ###  *TABLERO DE TRELLO*
 * [Enlace al tablero de Trello](https://trello.com/b/ev2D3cAK/desarrollo-%C3%A1gil-pr3) ↗️
 
-TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 1
+**TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 1**
+
+Observamos que al comienzo de la iteación 1 únicamente sabriamos de la realización de dicha iteración, habiendo elegido las historias de usuario 
+1, 2 y 4, con las cuales sumanos una puntuación de 0,7. 
 
 ![Tablero de inicio de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Inicio.png)
 
-TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 1
+**TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 1**
 
-![Tablero final de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Final.png)
+A lo largo de esta iteración las historias de usuario se han movido desde el estado "en proceso"
+a hecho, más adelante añadí más fases del proyecto, tras darme cuanta se que sería muy conveniente.
+La iteración finzaliza con todas las historias de usuairo seleccionadas hechas, con su respectiva documentación. 
 
-TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 2
+![Tablero final de la Iteración 1 ](./assets/img/Tablero_trello_Iteracion_1_Final.png)1
+
+**TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 2**
+
+En la segunda iteración añadimos no solo dos fases más al proceso, sino también 
+las historias de usuario de preparadas para la iteración 3 (azul). 
+Al comienzo posicioné las historias de usuario preparadas para esta iteración (verde)
+en la columna de *iteración actual*.
 
 ![Tablero de inicio de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Inicio.png)
 
-TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 2
+**TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 2**
+
+
+Al finalizar la segunda iteración he realizado las historias de usuario 3, 5 y 6
+añadiendo un punto de historia al total, obteniendo 1´7 puntos de historia
+realizados hasta este punto.
+A lo largo del proceso de realización de dichas funcionalides estan han pasado por 
+varias columnas, primero *iteracion actual* que viene a ser un simil del *sprint backlog*
+sin llegar a serlo ya que no usamos Scrum. Desde esa columna una a una he seleccionado la 
+siguiente historia de usuario que ha pasadoa la fase *en proceso*, se mantedrá
+ahí hasta que funcione correctamente, tras lo cual probaremos el TDD por lo que 
+las situaré en la siguiente columna *en fase test (TDD)*. Una vez la historia
+de usuario sea funcional y haya pasado los test, estará lista para el incremento. 
 
 ![Tablero final de la Iteración 2 ](./assets/img/Tablero_trello_Iteracion_2_Final.png)
 
-TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 3
+**TABLERO DE TRELLO EL COMIENZO DE LA ITERACIÓN 3**
+
+En la tercera iteración seleccioné de nuevo 3 historias de usuario para llevsar a cabo su desarrollo
+entre las cuales suman 1 punto de historia, resultando en un total de 2´7 puntos de historia realizados
+hasta ahora.
 
 ![Tablero de inicio de la Iteración 3 ](./assets/img/Tablero_trello_Iteracion_3_Inicio.png)
 
-TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 3
+**TABLERO DE TRELLO EL FINAL DE LA ITERACIÓN 3**
 
 ![Tablero final de la Iteración 3 ](./assets/img/Tablero_trello_Iteracion_3_Final.png)
-
 
 ###  FUNCIONAMIENTO DE LA APLICACIÓN
 
 ###  *ITERACIÓN 1*
 
-HISTORIA DE USUARIO 1
+**HISTORIA DE USUARIO 1: AÑADIR INFORMACIÓN EN "ACERCA DE". PH:1**
+
+En este historias de usuario su desarrollo ha sido rápido y sinmple, pues únicamente
+ha sido necesario añadir mis datos a una función ya existente, resultando en un botón, que
+pulsado muestra lo datos de la co-autora de la aplicación.
+El método modificado ha sido: 
+
+```
+   -    acercaDe: async (req, res) => {
+        try {
+            CORS(res).status(200).json({
+                mensaje: "Microservicio MS Plantilla: acerca de",
+                autor: "Elena Gómez Padilla",
+                email: "egp00044@red.ujaen.es",
+                fecha: "26/11/2001"
+            });
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+    
+    -    it('Devuelve MS Plantilla Acerca De', (done) => {}
+
+```
+
+Un ejemplo del correcto funcionamiento del desarrollo es la siguiente captura 
+de pantalla, donde se muestra que los datos mostrado por la aplicación al pulsar 
+el botón *Acerca de* son correctos: 
 
 ![Resultado de la HU 1](./assets/img/Historia_de_Usuario_1.png)
 
-HISTORIA DE USUARIO 2
+**HISTORIA DE USUARIO 2: VER LISTADO DE LOS JINETES. PH:2**
+
+En esta segunda historia de usuario debía obtener un listado de todos los jinetes 
+de la base de datos, mostrando únicamente sus identificadores, nombres y apellidos. 
+En la base de datos incluí 10 jientes, con nombres distintos pero compartiendo algunos datos,
+como caballos y clubs en común. Esta información no nos será relevante por ahora, pues no
+la mostraremos.
+Los métodos y clases modificados/añadidos han sido: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -    <a href="javascript:Plantilla.nombrarJinetes()" class="opcion-principal"
+        title="Realizar un listado de todos los nombres de los jinetes que hay en la BBDD">Nombrar a los jinetes</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.nombrarJinetes = function () {...}
+   -    Plantilla.imprimeNombres = function (vector) {...}
+   -    Plantilla.recupera = async function (callBackFn) {...}
+   -    Plantilla.plantillaTablaJinetes = {...}
+   -    Plantilla.plantillaTablaJinetes.cabecera
+   -    Plantilla.plantillaTablaJinetes.cuerpo 
+   -    Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
+   -    Plantilla.plantillaTags = {...}
+   -    Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {...}
+   -    Plantilla.sustituyeTags = function (plantilla, jinete) {...}
+   -    Plantilla.plantillaTablaJinetes.actualizaNombres = function (jinetes) {...}
+
+   CLASE: FRONT-END/STATIC-FILES/JS/FRONT-END.JS
+   
+   -    Frontend.Article.actualizar = function (titulo, contenido) {...}
+
+   CLASE: FRONT-END/STATIC-FILES/CSS/MS-PLANTILLA.CSS
+   
+   -    table.listado_jinetes tbody td {...}
+   -    table.listado_jinetes tbody tr {...}
+   -    .form-jinete-elemento:disabled {...}
+   -    .form-jinete-elemento:enabled {...}
+   -    .form-jinete-elemento:enabled:required {...}
+   -    table.listado_jinetes thead,table.listado_jinetes tbody, table.listado_jinetes tr, table.listado_jinetes td {...}
+   -    table.listado_jinetes {...}
+   
+   CLASE: FRONT-END/STATIC-FILES/CSS/FRONT-END.CSS
+
+    -   .opcion-terciaria {...}
+    -   .opcion-secundaria:hover  {...}
+    -   .opcion-principal {...}
+    -   .opcion-terciaria {...}
+    
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC
+    
+    -   describe("Plantilla.imprimeNombres: ", function() {...})
+   
+   CLASE: MS-PLANTILLA/ROUTES.JS
+   
+   -    router.get("/getTodos", async (req, res) => {...}
+   
+   CLASE: MS-PLANTILLA/CALLBACKS.JS
+   
+   -    const client = new faunadb.Client({ ... });
+   -    getTodos: async (req, res) => {...}
+```
+Un ejemplo del correcto funcionamiento del desarrollo es la siguiente captura
+de pantalla, donde se muestra un listados de nos datos identificadores de cada jinete
+pulsando el botón *Nombrar a los jinetes*:
 
 ![Resultado de la HU 2](./assets/img/Historia_de_Usuario_2.png)
 
-HISTORIA DE USUARIO 4
+**HISTORIA DE USUARIO 4: VER LISTADO DE LOS DATOS DE LOS JINETES. PH:4**
+
+Esta es la última historia de usuario de la primera iteración, la historia de usuario
+4 guarda mucha relación con la anterior, ya que en la historia de usuario 2 
+se debían mostrar todos los jinetes pero únicamente por los campos identificadores (nombre y apellidos), 
+en esta ocasión mostraremos todos los datos de todos los jinetes. 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -    <a href="javascript:Plantilla.listarJinetes()" class="opcion-principal"
+        title="Realizar un listado de los datos de todos los jinetes que hay en la BBDD">Listar jinetes</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.listarJinetes = function () {...}
+   -    Plantilla.imprimeMuchosJinetes = function (vector) {...}
+   -    Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos
+   -    Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos 
+   -    Plantilla.plantillaTablaJinetes.actualiza = function (jinete) {...}
+   
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
+   
+    -   describe("Plantilla.imprimeMuchosJinetes: ", function() {...})   
+   
+```
+
+Un ejemplo del correcto funcionamiento de la historia de usuario 4 los presento en
+la siguiente captura de pantalla, donde se muestra un listados de nos datos identificadores de cada jinete
+pulsando el botón *Listar jinetes*:
 
 ![Resultado de la HU 4](./assets/img/Historia_de_Usuario_4.png)
 
 ###  *ITERACIÓN 2*
 
-HISTORIA DE USUARIO 3
+**HISTORIA DE USUARIO 3: VER UN LISTADO DE JINETES ORDENADOS ALFABÉTICAMENTE. PH:3**
 
-*Listado de los Nnombres comletos de los jinetes*
+La historia de usuario 3 parte de código ya desarrollado, con el añadido de un código 
+específico en el método *recuperaAlfabeticamente*, en el que se ordenan los 
+jinetes alfabéticamente en función del nombre. Los métodos añadidos han sido:
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -   <a href="javascript:Plantilla.listarJinetesAlafetico()" class="opcion-principal"
+       title="Realizar un listado en orden alfabetico de todos los jinetes (y sus datos) y  que hay en la BBDD">Alfabetico</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.listarJinetesAlafetico = function () {...}
+   -    Plantilla.recuperaAlfabeticamente = async function (callBackFn) {...}
+
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
+   
+    -   describe("Plantilla.imprimeMuchosJinetes: ", function() {...})   
+   
+```
+
+La función de la historia de usuario 3 es listar todos los jinetes alfabéticamente
+según los nombre. De este modo, la función se lleva a cabo de pulsando 
+el botón *Listar jinetes en orden alfabético* (como vemos en la imagen),
+más adelante modificado a *Alfabéticamente*:
+
+*Listado de los jinetes por orden ALFABÉTICO (nombre)*
 ![Resultado de la HU 3](./assets/img/Historia_de_Usuario_3.png)
 
-HISTORIA DE USUARIO 5
+
+**HISTORIA DE USUARIO 5: VER LOS DATOS DE TODOS LOS JINETES ORDENADOS 
+POR EL CAMPO QUE EL USUARIO DESEE. PH:5**
+
+La historia de usuario 5 consiste en mostrar un listado de los jinetes en función
+del orden seleccionado por el usuario, por ellos hemos imcorporado un botón
+por cada campo disponible. Cabe destacar que el nombre de dichos botones ha
+sido modificado a posteriori, por lo que no coinciden con los mostrados en 
+las imágenes. 
+Los métodos añadidos o modificados han sido: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
+    
+   -    <a href="javascript:Plantilla.listarPorApellido()" class="opcion-principal"
+        title="Realizar un listado en orden alfabetico de los apellidos de todos los jinetes (y sus datos) y  que hay en la BBDD">Apellidos</a>
+                            .
+                            .
+                            .
+   -    <a href="javascript:Plantilla.listarPorGanados()" class="opcion-principal"
+        title="Realizar un listado segun el numero de torneos ganados los jinetes (y sus datos) y  que hay en la BBDD">Años ganados</a>
+   
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.imprimePorApellido = function (vector) {...}
+                            .
+                            .
+                            .
+   -    Plantilla.imprimePorGanado = function (vector) {...}
+
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC   
+   
+    -   describe("Plantilla.imprimePorApellido: ", function() {...}) 
+                            .
+                            .
+                            . 
+    -   describe("Plantilla.imprimePorGanado: ", function() {...}) 
+ 
+```
+
+Las funciones realizadas por esta historia de usuario son varias, todas ellas
+representadas en las siguientes imágenes
 
 *Listado de los jinetes Ordenador por APELLIDOS*
+
+Para listar los jinetes ordenador por apellidos, el usuario debe pulsar 
+el botón *Listar jinetes por apellido* (como vemos en la imagen),
+más adelante modificado a *Apellidos*:
+
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.1.png)
 
 *Listado de los jinetes Ordenador por ALTURA*
+
+Para listar los jinetes ordenador por altura, el usuario debe pulsar
+el botón *Listar jinetes por altura* (como vemos en la imagen),
+más adelante modificado a *Altura*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.2.png)
 
 *Listado de los jinetes Ordenador por NOMBRE DEL CABALLO*
 
+Para listar los jinetes ordenador por los datos del caballo, el usuario 
+debe pulsar  el botón *Listar jinetes por caballo* (como vemos en la 
+imagen),  más adelante modificado a *Caballo*:
+![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.3.png)
+
 *Listado de los jinetes Ordenador por AÑO DE NACIMIENTO*
+
+Para listar los jinetes ordenador por la fecha de nacimiento, el usuario
+debe pulsar  el botón *Listar jinetes por Año de nacimiento* (como vemos en la
+imagen),  más adelante modificado a *Nacimiento*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.4.png)
 
 *Listado de los jinetes Ordenador por NOMBRE DEL CLUB*
+
+Para listar los jinetes ordenador por el nombre del club, el usuario
+debe pulsar  el botón *Listar jinetes por Club* (como vemos en la
+imagen),  más adelante modificado a *Club*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.5.png)
 
 *Listado de los jinetes Ordenador por DIRECCION DEL CLUB*
+
+Para listar los jinetes ordenador por la dirección del club, el usuario
+debe pulsar  el botón *Listar jinetes por Dirección del Club* (como vemos en la
+imagen),  más adelante modificado a *Dirección Club*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.6.png)
 
 *Listado de los jinetes Ordenador por TIPO COMPETICION*
+
+Para listar los jinetes ordenador por el tipo de competición del jiente, el usuario
+debe pulsar  el botón *Listar jinetes por Tipo Competición* (como vemos en la
+imagen),  más adelante modificado a *Tipo Competición*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.7.png)
 
 *Listado de los jinetes Ordenador por AÑOS FEDERADO*
+
+Para listar los jinetes ordenador por los años federados del jiente, el usuario
+debe pulsar  el botón *Listar jinetes por Años federados* (como vemos en la
+imagen),  más adelante modificado a *Años federados*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.8.png)
 
 *Listado de los jinetes Ordenador por PARTICIPACIONES*
+
+Para listar los jinetes ordenador los años de particicipaciones del jiente ,
+el usuario debe pulsar  el botón *Listar jinetes por participaciones* 
+(como vemos en la  imagen),  más adelante modificado a *Participaciones*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.9.png)
 
 *Listado de los jinetes Ordenador por TORNEOS GANADOS*
+
+Para listar los jinetes ordenador las particicipaciones ganadas del jiente ,
+el usuario debe pulsar  el botón *Listar jinetes por ganados*
+(como vemos en la  imagen),  más adelante modificado a *Ganados*:
 ![Resultado de la HU 5.1](./assets/img/Historia_de_Usuario_5.9.png)
 
-HISTORIA DE USUARIO 6
+**HISTORIA DE USUARIO 6: VER TODOS LOS DATOS DE UN JINETE. PH:2**
+
+Con la realización de la historia de usuario 6 damos por finalizada la iteración 2, 
+alcanzando un total de 1,7 puntos de historia, repartidos entre las 3 historias
+de usuario que la conforman 
+En esta ocasión el usuario podrá acceder a cada jinete por separado mediante todas las 
+tablas. Para ellos hemos añadido los siguientes métodos: 
+
+```
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.mostrar = function (idJinete) {...}
+   -    Plantilla.imprimeUnJinete = function (jinete) {...}
+   -    Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {...}
+   -    Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {...}
+   -    Plantilla.jineteComoFormulario = function (jinete) {...}
+   -    Plantilla.almacenaDatos = function (jinete) {...}
+
+    CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA-SPEC-JC
+       
+   -   describe("Plantilla.imprimeUnJinete: " , function() {...})
+   
+   CLASE: MS-PLANTILLA/ROUTES.JS   
+   -    router.get("/getPorId/:idJinete", async (req, res) => {...}
+   
+   CLASE: MS-PLANTILLA/CALLBACKS.JS
+   -    getPorId: async (req, res) => {...} 
+```
+
+A continuación expongo un ejemplo del correcto funcionamiento de la historia de 
+usuario 6, mostrando a uno de los jinetes, para poder realizar dicha acción 
+el usuario debe pulsar el botón *Mostrar* en la columna *acción* (presente 
+en todas las tablas), en la fila del jinete deseado. 
+Más adelante dicho botón se renombrará como *Mostrar/Editar*.
 
 *Ejemplo de los datos de un solo jinete, esta acción se puede realiar con todos*
 ![Resultado de la HU 4](./assets/img/Historia_de_Usuario_6.png)
 
 
+###  *ITERACIÓN 3*
 
+**HISTORIA DE USUARIO 8: INCORPORAR UN BUSCADOR SEGÚN EL CRITERIO DE BÚSQUEDA DEL USUARIO. PH:5**
 
+Tras finalizar la iteración 2 hemos obtenido 1,7 puntos de historia, añadiendo 
+la siguiente funcionalidad alcanzamos los 2,2 puntos de historia. 
+Esta función ha sido distinta a las anteriores ya que he tenido que realizar
+un buscador que permite accerder a los jinetes de la base de datos mediante el
+nombre, para que funcione correctamente deben respetarse los acentos y mayúsculas
+del nombre de la base de datos. Para obtener la funcionalidad he modificado 
+los siguientes métodos: 
 
-
-
-## Arquitectura de la aplicación
-
-La aplicación funciona gracias a la colaboración de **tres aplicaciones distintas** (en realidad, tres servidores web implementados con [Express ↗️](https://expressjs.com/) para [Node.js ↗️](https://nodejs.org/en/)).
-
-![Esquema de comunicación entre las distintas aplicaciones ](./assets/img/esquema-comunicacion-apps.png) 
-
-*Esquema de comunicación entre las distintas aplicaciones.* &#8593;
-
-Como se puede observar, esta aplicación plantilla está formada por las siguientes aplicaciones web:
-* Aplicación *front-end*: servidor para la página web
-* Aplicación *api-gateway*: enrutador de peticiones a microservicios
-* Aplicación *ms-plantilla*: microservicio
-
-Se respetan siempre las siguientes reglas básicas:
-1. El usuario solo interactúa con la aplicación *front-end*
-2. La aplicación *front-end* solo interactúa con la aplicación *api-gateway*
-3. La aplicación *api-gateway* recibe peticiones de *front-end* y las deriva al microservicio correspondiente. Dicho microservicio resuelve la petición y envía el resultado a la aplicación *front-end* a través de *api-gateway*
-4. Los microservicios interactúan con una BBDD y con *api-gateway* y también entre ellos. 
-5. En el caso de haber varios microservicios, cada uno de ellos puede interactuar con una BBDD distinta. Además, los microservicios pueden interactuar directamente entre ellos.
+```
+   CLASE: FRONT-END/STATIC-FILES/INDEX.HTML
    
-## Funcionamiento de la aplicación
-La funcionalidad implementada en la plantilla es muy simple: hay dos botones que llaman, respectivamente, a la ruta raíz del microservicio (es decir, ```/plantilla/```) y a la ruta "Acerca de" (```/plantilla/acercade```) siempre usando como intermediario a la aplicación *api-gateway*.
+   -    <input type = "text" id="campo-busqueda">
+        <button class="btn" onclick="Plantilla.comenzarBusqueda(document.getElementById('campo-busqueda').value)">Buscar por nombre</button>
 
-Las siguientes imágenes muestran la interfaz de la aplicación una vez puesta en marcha:
 
-![Pantalla de inicio de la aplicación al pulsar en el botón Home](./assets/img/front-end-index-home-sin-jasmine.png)
-
-*Pantalla de inicio de la aplicación al pulsar en el botón **Home*** &#8593;
-
-![Pantalla de inicio de la aplicación al pulsar en el botón Acerca De](./assets/img/front-index-acerca-de-sin-jasmine.png)
-
-*Pantalla de inicio de la aplicación al pulsar en el botón **Acerca de*** &#8593;
-
-![Pantalla de inicio de la aplicación cuando se está ejecutando con Jasmine para comprobación de TDD](./assets/img/front-end-index-con-jasmine.png)
-
-*Pantalla de inicio de la aplicación cuando se está ejecutando con Jasmine para comprobación de TDD* &#8593;
-
-## Puesta en marcha de de la aplicación: ```npm install```
-
-Para facilitar la descarga del código como ejercicio de *Clasroom GitHub*, se han introducido las tres aplicaciones en un solo repositorio. En un proyecto real, tendríamos repositorios distintos para cada una de las aplicaciones.
-
-Para poder poner en marcha el proyecto, debemos clonar el repositorio y, posteriormente, abrir un terminal de línea de órdenes e ir entrando en cada uno de los tres directorios que existen (es decir: ```front-end```, ```ms-plantilla``` y ```api-gateway```) escribiendo la siguiente instrucción en cada uno de ellos:
-
-```
-npm install
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.comenzarBusqueda= function (buscado){...}
+   -    Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {...}
 ```
 
-Para comprobar que la instalación ha funcionado correctamente, podemos ejecutar en cada uno de los directorios la siguiente instrucción:
 
-```
-npm test
-```
+*Buscador por nombres de los Jinetes*
 
-Si el resultado es que se han ejecutado los tests (aunque sea con error), es que el proceso de instalación ha sido correcto y podemos pasar a ejecutar la aplicación.
-## Ejecución de la aplicación: ```npm start```
+Para mostrar el correcto funcionamiento de esta hisotoria de usuario he seleccionado
+una única captura de pantalla, con la búsqueda de un nombre y su resultado, 
+lo mismo aplica al resto de nombres del resto de los jinetes de la base de datos. 
 
-Para poder disfrutar de toda la funcionalidad de la aplicación, necesitamos ejecutar **simultáneamente** las tres aplicaciones. Para ello, lo más adecuado es abrir tres consolas de línea de comandos distinas. En cada una de ellas, tendremos que meternos en un directorio correspondiente a una aplicación y posteriormene ejecutar:
-
-```
-npm start
-```
-
-El resultado debería ser muy similar a este:
-
-**Consola de front-end:**
-```
-front-end % npm start
-
-> front-end@1.0.0 start
-> node server.js
-
-Aplicación Front-End escuchando en puerto 8000!
-```
-
-**Consola de api-gateway:**
-```
-fapi-gateway % npm start
-
-> api-gateway@1.0.0 start
-> node server.js
-
-[HPM] Proxy created: /  -> http://localhost:8002
-[HPM] Proxy rewrite rule created: "^/plantilla" ~> ""
-```
-
-**Consola de ms-plantilla:**
-```
-ms-plantilla % npm start
-
-> ms-plantilla@1.0.0 start
-> node server.js
-
-Microservicio PLANTILLA ejecutándose en puerto 8002!
-```
-
-Una vez inicializadas las 3 aplicaciones, debemos poder abrir un navegador web y solicitar que nos muestre la URL: http://localhost:8000 ↗️. Debería en ese momento cargarse la página web mostrando la siguiente imagen.
-
-![Pantalla de inicio de la aplicación en la primera ejecución](./assets/img/front-end-index-con-jasmine.png)
-
-*Pantalla de inicio de la aplicación en la primera ejecución* &#8593;
-
-Para ejecutar la aplicación **SIN COMPROBACIÓN EN EL NAVEGADOR** de TDD, tendríamos que comentar (o eliminar) las siguientes líneas del fichero **index.html**:
-
-**En la parte superior del fichero *index.html***:
-```
-    <link rel="stylesheet" href="lib/jasmine-4.5.0/jasmine.css">
-    <script src="lib/jasmine-4.5.0/jasmine.js"></script>
-    <script src="lib/jasmine-4.5.0/jasmine-html.js"></script>
-    <script src="lib/jasmine-4.5.0/boot0.js"></script>
-    <script src="lib/jasmine-4.5.0/boot1.js"></script>
-```
-
-**En la parte inferior del fichero *index.html***:
-```
-    <script src="js/front-end-spec.js"></script>
-    <script src="js/ms-plantilla-spec.js"></script>
-```
-
-Hay que tener en cuenta que NO ES un fichero JavaScript, sino que es un fichero HTML; por tanto, para comentar esas líneas hay que usar: ```<!--``` y ```-->```.
-## Organización del árbol de directorios de cada app
-
-Las tres apps que forman el sistema completo tienen su código por separado y no comparten nada de dicho código.
-
-No obstante, *ms-plantilla* y *front-end* tienen un conjunto de directorios y de ficheros con nombres idénticos (aunque con contenidos distintos). Solo la app *api-gateway* es un poco distinta, por el hecho de que se limita a redireccionar las llamadas que le llegan enviándolas al microservicio correspondiente.
-
-![Estructura de directorios y ficheros de las aplicaciones](./assets/img/estructura-directorios-ficheros.png)
-
-*Estructura de directorios y ficheros de las aplicaciones* &#8593;
-
-
-Describimos brevemente los ficheros y directorios que se encuentran en estas apps:
-* ```server.js```: fichero en el que se declara el objeto ```app```, el cual hace las veces de servidor web; es decir, recibe llamadas a través del protocolo *http* y devuelve un resultado que puede ser en JSON o como fichero HTML (este formato solo lo devuelve la app *front-end*). Las tres aplicaciones desarrolladas utilizan la biblioteca [Express ↗️](https://expressjs.com/) para [Node.js ↗️](https://nodejs.org/en/).
-* ```routes.js```: fichero en el que se declaran las rutas que se van a atender dentro de la llamada *http* que se está realizando. En la aplicación *api-gateway* este fichero cambia su nombre a ```proxy-routes.js```.
-* ```callbacks.js```: fichero en el que se encuentran las funciones con las que se va a procesar la llamada a cada una de las rutas definidas en *routes.js*. El fichero ```calbacks.js``` **no existe** en la aplicación *api-gateway* dado que no es necesario que esta aplicación genere ni procese resultados; solamente reenvía lo que recibe hacia y desde el *fron-end* hacia los microservicios.
-* ```spec```: directorio en el que se encuentran las pruebas a realizar con el entorno [Jasmine ↗️](https://jasmine.github.io/), para realizar TDD con JavaScript.
-* ```package.json```: fichero con la configuración de cada app, necesario para que *npm* pueda ejecutar el proyecto.
-
-
-Pasemos a ver alguno de estos ficheros con algo más de detalle.
-
-### Fichero ```server.js```
-
-El fichero ```server.js``` es el que permite ejecutar el servidor web en cada aplicación. En realidad, apenas se compone de unas líneas para configurar el servidor ([Express ↗️](https://expressjs.com/)) y dejarlo escuchando en el puerto seleccionado:
-
-```
-/**
- * @file server.js
- * @description Define el servidor que aceptará las peticiones para esta aplicación.
- * @author Víctor M. Rivas <vrivas@ujaen.es>
- * @date 03-feb-2023
- */
-const express = require("express")
-const app = express()
-
-// Necesario para poder obtener los datos en las llamadas POST
-const bodyParser = require("body-parser")
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// Necesario para gestionar el conjunto de callbacks para las distintas funciones REST
-const routes = require("./routes")
-app.use("/", routes);
-
-
-
-
-const port = 8002;
-app.listen(port, () => {
-    console.log(`Microservicio PLANTILLA ejecutándose en puerto ${port}!`);
-});
-
-
-module.exports = app
-```
-*Ejemplo de fichero ```server.js``` del microservicio Plantilla*
-
-Hay que tener en cuenta que en la aplicación *api-gateway* este fichero NO EXISTE, y en su lugar se define un objeto *proxy* que redirige las llamadas a los distintos microservicios. 
-
-### Fichero ```routes.js```
-
-Como se observa en el fichero ```server.js```, el servidor hace uso del módulo *routes* el cual define las rutas (paths, URLs) a los que nuestro servidor va a responder.
-
-En el caso de la aplicación *api-gateway* este fichero ```routes.js``` no existe, y en su lugar se utiliza un fichero ```proxy-routes.js``` en el que se indican las reglas que debe seguir el *proxy* para redirigir las llamadas que le llegan.
-
-```
-/**
- * @file routes.js
- * @description Define las rutas ante las que va a responder al MS Plantilla
- * @author Víctor M. Rivas <vrivas@ujaen.es>
- * @date 03-feb-2023
- */
-
-const express = require("express");
-const router = express.Router();
-const { callbacks } = require("./callbacks");
-
-
-
-/**
- * Ruta raíz: /
- */
-router.get("/", async (req, res) => {
-    try {
-        await callbacks.home(req, res)
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-/**
- * Ruta Acerca De (es decir, About...)
- */
-router.get("/acercade", async (req, res) => {
-    try {
-        await callbacks.acercaDe(req, res)
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-
-
-/**
- * Test de conexión a la BBDD
- */
-router.get("/test_db", async (req, res) => {
-    try {
-        await callbacks.test_db(req, res)
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-
-// Exporto el módulo para poder usarlo en server
-module.exports = router;
-
-```
-*Ejemplo del fichero ```routes.js``` del microservicio Plantilla*
-
-Como se observa en el ejemplo, este fichero ```routes.js``` define todas las rutas que se van a poder procesar y delega en un método del objeto *callbacks* el conjunto de acciones a realizar. El objeto *callbacks* es por tanto fundamental para que se ejecuta realmente la funcionalidad que el usuario espera.
-
-### Fichero ```callbacks.js```
-
-Finalmente, el fichero ```callbacks.js``` define un objeto importantísimo dado que contiene las constantes y métodos que se van a usar para resolver las llamadas que el usuario está realizando a través de las conexiones que realiza mediante su navegador de páginas web.
-
-Estos métodos son precisamente los encargados de conectar con la base de datos, por lo que son los que permiten recuperar y almacenar datos en la misma.
-
-```
-//**
- * @file callbacks.js
- * @description Callbacks para el MS Plantilla.
- * Los callbacks son las funciones que se llaman cada vez que se recibe una petición a través de la API.
- * Las peticiones se reciben en las rutas definidas en routes.js, pero se procesan aquí.
- * @author Víctor M. Rivas <vrivas@ujaen.es>
- * @date 03-feb-2023
- */
-
-
-
-// Necesario para conectar a la BBDD faunadb
-const faunadb = require('faunadb'),
-    q = faunadb.query;
-
-const client = new faunadb.Client({
-    secret: '¿¿¿ CLAVE SECRETA EN FAUNA PARA ESTA BBDD???',
-});
-
-const COLLECTION = "¿¿¿ COLECCION ???"
-
-// CALLBACKS DEL MODELO
-
-/**
- * Función que permite servir llamadas sin importar el origen:
- * CORS significa Cross-Origin Resource Sharing
- * Dado un objeto de tipo respuesta, le añade las cabeceras necesarias para realizar CROS
- * @param {*} res Objeto de tipo response 
- * @returns Devuelve el mismo objeto para concatenar varias llamadas al mismo
- */
-function CORS(res) {
-    res.header('Access-Control-Allow-Origin', '*')
-        .header(
-            'Access-Control-Allow-Headers',
-            'Origin, X-Requested-With, Content-Type, Accept'
-        )
-    return res;
-}
-
-
-/**
- * Objeto que contiene las funciones callback para interactuar con el modelo (e.d., la BBDD)
- */
-const CB_MODEL_SELECTS = {
-    /**
-     * Prueba de conexión a la BBDD: devuelve todas las personas que haya en la BBDD.
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
-     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
-     */
-    test_db: async (req, res) => {
-        try {
-            let personas = await client.query(
-                q.Map(
-                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
-                    q.Lambda("X", q.Get(q.Var("X")))
-                )
-            )
-            res.status(200).json(personas)
-        } catch (error) {
-            res.status(500).json({ error: error.description })
-        }
-    },
-
-}
-
-
-
-// CALLBACKS ADICIONALES
-
-/**
- * Callbacks adicionales. Fundamentalmente para comprobar que el ms funciona.
- */
-const CB_OTHERS = {
-    /**
-     * Devuelve un mensaje indicando que se ha accedido a la home del microservicio
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
-     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
-     */
-    home: async (req, res) => {
-        try {
-            CORS(res).status(200).json({ mensaje: "Microservicio MS Plantilla: home" });
-        } catch (error) {
-            CORS(res).status(500).json({ error: error.description })
-        }
-    },
-
-    /**
-     * Devuelve un mensaje indicando que se ha accedido a la información Acerca De del microservicio
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
-     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
-     */
-    acercaDe: async (req, res) => {
-        try {
-            CORS(res).status(200).json({
-                mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
-            });
-        } catch (error) {
-            CORS(res).status(500).json({ error: error.description })
-        }
-    },
-
-}
-
-// Une todos los callbacks en un solo objeto para poder exportarlos.
-// MUY IMPORTANTE: No debe haber callbacks con el mismo nombre en los distintos objetos, porque si no
-//                 el último que haya SOBREESCRIBE a todos los anteriores.
-exports.callbacks = { ...CB_MODEL_SELECTS, ...CB_OTHERS }
-
-```
-
-*Ejemplo de fichero ```callbacks.js``` del microservicio Plantilla*
-
-**Es muy importante** notar que todos los métodos definidos en *callbacks* devuelven única y exclusivamente JSON. Los datos así devueltos se envían a la aplicación *front-end* que es la que tiene que procesarlos para mostrarlos al cliente.
-
-### Las palabras reservadas *async* y *await*
-
-Como se puede observar tanto en los *callbacks* como en *routes*, la inmensa mayoría de los métodos están definidos usando las palabras reservadas *async* y *await*:
-
-```
-// Dentro del fichero routes.js
-// =============================
-
-/**
- * Ruta raíz: /
- */
-router.get("/", async (req, res) => {
-    try {
-        await callbacks.home(req, res)
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-
-----------------------------------------------
-
-// Dentro del fichero callbacks.js
-// ===============================
-
-/**
-     * Devuelve un mensaje indicando que se ha accedido a la información Acerca De del microservicio
-     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
-     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
-     */
-    acercaDe: async (req, res) => {
-        try {
-            CORS(res).status(200).json({
-                mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
-            });
-        } catch (error) {
-            CORS(res).status(500).json({ error: error.description })
-        }
-    },
-
-```
-
-Ambas palabras reservadas permiten trabajar mucho más cómodamente con "promesas" ([promise ↗️](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)). Una promesa se define como:
-> Una promesa es un objeto que representa la *eventual* resolución (con éxito o no) de una operación asíncrona, así como el valor devuelto por dicha operación.
-
-En esencia, una promesa es una operación que se lanza y que NO detiene la ejecución del programa, pero que se queda "escuchando" hasta que recibe una respuesta. Normalmente se utilizan para solicitar datos a servicios remotos, de modo que la promesa lanza la llamada y, cuando llega el resultado, lo procesa. Mientras tanto, la aplicación sigue recibiendo peticiones y contestando a las mismas.
-
-La utilización de *async* y *await* facilita enormemente la programación con promesas, dando al programador/a la sensación de que su código es secuencial (mucho más fácil de escribir), aunque en realidad está lanzando procesos asíncronos en paralelo.
-
-*Lo más reseñable* del uso de estas dos palabras reservadas es que: **el operador _await_ solo puede usarse dentro de funciones o métodos que hayan sido declarados como _async_**.
-
-Para profundizar más en la programación con promesas pueden usarse los siguientes enlaces:
-* [JavaScript Asíncrono](https://developer.mozilla.org/es/docs/Learn/JavaScript/Asynchronous) ↗️
-* [async and await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await) ↗️
-
-## Aplicación de ejemplo de la que obtener código
-Finalmente, para la implementación de la funcionalidad requerida en la práctica, se puede hacer uso del código disponible en el siguiente repositorio: 
-
-https://github.com/UJA-Desarrollo-Agil/descripcion-proyecto-microservicios-personas-proyectos ↗️
-
-El código en ese repositorio muestra una aplicación similar, pero con mucha más funcionalidad que esta plantilla: acceso a base de datos remota, listado de documentos recuperados de la BBDD, peticiones entre distintos microservicios, etc.
-
-Además, incluye documentación sobre dicho código y un vídeo descriptivo de cómo se ha realizado y cómo funciona la aplicación de ejemplo.
-
-
+*Ejemplo con los datos de un solo jinete, esta acción se puede realizar con todos*
+![Resultado de la HU 3](./assets/img/Historia_de_Usuario_8.1.png)
 

@@ -4,14 +4,14 @@
 <head>
     <title>Aplicación Microservicios Plantilla</title>
 
-    <!-- Cargamos biblioteca Jasmine -->
+    <!-- Cargamos biblioteca Jasmine
 
     <link rel="stylesheet" href="lib/jasmine-4.5.0/jasmine.css">
     <script src="lib/jasmine-4.5.0/jasmine.js"></script>
     <script src="lib/jasmine-4.5.0/jasmine-html.js"></script>
     <script src="lib/jasmine-4.5.0/boot0.js"></script>
     <script src="lib/jasmine-4.5.0/boot1.js"></script>
-
+-->
 
     <!-- Cargamos nuestros CSS -->
     <link rel="stylesheet" href="css/front-end.css">
@@ -38,77 +38,49 @@
     <a href="javascript:Plantilla.listarJinetes()" class="opcion-principal"
        title="Realizar un listado de los datos de todos los jinetes que hay en la BBDD">Listar jinetes</a>
 
-    <!-- FUNCIÓN PARA LA HISTORIA DE USUARIO 6 -
-    <a href="javascript:Plantilla.mostrar('362460511033360588')" class="opcion-principal mostrar"
-       title="Muestra los datos de un determinado Jinete ">Mostrar un jinete</a>
--->
     <!-- FUNCIÓN PARA LA HISTORIA DE USUARIO 3 -->
     <a href="javascript:Plantilla.listarJinetesAlafetico()" class="opcion-principal"
-       title="Realizar un listado en orden alfabetico de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes en orden Alfabetico</a>
+       title="Realizar un listado en orden alfabetico de todos los jinetes (y sus datos) y  que hay en la BBDD">Alfabetico</a>
 
     <!-- FUNCIONES PARA LA HISTORIA DE USUARIO 5 -->
     <a href="javascript:Plantilla.listarPorApellido()" class="opcion-principal"
-       title="Realizar un listado en orden alfabetico de los apellidos de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Apellidos</a>
+       title="Realizar un listado en orden alfabetico de los apellidos de todos los jinetes (y sus datos) y  que hay en la BBDD">Apellidos</a>
 
     <a href="javascript:Plantilla.listarPorAltura()" class="opcion-principal"
-       title="Realizar un listado en orden de altura de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Altura</a>
-
-    <h1>    </h1>
+       title="Realizar un listado en orden de altura de todos los jinetes (y sus datos) y  que hay en la BBDD">Altura</a>
 
     <a href="javascript:Plantilla.listarPorCaballo()" class="opcion-principal"
-       title="Realizar un listado en orden alfabetico del nombre del caballo de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Caballo</a>
+       title="Realizar un listado en orden alfabetico del nombre del caballo de todos los jinetes (y sus datos) y  que hay en la BBDD">Caballo</a>
 
     <a href="javascript:Plantilla.listarPorAño()" class="opcion-principal"
-       title="Realizar un listado por el año de nacimiento de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Año de nacimiento</a>
+       title="Realizar un listado por el año de nacimiento de todos los jinetes (y sus datos) y  que hay en la BBDD">Nacimiento</a>
+
+    <h1> </h1>
 
     <a href="javascript:Plantilla.listarPorClub()" class="opcion-principal"
-       title="Realizar un listado en orden alfabetico del nombre del club de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Club</a>
+       title="Realizar un listado en orden alfabetico del nombre del club de todos los jinetes (y sus datos) y  que hay en la BBDD">Club</a>
 
     <a href="javascript:Plantilla.listarPorDireccionClub()" class="opcion-principal"
-       title="Realizar un listado en orden alfabetico de la direccion del club de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Direccion Club</a>
+       title="Realizar un listado en orden alfabetico de la direccion del club de todos los jinetes (y sus datos) y  que hay en la BBDD">Direccion Club</a>
 
     <a href="javascript:Plantilla.listarPorCompeticion()" class="opcion-principal"
-       title="Realizar un listado en orden alfabetico del tipo de competición de todos los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por Tipo Competición</a>
-
-    <h1>    </h1>
+       title="Realizar un listado en orden alfabetico del tipo de competición de todos los jinetes (y sus datos) y  que hay en la BBDD">Tipo Competición</a>
 
     <a href="javascript:Plantilla.listarPorAniosFederado()" class="opcion-principal"
-       title="Realizar un listado segun los años federados de los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por años federado</a>
+       title="Realizar un listado segun los años federados de los jinetes (y sus datos) y  que hay en la BBDD">Años federado</a>
 
     <a href="javascript:Plantilla.listarPorParticipaciones()" class="opcion-principal"
-       title="Realizar un listado segun el numero de participaciones los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por participaciones</a>
+       title="Realizar un listado segun el numero de participaciones los jinetes (y sus datos) y  que hay en la BBDD">Participaciones</a>
 
     <a href="javascript:Plantilla.listarPorGanados()" class="opcion-principal"
-       title="Realizar un listado segun el numero de torneos ganados los jinetes (y sus datos) y  que hay en la BBDD">Listar jinetes por ganados</a>
+       title="Realizar un listado segun el numero de torneos ganados los jinetes (y sus datos) y  que hay en la BBDD">Años ganados</a>
 
-    <a href="javascript:Plantilla.alterarDatos()" class="opcion-principal"
-       title="Modificar varios de los datos a la vez de un jinet, entre ellos el nombre">Editar Datos</a>
+    <h1> </h1>
 
-
-    <h1>    </h1>
-
-    </div>
+    <!-- FUNCIONES PARA LA HISTORIA DE USUARIO 5 -->
     <input type = "text" id="campo-busqueda">
-    <button class="btn" onclick="Plantilla.jugadorBuscado(document.getElementById('campo-busqueda').value)">Buscar por nombre</button>
+    <button class="btn" onclick="Plantilla.comenzarBusqueda(document.getElementById('campo-busqueda').value)">Buscar por nombre</button>
     </div>
-
-<!--
-    <br/>
-    <br/>      !-- FUNCIONES PARA LA HISTORIA DE USUARIO 8 --
-    <h1>Buscador de Jinetes por nombre</h1>
-    <form>
-        <label>Buscar por nombre:</label>
-        <br/>
-        <input type="text" id="search" name="search">
-        <button type="button" onclick="buscador()">Buscar</button>
-    </form>
-    <script>
-        function buscador(){
-            var searchTerm=document.getElementById("search").value;
-            Plantilla.comenzarBusqueda(searchTerm);
-        }
-    </script>
-    -->
 
 
 </nav>
@@ -141,10 +113,11 @@
 <script src="js/ms-plantilla.js"></script>
 
 
-<!-- Cargamos ficheros spec con los tests -->
+<!-- Cargamos ficheros spec con los tests
 
 <script src="js/front-end-spec.js"></script>
 <script src="js/ms-plantilla-spec.js"></script>
+-->
 
 
 </body>

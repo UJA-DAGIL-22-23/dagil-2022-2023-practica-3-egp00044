@@ -147,6 +147,7 @@ Plantilla.plantillaFormularioJinete.formulario = `
 <form method='post' action=''>
 <table width="100%" class="listado_jinetes">
     <thead>
+        <th>Acciones</th>   
         <th>ID</th>
         <th>Nombre</th>
         <th>Apellidos</th>
@@ -163,22 +164,30 @@ Plantilla.plantillaFormularioJinete.formulario = `
     </thead>
     <tbody>
         <tr title="${Plantilla.plantillaTags.ID}">
-            <td><input type="text" class="form-persona-elemento disabled" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-nombre"  value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-apellidos"  value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable"  id="form-persona-altura_jinete"  value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-fecha_nacimiento" required value="${Plantilla.plantillaTags.FECHA_NACIMIENTO}" name="fecha_nacimiento"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre_club_actual" required value="${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}" name="nombre_club_actual"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-direccion_club" required value="${Plantilla.plantillaTags.DIRECCION_CLUB}" name="direccion_club"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-tipo_competicion" required value="${Plantilla.plantillaTags.TIPO_COMPETICION}" name="tipo_competicion"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-años_federado" required value="${Plantilla.plantillaTags.AÑOS_FEDERADO}" name="años_federado"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-numero_participaciones" required value="${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}" name="numero_participaciones"/></td>
-            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-numero_torneos_ganados" required value="${Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS}" name="numero_torneos_ganados"/></td>
+            <td>  
+                <div><a href="javascript:Plantilla.editarNombres()" class="opcion-secundaria editar">Editar</a></div>
+                 <h1> </h1>
+                <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                 <h1> </h1>
+                <div><a href="javascript:Plantilla.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
+            </td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-apellidos" required value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-altura_jinete" required value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-fecha_nacimiento" required value="${Plantilla.plantillaTags.FECHA_NACIMIENTO}" name="fecha_nacimiento"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-nombre_club_actual" required value="${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}" name="nombre_club_actual"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-direccion_club" required value="${Plantilla.plantillaTags.DIRECCION_CLUB}" name="direccion_club"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-tipo_competicion" required value="${Plantilla.plantillaTags.TIPO_COMPETICION}" name="tipo_competicion"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-años_federado" required value="${Plantilla.plantillaTags.AÑOS_FEDERADO}" name="años_federado"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-numero_participaciones" required value="${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}" name="numero_participaciones"/></td>
+            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-numero_torneos_ganados" required value="${Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS}" name="numero_torneos_ganados"/></td>
         </tr>
     </tbody>
 </table>
 </form>`;
+
 
 /***************************************************************************************************/
 
@@ -220,7 +229,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="5%">Anios federado</th>
         <th width="5%">Número de participaciones</th> 
         <th width="5%">Número de torneos ganados</th> 
-        <th width="5%">Acción</th>   
+        <th width="%">Acción</th>   
 
     </thead>
     <tbody> `;
@@ -236,9 +245,8 @@ Plantilla.plantillaTablaJinetes.cuerpo =
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
     <td>${Plantilla.plantillaTags.APELLIDOS}</td>
-    
-    <td>
-        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" className="opcion-secundaria mostrar">Mostrar</a></div>    
+    <td>  
+        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar/Editar</a></div>   
     </td>
     
 </tr> `;
@@ -263,9 +271,8 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
     <td>${Plantilla.plantillaTags.AÑOS_FEDERADO}"</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
     <td>${Plantilla.plantillaTags["NUMERO_TORNEOS_GANADOS"]}</td>
-    
     <td>
-        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" className="opcion-secundaria mostrar">Mostrar</a></div>    
+        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar/Editar</a></div>   
     </td>
     
 </tr> `;
@@ -274,7 +281,8 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
 /**
  * PIE DE LAS TABLAS
  * @returns {string}
- */Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
+ */
+Plantilla.plantillaTablaJinetes.pie = `</tbody> </table>`;
 
 /***************************************************************************************************/
 
@@ -335,7 +343,6 @@ Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {
     return Plantilla.sustituyeTags(this.formulario, jinete);
 }
 
-
 /***************************************************************************************************/
 
 
@@ -345,7 +352,6 @@ Plantilla.plantillaFormularioJinete.actualiza = function (jinete) {
  */
 Plantilla.recupera = async function (callBackFn) {
     let response = null
-
     // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
@@ -357,9 +363,8 @@ Plantilla.recupera = async function (callBackFn) {
     }
 
     //mostrar todos los jinetes que se han descargado
-    let vectorJinetes = null
     if (response) {
-        vectorJinetes = await response.json()
+        let vectorJinetes = await response.json()
         callBackFn(vectorJinetes.data)
     }
 }
@@ -372,17 +377,21 @@ Plantilla.recupera = async function (callBackFn) {
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
  */
 Plantilla.recuperaUnJinete = async function (idJinete, callBackFn) {
+    let response = null
+    // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idJinete
-        const response = await fetch(url);
-        if (response) {
-            const jinete = await response.json()
-            callBackFn(jinete)
-        }
+        response = await fetch(url);
+
     } catch (error) {
         alert("Error: No se han podido acceder al API Geteway")
         console.error(error)
     }
+
+        if (response) {
+            const jinete = await response.json()
+            callBackFn(jinete)
+        }
 }
 
 /**
@@ -403,10 +412,8 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
     }
 
     //mostrar todos los jinetes que se han descargado
-    let vectorJinetes = null
     if (response){
-
-        vectorJinetes = await response.json()
+        let vectorJinetes = await response.json()
 
         vectorJinetes.data.sort((a,b)=>{
             //Si el elemento A va después alfabeticamente que B, devolverá -1
@@ -421,31 +428,27 @@ Plantilla.recuperaAlfabeticamente = async function (callBackFn) {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
- * Función que recupera todos los jinetes llamando al MS Plantilla
+ * Función que recupera un jugador seleccionado por el usuario llamando al MS Plantilla
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
 */
-
 Plantilla.recuperaBuscador = async function (nombreBuscado, callBackFn) {
     let response = null
-
     // Intento conectar el microservicio Plantilla
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
         response = await fetch(url)
 
-        let vectorJinetes = null
-        if (response) {
-            vectorJinetes = await response.json()
-            const filtro = vectorJinetes.data.filter(jienete =>  vectorJinetes.data.nombre_jinete.nombre === nombreBuscado)
-            callBackFn(filtro)
-        }
-
     } catch (error) {
-        alert("Error: No se han podido acceder al API Getewayvaqsavsvq")
+        alert("Error: No se han podido acceder al API Geteway")
         console.error(error)
     }
+   // let vectorJinetes = null
+    if (response) {
+        let vectorJinetes = await response.json()
+            const filtro = vectorJinetes.data.filter(jinetes => jinetes.data.nombre_jinete.nombre === nombreBuscado)
+            callBackFn(filtro)
+        }
 }
-
 /***************************************************************************************************/
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 2
@@ -487,7 +490,6 @@ Plantilla.imprimeMuchosJinetes = function (vector) {
     Frontend.Article.actualizar("Listados de los datos de todos los jinetes" , msj)
 }
 
-
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
  * Función para mostrar en pantalla los detalles de una jinete que se ha recuperado de la BBDD por su id
@@ -501,33 +503,6 @@ Plantilla.imprimeUnJinete = function (jinete) {
         Frontend.Article.actualizarBoton("Mostrar datos de un jinete", msj)
         Plantilla.almacenaDatos(jinete)
     }
-}
-
-Plantilla.imprimirJineteBuscado = function(nombreBuscado) {
-    if (!nombreBuscado || typeof nombreBuscado !== "object") {
-        elementoTitulo.innerHTML = "Mostrar los datos del jinete";
-
-    } else {
-        let msj = Plantilla.jineteComoTabla(nombreBuscado);
-
-        //let msj = Plantilla.jineteComoFormulario(jinete);
-        //Borrar toda la información de Article y la sustituyo por la que me interesa
-        Frontend.Article.actualizarBoton("Mostrar los datos del jinete", msj)
-
-        //Actualiza el objeto que guarda los datos mostrados
-        //Plantilla.almacenaDatos(nombreBuscado)
-    }
-}
-
-
-
-/**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
- * Almacena los datos de la jinete que se está mostrando
- * @param {jinete} jinete Datos de la jinete a almacenar
- */
-Plantilla.almacenaDatos = function (jinete) {
-    Plantilla.jieneteSeleccionado = jinete;
 }
 
 /**
@@ -846,36 +821,173 @@ Plantilla.listarPorGanados = function () {
 
 /**
  * FUNCIÓN PARA LA HISTORIA DE USUARIO 8
- * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
+ * Función principal para un jinete proporcionado por el usuario del MS y, posteriormente, imprimirlos.
  */
 Plantilla.comenzarBusqueda= function (buscado){
     this.recuperaBuscador(buscado, Plantilla.imprimeMuchosJinetes);
 }
 
-/*
-Plantilla.jugadorBuscado = function (nombreBuscado){
-    this.recuperaJugadorBuscado(nombreBuscado, this.imprimeMuchasPersonas);
-}
-*/
-
-/*
-Plantilla.mostrar = function (idJinete) {
-    this.recuperaUnJinete(idJinete, this.imprimeUnJinete);
-}*/
 
 /**
  * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13
  * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
  */
-Plantilla.alterarDatos= function (search){
-    this.recupera(Plantilla.imprimeMuchosJinetes);
+Plantilla.alterarDatos= function () {
+    this.recupera(Plantilla.imprimeJinetesEditable);
+}
+
+/***************************************************************************************************/
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Función que permite modificar los datos de un Jinete
+ */
+Plantilla.editarNombres = function () {
+    this.ocultarOpcionesSecundarias()
+    this.mostrarOcionesTerciariasEditar()
+    this.habilitarCampoNombre()
 }
 
 
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Función que permite anular la acción sobre los datos de un Jinete
+ */
+Plantilla.cancelar = function () {
+    this.imprimeUnJinete(this.recuperaDatosAlmacenados())
+    this.deshabilitarCampoNombre()
+    this.ocultarOcionesTerciariasEditar()
+    this.mostrarOpcionesSecundarias()
+}
 
+Plantilla.guardar = async function () {
+    try {
+        let url = Frontend.API_GATEWAY + "/plantilla/setTodo/"
+        let id_jinete = document.getElementById("form-persona-id").value
+        let apellidos_jinete = document.getElementById("form-persona-apellidos").value
+        let altura_jinete = document.getElementById("form-persona-altura_jinete").value
+        let datos_caballo =document.getElementById("form-persona-datos_caballo").value
+        let fecha_nacimiento = document.getElementById("form-persona-fecha_nacimiento").value
+        let nombre_club_actual = document.getElementById("form-persona-nombre_club_actual").value
+        let direccion_club = document.getElementById("form-persona-direccion_club").value
+        let tipo_competicion = document.getElementById("form-persona-tipo_competicion").value
+        let años_federado = document.getElementById("form-persona-años_federado").value
+        let numero_particiapciones_torneo = document.getElementById("form-persona-numero_participaciones").value
+        let numero_torneos_ganados = document.getElementById("form-persona-numero_torneos_ganados").value
+
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id_jinete": id_jinete,
+                "nombre_jinete.nombre":  document.getElementById("form-persona-nombre").value,
+                "nombre_jinete.apellidos": apellidos_jinete,
+                "altura_jinete": altura_jinete,
+                "datos_caballo": datos_caballo,
+                "fecha_nacimiento": fecha_nacimiento,
+                "nombre_club_actual": nombre_club_actual,
+                "direccion_club": direccion_club,
+                "tipo_competicion":tipo_competicion,
+                "años_federado": años_federado,
+                "numero_particiapciones_torneo": numero_particiapciones_torneo,
+                "numero_torneos_ganados": numero_torneos_ganados,
+
+            }), // body data type must match "Content-Type" header
+        })
+        Plantilla.mostrar(id_jinete)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway " + error)
+        //console.error(error)
+    }
+}
+
+/*********************************************************************************************/
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Establece disable = false en los campos editables
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.habilitarCampoNombre = function () {
+    Plantilla.habilitarDeshabilitarCampoNombre(false)
+    return this
+}
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * Establece disable = true en los campos editables
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.deshabilitarCampoNombre = function () {
+    Plantilla.habilitarDeshabilitarCampoNombre(true)
+    return this
+}
+
+
+/*********************************************************************************************/
+
+/**
+ * Establece disable = habilitando en los campos editables
+ * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.habilitarDeshabilitarCampoNombre = function (deshabilitando) {
+    deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
+    for (let campo in Plantilla.form) {
+        document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
+    }
+    return this
+}
+
+Plantilla.form = {
+    NOMBRE: "form-persona-nombre",
+}
+
+/**
+ * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Jinetes, para concatenar llamadas
+ */
+Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
+    let opciones = document.getElementsByClassName(classname)
+    let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+    let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+
+    for (let i = 0; i < opciones.length; ++i) {
+        Frontend.quitarClase(opciones[i], claseQuitar)
+            .aniadirClase(opciones[i], claseAniadir)
+    }
+    return this
+}
 
 
 /***************************************************************************************************/
+
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ */
+Plantilla.recuperaDatosAlmacenados = function () {
+    return this.jieneteSeleccionado;
+}
+
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 6
+ * Almacena los datos de la jinete que se está mostrando
+ * @param {jinete} jinete Datos de la jinete a almacenar
+ */
+Plantilla.almacenaDatos = function (jinete) {
+    Plantilla.jieneteSeleccionado = jinete;
+}
+
+/***************************************************************************************************/
+
 
 
 /**
@@ -916,64 +1028,6 @@ Plantilla.ocultarOcionesTerciariasEditar = function () {
     return this
 }
 
-/*********************************************************************************************/
-
-/**
- * Función que permite modificar los datos de una Jinete
- */
-Plantilla.editar = function () {
-    this.ocultarOpcionesSecundarias()
-    this.mostrarOcionesTerciariasEditar()
-    this.habilitarCamposEditables()
-}
-
-/**
- * Establece disable = true en los campos editables
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.deshabilitarCamposEditables = function () {
-    Plantilla.habilitarDeshabilitarCamposEditables(true)
-    return this
-}
 
 
-/**
- * Establece disable = false en los campos editables
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.habilitarCamposEditables = function () {
-    Plantilla.habilitarDeshabilitarCamposEditables(false)
-    return this
-}
 
-
-/*********************************************************************************************/
-
-/**
- * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
-    let opciones = document.getElementsByClassName(classname)
-    let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
-    let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
-
-    for (let i = 0; i < opciones.length; ++i) {
-        Frontend.quitarClase(opciones[i], claseQuitar)
-            .aniadirClase(opciones[i], claseAniadir)
-    }
-    return this
-}
-
-/**
- * Establece disable = habilitando en los campos editables
- * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
- * @returns El propio objeto Jinetes, para concatenar llamadas
- */
-Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
-    deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
-    for (let campo in Plantilla.form) {
-        document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
-    }
-    return this
-}

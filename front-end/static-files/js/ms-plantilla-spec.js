@@ -363,20 +363,7 @@ describe("Plantilla.imprimePorGanado: ", function() {
 })
 
 //TDD PARA HU 8
-/**
-describe("Plantilla.imprimeBuscado: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
-        Plantilla.imprimeBuscado([])
-        expect(elementoTitulo.innerHTML).toBe(JINETE_BUSCADOR)
-      //  expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
-    })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
-        Plantilla.imprimeBuscado(12)
-        expect(elementoTitulo.innerHTML).toBe(JINETE_BUSCADOR)
-     //   expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
-    })
-})
-*/
+
 
 //EXPECTS PARA LAS TABLAS
 describe("Plantilla.plantillaTablaJinetes.pie ", function () {

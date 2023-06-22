@@ -77,10 +77,12 @@ Frontend.Article.aniadirContenido = function (texto) {
 Frontend.quitarClase = function (elemento, nombreClase) {
     elemento = (typeof elemento === "string") ? document.getElementById(elemento) : elemento;
     let clase = elemento.getAttribute("class")
-    clase = clase.split("   ")
+    if( clase ) {
+        clase = clase.split("   ")
         .filter(e => e)
         .filter(e => e != nombreClase)
         .join(" ")
+    }
     elemento.setAttribute("class", clase)
 
     return this;
@@ -89,11 +91,15 @@ Frontend.quitarClase = function (elemento, nombreClase) {
 Frontend.aniadirClase = function (elemento, nombreClase) {
     elemento = (typeof elemento === "string") ? document.getElementById(elemento) : elemento;
     let clase = elemento.getAttribute("class")
-    clase = clase.split("   ")
+    if( clase )  {
+        clase = clase.split("   ")
         .filter(e => e)
         .filter(e => e != nombreClase)
         .concat(nombreClase)
         .join(" ")
+    } else {
+        clase = nombreClase
+    }
     elemento.setAttribute("class", clase)
 
     return this;
