@@ -110,7 +110,7 @@ const CB_MODEL_SELECTS = {
                                 },
 
                                 altura_jinete: parseInt(data.altura_jinete),
-                                /*
+
                                 datos_caballo: {
                                     nombre_caballo: data.datos_caballo.nombre_caballo,
                                     edad: data.datos_caballo.edad ,
@@ -133,7 +133,7 @@ const CB_MODEL_SELECTS = {
                                 numero_particiapciones_torneo: data.numero_particiapciones_torneo,
                                 numero_torneos_ganados: data.numero_torneos_ganados
 
-*/
+
                             },
                         },
                     )
