@@ -27,9 +27,6 @@ const JINETE_COMPETICION = "Listado de los jinetes Ordenador por TIPO COMPETICIO
 const JINETE_FEDERADO = "Listado de los jinetes Ordenador por AÑOS FEDERADO"
 const JINETE_PARTICIPACIONES = "Listado de los jinetes Ordenador por PARTICIPACIONES"
 const JINETE_TORNEOS_GANADOS = "Listado de los jinetes Ordenador por TORNEOS GANADOS"
-const JINETE_BUSCADOR = "Mostrar un dato de un jinete buscado"
-
-
 
 
 const datosDescargadosPrueba = {

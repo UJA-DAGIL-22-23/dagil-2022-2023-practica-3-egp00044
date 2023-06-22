@@ -165,7 +165,7 @@ Plantilla.plantillaFormularioJinete.formulario = `
     <tbody>
         <tr title="${Plantilla.plantillaTags.ID}">
             <td>  
-                <div><a href="javascript:Plantilla.editarNombres()" class="opcion-secundaria editar">Editar</a></div>
+                 <div><a href="javascript:Plantilla.editar()" class="opcion-secundaria editar">Editar</a></div>
                  <h1> </h1>
                 <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
                  <h1> </h1>
@@ -839,18 +839,17 @@ Plantilla.alterarDatos= function () {
 /***************************************************************************************************/
 
 /**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Función que permite modificar los datos de un Jinete
  */
-Plantilla.editarNombres = function () {
+Plantilla.editar = function () {
     this.ocultarOpcionesSecundarias()
     this.mostrarOcionesTerciariasEditar()
     this.habilitarCampoNombre()
 }
 
-
 /**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Función que permite anular la acción sobre los datos de un Jinete
  */
 Plantilla.cancelar = function () {
@@ -859,7 +858,9 @@ Plantilla.cancelar = function () {
     this.ocultarOcionesTerciariasEditar()
     this.mostrarOpcionesSecundarias()
 }
-
+/**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
+ */
 Plantilla.guardar = async function () {
     try {
         let url = Frontend.API_GATEWAY + "/plantilla/setTodo/"
@@ -911,7 +912,7 @@ Plantilla.guardar = async function () {
 /*********************************************************************************************/
 
 /**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Establece disable = false en los campos editables
  * @returns El propio objeto Jinetes, para concatenar llamadas
  */
@@ -921,7 +922,7 @@ Plantilla.habilitarCampoNombre = function () {
 }
 
 /**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Establece disable = true en los campos editables
  * @returns El propio objeto Jinetes, para concatenar llamadas
  */
@@ -934,6 +935,7 @@ Plantilla.deshabilitarCampoNombre = function () {
 /*********************************************************************************************/
 
 /**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Establece disable = habilitando en los campos editables
  * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
  * @returns El propio objeto Jinetes, para concatenar llamadas
@@ -951,6 +953,7 @@ Plantilla.form = {
 }
 
 /**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
  * @returns El propio objeto Jinetes, para concatenar llamadas
  */
@@ -971,7 +974,7 @@ Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
 
 
 /**
- * FUNCIÓN PARA LA HISTORIA DE USUARIO 12
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  */
 Plantilla.recuperaDatosAlmacenados = function () {
     return this.jieneteSeleccionado;
@@ -991,6 +994,7 @@ Plantilla.almacenaDatos = function (jinete) {
 
 
 /**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Oculta todas las opciones secundarias
  * @returns El propio objeto para encadenar llamadas
  */
@@ -1000,6 +1004,7 @@ Plantilla.ocultarOpcionesSecundarias = function () {
 }
 
 /**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Muestra todas las opciones secundarias
  * @returns El propio objeto para encadenar llamadas
  */
@@ -1010,6 +1015,7 @@ Plantilla.mostrarOpcionesSecundarias = function () {
 
 
 /**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Muestra las opciones que tiene el usuario cuando selecciona Editar
  * @returns El propio objeto Jinetes, para concatenar llamadas
  */
@@ -1020,6 +1026,7 @@ Plantilla.mostrarOcionesTerciariasEditar = function () {
 
 
 /**
+ * FUNCIÓN PARA LA HISTORIA DE USUARIO 12 & 13
  * Oculta las opciones que tiene el usuario cuando selecciona Editar
  * @returns El propio objeto Jinetes, para concatenar llamadas
  */
