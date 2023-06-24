@@ -217,7 +217,7 @@ Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_j
  */
 Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" class="listado_jinetes">
     <thead>
-            <th width="%">Acción</th> 
+         <th width="%">Acción</th> 
         <th width="5%">ID</th>
         <th width="15%">Nombre</th>
         <th width="10%">Apellidos</th>

@@ -78,7 +78,6 @@ function esperar(ms) {
 }
 
 
-
 // SPECS a probar
 
 describe("Plantilla.mostrarHome: ", function () {
@@ -105,7 +104,7 @@ describe("Plantilla.mostrarHome: ", function () {
             expect(elementoContenido.innerHTML).toBe(Plantilla.datosDescargadosNulos.mensaje)
 
             // Objeto sin campo mensaje
-            Plantilla.mostrarHome({ foo: "bar" })
+            Plantilla.mostrarHome({foo: "bar"})
             expect(elementoTitulo.innerHTML).toBe(TITULO_HOME)
             expect(elementoContenido.innerHTML).toBe(Plantilla.datosDescargadosNulos.mensaje)
         })
@@ -142,19 +141,19 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
             expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
 
             // Objeto sin campo mensaje
-            Plantilla.mostrarAcercaDe({ autor: "un autor", email: "un email", fecha: "una fecha" })
+            Plantilla.mostrarAcercaDe({autor: "un autor", email: "un email", fecha: "una fecha"})
             expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
             expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
             // Objeto sin campo autor
-            Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", email: "un email", fecha: "una fecha" })
+            Plantilla.mostrarAcercaDe({mensaje: "un mensaje", email: "un email", fecha: "una fecha"})
             expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
             expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
             // Objeto sin campo email
-            Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", autor: "un autor", fecha: "una fecha" })
+            Plantilla.mostrarAcercaDe({mensaje: "un mensaje", autor: "un autor", fecha: "una fecha"})
             expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
             expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
             // Objeto sin campo fecha
-            Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", autor: "un autor", email: "un email" })
+            Plantilla.mostrarAcercaDe({mensaje: "un mensaje", autor: "un autor", email: "un email"})
             expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
             expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
         })
@@ -189,30 +188,30 @@ Esto afecta a los métodos:
 
 
 //TDD PARA HU 2
-describe("Plantilla.imprimeNombres: ", function() {
-    it("muestra datos nulos cuando le pasamos un valor nulo", function() {
+describe("Plantilla.imprimeNombres: ", function () {
+    it("muestra datos nulos cuando le pasamos un valor nulo", function () {
         Plantilla.imprimeNombres([])
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
-       expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_NULO)
+        expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_NULO)
     })
 
 
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimeNombres(12)
-       expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_NOMBRES_JINETES)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_NULO)
-        })
+    })
 })
 
 //TDD PARA HU 4
 
-describe("Plantilla.imprimeMuchosJinetes: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimeMuchosJinetes: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimeMuchosJinetes([])
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimeMuchosJinetes(12)
         expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_JINETES)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
@@ -220,139 +219,139 @@ describe("Plantilla.imprimeMuchosJinetes: ", function() {
 })
 
 //TDD PARA HU 6
-describe("Plantilla.imprimeUnJinete: " , function() {
-    it("Mostrar datos nulos cuando le pasamos un valor nulo", function() {
-            let jinete = null;
-            Plantilla.imprimeUnJinete(jinete);
-            expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_UN_JINETE);
-        })
+describe("Plantilla.imprimeUnJinete: ", function () {
+    it("Mostrar datos nulos cuando le pasamos un valor nulo", function () {
+        let jinete = null;
+        Plantilla.imprimeUnJinete(jinete);
+        expect(elementoTitulo.innerHTML).toBe(TITULO_IMPRIME_DATOS_UN_JINETE);
+    })
 })
 
 //TDD PARA HU 5
-describe("Plantilla.imprimePorApellido: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorApellido: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorApellido([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_APELLIDOS)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorApellido(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_APELLIDOS)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorAltura: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorAltura: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorAltura([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_ALTURA)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorAltura(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_ALTURA)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorCaballo: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorCaballo: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorCaballo([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_CABALLO)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorCaballo(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_CABALLO)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorAño: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorAño: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorAño([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_NACIMIENTO)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorAño(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_NACIMIENTO)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorClub: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorClub: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorClub([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_CLUB)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorClub(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_CLUB)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorDireccionClub: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorDireccionClub: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorDireccionClub([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_DIRECCION_CLUB)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorDireccionClub(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_DIRECCION_CLUB)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorCompeticion: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorCompeticion: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorCompeticion([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_COMPETICION)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorCompeticion(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_COMPETICION)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorFederado: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorFederado: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorFederado([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_FEDERADO)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorFederado(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_FEDERADO)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorParticipaciones: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorParticipaciones: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorParticipaciones([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_PARTICIPACIONES)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorParticipaciones(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_PARTICIPACIONES)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
 })
 
-describe("Plantilla.imprimePorGanado: ", function() {
-    it("Mostrar datos nulos cuando le pasamos vector nulo", function() {
+describe("Plantilla.imprimePorGanado: ", function () {
+    it("Mostrar datos nulos cuando le pasamos vector nulo", function () {
         Plantilla.imprimePorGanado([])
         expect(elementoTitulo.innerHTML).toBe(JINETE_TORNEOS_GANADOS)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
     })
-    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function() {
+    it("muestra datos nulos cuando le pasamos un valor que no es un objeto", function () {
         Plantilla.imprimePorGanado(12)
         expect(elementoTitulo.innerHTML).toBe(JINETE_TORNEOS_GANADOS)
         expect(elementoContenido.querySelector('tbody').innerHTML).toBe(OBJETO_VACIO_TODOS)
@@ -364,10 +363,10 @@ describe("Plantilla.imprimePorGanado: ", function() {
 
 //EXPECTS PARA LAS TABLAS
 describe("Plantilla.plantillaTablaJinetes.pie ", function () {
-    it("debería devolver las etiquetas HTML para el pie de tabla cuando se le pasa un valor nulo", function() {
+    it("debería devolver las etiquetas HTML para el pie de tabla cuando se le pasa un valor nulo", function () {
         expect(Plantilla.plantillaTablaJinetes.pie).not.toBe(null);
     });
-    it("debería devolver las etiquetas HTML para el pie de tabla cuando se le pasa un valor vacío", function() {
+    it("debería devolver las etiquetas HTML para el pie de tabla cuando se le pasa un valor vacío", function () {
         expect(Plantilla.plantillaTablaJinetes.pie).not.toBe("");
     });
     it("debería devolver las etiquetas HTML para el pie de tabla",
@@ -376,14 +375,54 @@ describe("Plantilla.plantillaTablaJinetes.pie ", function () {
         });
 });
 
-describe("Plantilla.plantillaTablaJinetes.cabecera", function() {
+describe("Plantilla.plantillaTablaJinetes.cabecera", function () {
     it('existe la función cabecera', () => {
         expect(Plantilla.plantillaTablaJinetes.cabecera).toBeDefined();
     });
 });
 
-describe("Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos", function() {
+describe("Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos", function () {
     it('existe la función cabeceraJinetesTodos', () => {
         expect(Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos).toBeDefined();
+    });
+});
+
+//TDD PARA HU 12
+
+describe("Plantilla.editar", function () {
+    it('existe la función editar', () => {
+        expect(Plantilla.editar).toBeDefined();
+    });
+});
+
+
+describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
+    beforeEach(function () {
+        Plantilla.form = {
+            variable1: "variable",
+        };
+        var form = document.createElement("form");
+        form.innerHTML = `
+      <input id="variable" />
+    `;
+        document.body.appendChild(form);
+    })
+    it('existe la función habilitarDeshabilitarCampoNombre', () => {
+        expect(Plantilla.habilitarDeshabilitarCampoNombre).toBeDefined();
+    });
+
+    it("se deshabilitan los campos editables", function() {
+        Plantilla.habilitarDeshabilitarCampoNombre(true);
+        expect(document.getElementById("variable").disabled).toEqual(true);
+    });
+
+    it("se habilitan los campos editables", function() {
+        Plantilla.habilitarDeshabilitarCampoNombre(false);
+        expect(document.getElementById("variable").disabled).toEqual(false);
+    });
+
+    it("se habilitan los campos editables", function() {
+        Plantilla.habilitarDeshabilitarCampoNombre();
+        expect(document.getElementById("variable").disabled).toEqual(true);
     });
 });
