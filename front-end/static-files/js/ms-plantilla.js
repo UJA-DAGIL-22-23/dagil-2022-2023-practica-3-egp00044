@@ -151,16 +151,15 @@ Plantilla.plantillaFormularioJinete.formulario = `
         <th>ID</th>
         <th>Nombre</th>
         <th>Apellidos</th>
-        <th>Altura</th>      
+        <th>Altura</th>    
+        <th>Número de participaciones</th> 
+        <th>Número de torneos ganados</th>   
         <th>Datos del caballo</th>
         <th>Fecha de nacimiento</th>
         <th>Nombre del club</th>
         <th>Dirección</th>
         <th>Tipo de competicion</th>
         <th>Anios federado</th>
-        <th>Número de participaciones</th> 
-        <th>Número de torneos ganados</th> 
-
     </thead>
     <tbody>
         <tr title="${Plantilla.plantillaTags.ID}">
@@ -174,15 +173,16 @@ Plantilla.plantillaFormularioJinete.formulario = `
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id" required value="${Plantilla.plantillaTags.ID}" name="id_jinete"/></td>
             <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" name="nombre_jinete"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-apellidos" required value="${Plantilla.plantillaTags.APELLIDOS}" name="apellidos_jinete"/></td>
-            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-altura_jinete" required value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-altura_jinete" required value="${Plantilla.plantillaTags.ALTURA_JINETE}" name="altura_jinete"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-numero_participaciones" required value="${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}" name="numero_participaciones"/></td>
+            <td><input type="text" class="form-persona-elemento editable" disabled id="form-persona-numero_torneos_ganados" required value="${Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS}" name="numero_torneos_ganados"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-datos_caballo" required value="${Plantilla.plantillaTags.DATOS_CABALLO}" name="datos_caballo"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-fecha_nacimiento" required value="${Plantilla.plantillaTags.FECHA_NACIMIENTO}" name="fecha_nacimiento"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-nombre_club_actual" required value="${Plantilla.plantillaTags.NOMBRE_CLUB_ACTUAL}" name="nombre_club_actual"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-direccion_club" required value="${Plantilla.plantillaTags.DIRECCION_CLUB}" name="direccion_club"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-tipo_competicion" required value="${Plantilla.plantillaTags.TIPO_COMPETICION}" name="tipo_competicion"/></td>
             <td><input type="text" class="form-persona-elemento" disabled id="form-persona-años_federado" required value="${Plantilla.plantillaTags.AÑOS_FEDERADO}" name="años_federado"/></td>
-            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-numero_participaciones" required value="${Plantilla.plantillaTags.NUMERO_PARTICIPACIONES}" name="numero_participaciones"/></td>
-            <td><input type="text" class="form-persona-elemento" disabled id="form-persona-numero_torneos_ganados" required value="${Plantilla.plantillaTags.NUMERO_TORNEOS_GANADOS}" name="numero_torneos_ganados"/></td>
+
         </tr>
     </tbody>
 </table>
@@ -217,6 +217,7 @@ Plantilla.plantillaTablaJinetes.cabecera = `<table width="100%" class="listado_j
  */
 Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" class="listado_jinetes">
     <thead>
+            <th width="%">Acción</th> 
         <th width="5%">ID</th>
         <th width="15%">Nombre</th>
         <th width="10%">Apellidos</th>
@@ -228,8 +229,7 @@ Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos = `<table width="100%" clas
         <th width="10%">Tipo de competicion</th>
         <th width="5%">Anios federado</th>
         <th width="5%">Número de participaciones</th> 
-        <th width="5%">Número de torneos ganados</th> 
-        <th width="%">Acción</th>   
+        <th width="5%">Número de torneos ganados</th>   
 
     </thead>
     <tbody> `;
@@ -259,6 +259,9 @@ Plantilla.plantillaTablaJinetes.cuerpo =
  */
 Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
     `<tr title="${Plantilla.plantillaTags.ID}">
+    <td>
+        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>   
+    </td>
     <td>${Plantilla.plantillaTags.ID}</td>
     <td>${Plantilla.plantillaTags.NOMBRE}</td>
     <td>${Plantilla.plantillaTags.APELLIDOS}</td>
@@ -271,9 +274,7 @@ Plantilla.plantillaTablaJinetes.cuerpoJinetesTodos=
     <td>${Plantilla.plantillaTags.AÑOS_FEDERADO}"</td>
     <td>${Plantilla.plantillaTags["NUMERO_PARTICIPACIONES"]}</td>
     <td>${Plantilla.plantillaTags["NUMERO_TORNEOS_GANADOS"]}</td>
-    <td>
-        <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar/Editar</a></div>   
-    </td>
+
     
 </tr> `;
 
@@ -950,6 +951,9 @@ Plantilla.habilitarDeshabilitarCampoNombre = function (deshabilitando) {
 
 Plantilla.form = {
     NOMBRE: "form-persona-nombre",
+    NUMERO_PARTICIPACIONES: "form-persona-numero_participaciones",
+    NUMERO_TORNEOS_GANADOS: "form-persona-numero_torneos_ganados",
+    ALTURA_JINETE: "form-persona-altura_jinete",
 }
 
 /**
