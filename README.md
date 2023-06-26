@@ -817,3 +817,24 @@ antes y después de editarlo.
 ![Resultado de la HU 12](./assets/img/Historia_de_Usuario_12.1.png)
 ![Resultado de la HU 12.1](./assets/img/Historia_de_Usuario_12.2.png)
 
+**HISTORIA DE USUARIO 13: MODIFICAR MÍNIMO 3 DATOS DE UN JINETE. PH:3**
+
+Con este funcionalidad damos por terminada la iteración 3, y con ella el proyecto. 
+Sumando un total de 2,7 puntos de historia realizados. En esta ocasión hemos
+añadido a los métodos existentes la funcionalidad de editar más variables
+de un jinete. 
+Para obtener la funcionalidad unicamente he modificado el formulario, para añadir
+la posibilidad de editar a los demás atributos y los consecuentes cambios 
+en métodos ya existentes 
+
+*Buscador por nombres de los Jinetes*
+
+Observamos un ejemplo del correcto funcionamiento de la historia de usuario
+en las siguientes imagenes, vemos un ejemplo, es un jinete en concreto,
+antes y después de editarlo.
+
+*Ejemplo con los datos de un solo jinete, esta acción se puede realizar con todos*
+![Resultado de la HU 12](./assets/img/Historia_de_Usuario_13.1.png)
+![Resultado de la HU 12.1](./assets/img/Historia_de_Usuario_13.2.png)
+
+
