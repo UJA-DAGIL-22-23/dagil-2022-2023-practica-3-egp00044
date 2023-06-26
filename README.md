@@ -772,3 +772,48 @@ lo mismo aplica al resto de nombres del resto de los jinetes de la base de datos
 *Ejemplo con los datos de un solo jinete, esta acción se puede realizar con todos*
 ![Resultado de la HU 3](./assets/img/Historia_de_Usuario_8.1.png)
 
+
+
+**HISTORIA DE USUARIO 12: MODIFICAR EL NOMBRE DE UN JINETE. PH:2**
+
+Este nuevo apartado supone 0.2 puntos de historia añadidos, consiste en realizar
+un nuevo concepto, editar algún elemento de la base de datos, en este caso el nombre.
+Lo cual se hará desde el formulario individual de cada jinete, en la sección de 
+"acciones" se encuentra el botón editar, el cual activará el parámetro nombre para 
+su porterior edición. Los cambios se oficializan mediante el botón Guardar, o
+se desechan pulsando cancelar. 
+Para obtener la funcionalidad he modificado los siguientes métodos:
+
+```
+   CLASE: MS-PLANTILLA/CALLBACKS.JS
+   
+   -        getTodos: async (req, res) => {...}
+
+   CLASE: FRONT-END/STATIC-FILES/JS/MS-PLANTILLA.JS
+   
+   -    Plantilla.editar = function () {...}
+   -    Plantilla.cancelar = function () {...}
+   -    Plantilla.guardar = async function () {...}
+   -    Plantilla.habilitarCampoNombre = function () {...}
+   -    Plantilla.deshabilitarCampoNombre = function () {...}
+    -   Plantilla.habilitarDeshabilitarCampoNombre = function (deshabilitando) {...}
+    -   Plantilla.form = {...}
+    -   Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {...}
+    -   Plantilla.recuperaDatosAlmacenados = function () {...}
+    -   Plantilla.almacenaDatos = function (jinete) {...}
+    -   Plantilla.ocultarOpcionesSecundarias = function () {...}
+    -   Plantilla.mostrarOpcionesSecundarias = function () {...}
+    -   Plantilla.mostrarOcionesTerciariasEditar = function () {...}
+    -   Plantilla.ocultarOcionesTerciariasEditar = function () {...}
+```
+
+*Buscador por nombres de los Jinetes*
+
+Observamos un ejemplo del correcto funcionamiento de la historia de usuario 
+en las siguientes imagenes, vemos un ejemplo, es un jinete en concreto, 
+antes y después de editarlo. 
+
+*Ejemplo con los datos de un solo jinete, esta acción se puede realizar con todos*
+![Resultado de la HU 12](./assets/img/Historia_de_Usuario_12.1.png)
+![Resultado de la HU 12.1](./assets/img/Historia_de_Usuario_12.2.png)
+

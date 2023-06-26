@@ -829,14 +829,6 @@ Plantilla.comenzarBusqueda= function (buscado){
 }
 
 
-/**
- * FUNCIÓN PARA LAS HISTORIAS DE USUARIO 12 y 13
- * Función principal para recuperar los Jinetes del MS y, posteriormente, imprimirlos.
- */
-Plantilla.alterarDatos= function () {
-    this.recupera(Plantilla.imprimeJinetesEditable);
-}
-
 /***************************************************************************************************/
 
 /**

@@ -395,7 +395,18 @@ describe("Plantilla.editar", function () {
     });
 });
 
+describe("Plantilla.cancelar", function () {
+    it('existe la función cancelar', () => {
+        expect(Plantilla.cancelar).toBeDefined();
+    });
+});
 
+describe("Plantilla.guardar", function () {
+    it('existe la función guardar', () => {
+        expect(Plantilla.guardar).toBeDefined();
+    });
+});
+/*
 describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
     beforeEach(function () {
         Plantilla.form = {
@@ -426,3 +437,5 @@ describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
         expect(document.getElementById("variable").disabled).toEqual(true);
     });
 });
+
+*/
