@@ -462,6 +462,35 @@ describe('Prueba para mostrar', function() {
 });
 
 
+describe("Prueba de almacenaDatos", function() {
+    it("Guarda el objeto jinete (con información parcial) en Plantilla.jieneteSeleccionado", function() {
+        var jinete = {
+            nombre_jinete: {
+                nombre: "Elena",
+                apellidos:"Gomez Padilla"
+            },
+            altura_jinete: 155,
+        };
+        Plantilla.almacenaDatos(jinete);
+        expect(Plantilla.jieneteSeleccionado).toEqual(jinete);
+    });
+});
+
+describe("Prueba para recuperaDatosAlmacenados", function() {
+    it("debe devolver el jieneteSeleccionado", function() {
+        var jinete = {
+            nombre_jinete: {
+                nombre: "Elena",
+                apellidos:"Gomez Padilla"
+            },
+            altura_jinete: 155,
+        };
+        Plantilla.jieneteSeleccionado = jinete;
+        const resultado = Plantilla.recuperaDatosAlmacenados();
+        expect(resultado).toBe(jinete);
+    });
+});
+
 
 /*
 describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
