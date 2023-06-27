@@ -387,17 +387,41 @@ describe("Plantilla.plantillaTablaJinetes.cabeceraJinetesTodos", function () {
     });
 });
 
-//TDD PARA HU 12
+//TDD PARA HU 12 & 13
 
 describe("Plantilla.editar", function () {
     it('existe la función editar', () => {
         expect(Plantilla.editar).toBeDefined();
+    });
+    it("debe llamar a las funciones configuradas", function() {
+        spyOn(Plantilla, "ocultarOpcionesSecundarias");
+        spyOn(Plantilla, "mostrarOcionesTerciariasEditar");
+        spyOn(Plantilla, "habilitarCampoNombre");
+
+        Plantilla.editar();
+
+        expect(Plantilla.ocultarOpcionesSecundarias).toHaveBeenCalled();
+        expect(Plantilla.mostrarOcionesTerciariasEditar).toHaveBeenCalled();
+        expect(Plantilla.habilitarCampoNombre).toHaveBeenCalled();
     });
 });
 
 describe("Plantilla.cancelar", function () {
     it('existe la función cancelar', () => {
         expect(Plantilla.cancelar).toBeDefined();
+    });
+    it("debe llamar a las funciones configuradas", function() {
+        spyOn(Plantilla, "imprimeUnJinete");
+        spyOn(Plantilla, "deshabilitarCampoNombre");
+        spyOn(Plantilla, "ocultarOcionesTerciariasEditar");
+        spyOn(Plantilla, "mostrarOpcionesSecundarias");
+
+        Plantilla.cancelar();
+
+        expect(Plantilla.imprimeUnJinete).toHaveBeenCalled();
+        expect(Plantilla.deshabilitarCampoNombre).toHaveBeenCalled();
+        expect(Plantilla.ocultarOcionesTerciariasEditar).toHaveBeenCalled();
+        expect(Plantilla.mostrarOpcionesSecundarias).toHaveBeenCalled();
     });
 });
 
@@ -406,6 +430,39 @@ describe("Plantilla.guardar", function () {
         expect(Plantilla.guardar).toBeDefined();
     });
 });
+
+describe("Pruebas para Plantilla.form", function() {
+    it("debe tener los cuatro campos definidos", function() {
+        expect(Plantilla.form).toBeDefined();
+        expect(Plantilla.form.NOMBRE).toBeDefined();
+        expect(Plantilla.form.NUMERO_PARTICIPACIONES).toBeDefined();
+        expect(Plantilla.form.NUMERO_TORNEOS_GANADOS).toBeDefined();
+        expect(Plantilla.form.ALTURA_JINETE).toBeDefined();
+    });
+
+    it("debe tener los valores correspondientes", function() {
+        expect(Plantilla.form.NOMBRE).toBe("form-persona-nombre");
+        expect(Plantilla.form.NUMERO_PARTICIPACIONES).toBe("form-persona-numero_participaciones");
+        expect(Plantilla.form.NUMERO_TORNEOS_GANADOS).toBe("form-persona-numero_torneos_ganados");
+        expect(Plantilla.form.ALTURA_JINETE).toBe("form-persona-altura_jinete");
+    });
+});
+
+describe('Prueba para mostrar', function() {
+    beforeEach(function () {
+        spyOn(Plantilla, 'recuperaUnJinete');
+    });
+
+    it('debe llamar a ls función Plantilla.recuperaUnJinete con el idJinete correcto', function() {
+        const idJinete = 111;
+        Plantilla.mostrar(idJinete);
+
+        expect(Plantilla.recuperaUnJinete).toHaveBeenCalledWith(idJinete, jasmine.any(Function));
+    });
+});
+
+
+
 /*
 describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
     beforeEach(function () {
@@ -437,5 +494,5 @@ describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
         expect(document.getElementById("variable").disabled).toEqual(true);
     });
 });
-
 */
+
