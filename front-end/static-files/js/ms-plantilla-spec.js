@@ -431,7 +431,7 @@ describe("Plantilla.guardar", function () {
     });
 });
 
-describe("Pruebas para Plantilla.form", function() {
+describe("Plantilla.form", function() {
     it("debe tener los cuatro campos definidos", function() {
         expect(Plantilla.form).toBeDefined();
         expect(Plantilla.form.NOMBRE).toBeDefined();
@@ -448,7 +448,7 @@ describe("Pruebas para Plantilla.form", function() {
     });
 });
 
-describe('Prueba para mostrar', function() {
+describe('Plantilla.mostrar', function() {
     beforeEach(function () {
         spyOn(Plantilla, 'recuperaUnJinete');
     });
@@ -462,7 +462,7 @@ describe('Prueba para mostrar', function() {
 });
 
 
-describe("Prueba de almacenaDatos", function() {
+describe("Plantilla.almacenaDatos", function() {
     it("Guarda el objeto jinete (con información parcial) en Plantilla.jieneteSeleccionado", function() {
         var jinete = {
             nombre_jinete: {
@@ -476,7 +476,7 @@ describe("Prueba de almacenaDatos", function() {
     });
 });
 
-describe("Prueba para recuperaDatosAlmacenados", function() {
+describe("Plantilla.recuperaDatosAlmacenados", function() {
     it("debe devolver el jieneteSeleccionado", function() {
         var jinete = {
             nombre_jinete: {
@@ -491,37 +491,50 @@ describe("Prueba para recuperaDatosAlmacenados", function() {
     });
 });
 
+describe("Plantilla.habilitarCampoNombre", function () {
+    it('existe la función habilitarCampoNombre', () => {
+        expect(Plantilla.habilitarCampoNombre).toBeDefined();
+    });
+    it("debe llamar a las funciones configuradas", function() {
+        spyOn(Plantilla, "habilitarDeshabilitarCampoNombre");
+        Plantilla.habilitarCampoNombre();
+        expect(Plantilla.habilitarDeshabilitarCampoNombre).toHaveBeenCalled();
+    });
+});
 
-/*
+describe("Plantilla.deshabilitarCampoNombre", function () {
+    it('existe la función deshabilitarCampoNombre', () => {
+        expect(Plantilla.deshabilitarCampoNombre).toBeDefined();
+    });
+    it("debe llamar a las funciones configuradas", function() {
+        spyOn(Plantilla, "habilitarDeshabilitarCampoNombre");
+        Plantilla.deshabilitarCampoNombre();
+        expect(Plantilla.habilitarDeshabilitarCampoNombre).toHaveBeenCalled();
+    });
+});
+
+
 describe("Plantilla.habilitarDeshabilitarCampoNombre", function () {
-    beforeEach(function () {
-        Plantilla.form = {
-            variable1: "variable",
-        };
-        var form = document.createElement("form");
-        form.innerHTML = `
-      <input id="variable" />
-    `;
-        document.body.appendChild(form);
-    })
     it('existe la función habilitarDeshabilitarCampoNombre', () => {
         expect(Plantilla.habilitarDeshabilitarCampoNombre).toBeDefined();
     });
-
-    it("se deshabilitan los campos editables", function() {
-        Plantilla.habilitarDeshabilitarCampoNombre(true);
-        expect(document.getElementById("variable").disabled).toEqual(true);
+    it('Si recibe true -> deshabilitar todos los campos del formulario', function () {
+        spyOn(document, 'getElementById').and.callFake(function (id) {
+            return {disabled: false};
+        });
+        var result = Plantilla.habilitarDeshabilitarCampoNombre(true);
+        expect(document.getElementById.calls.count()).toEqual(Object.keys(Plantilla.form).length);
+        expect(document.getElementById.calls.allArgs().flat()).toEqual(jasmine.arrayWithExactContents(Object.values(Plantilla.form)));
+        expect(result).toEqual(Plantilla);
     });
 
-    it("se habilitan los campos editables", function() {
-        Plantilla.habilitarDeshabilitarCampoNombre(false);
-        expect(document.getElementById("variable").disabled).toEqual(false);
-    });
-
-    it("se habilitan los campos editables", function() {
-        Plantilla.habilitarDeshabilitarCampoNombre();
-        expect(document.getElementById("variable").disabled).toEqual(true);
+    it('Si recibe false -> habilita todos los campos del formulario', function() {
+        spyOn(document, 'getElementById').and.callFake(function(id) {
+            return { disabled: true };
+        });
+        var result = Plantilla.habilitarDeshabilitarCampoNombre(false);
+        expect(document.getElementById.calls.count()).toEqual(Object.keys(Plantilla.form).length);
+        expect(document.getElementById.calls.allArgs().flat()).toEqual(jasmine.arrayWithExactContents(Object.values(Plantilla.form)));
+        expect(result).toEqual(Plantilla);
     });
 });
-*/
-
